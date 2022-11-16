@@ -2,7 +2,6 @@ package com.ecommerce.scheduletime.SQLite;
 
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.getData;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
@@ -104,7 +103,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             intent.putExtra("title_", title_);
             intent.putExtra("color_", color_);
 
-            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent alarmIntent = PendingIntent.getBroadcast(context, id_,
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(context, id_,
                     intent, PendingIntent.FLAG_CANCEL_CURRENT);
             /**
             For Alarm notifications,
@@ -192,7 +191,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             intent.putExtra("title_", title);
             intent.putExtra("color_", priority);
 
-            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
                     intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -233,7 +232,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Intent intent = new Intent(context, MyBroadcastReceiver.class);
             intent.putExtra("id_", row_id);
 
-            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
                     intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
