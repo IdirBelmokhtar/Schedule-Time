@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Schedule Time</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="version">1.0.0</string>
+
+    <string name="start">Start</string>
+    <string name="suivant">Suivant</string>
+    <string name="back">Back</string>
+
+    <string name="facebook_app_id">1048515559153850</string>
+    <string name="fb_login_protocol_scheme">fb1048515559153850</string>
+    <string name="facebook_client_token">ab6559f443b73cb9c3fc982d13c7bd27</string>
+
+    <string name="FbUserID">100079942789167</string>
+    <string name="lien_instagram">https://www.instagram.com/idir7_/</string>
+    <string name="lien_facebook">https://www.facebook.com/idir.belmokhtar/</string>
+    <string name="lien_whatsapp">+213 659 23 92 69</string>
+    <string name="gmail">belmokhtaridir00@gmail.com</string>
+    <string name="search_hint">Search Here ...</string>
+    <string name="dev_phone">+213 659 23 92 69</string>
+    <string name="dev_location">36.71631, 3.82707</string>
+
+    <string-array name="reminder">
+        <item>Never</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+        <item>3 minutes</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+        <item>45 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>3 hours</item>
+        <item>5 hours</item>
+        <item>12 hours</item>
+        <item>1 day</item>
+        <item>2 days</item>
+        <item>3 days</item>
+        <item>5 days</item>
+        <item>1 week</item>
+        <item>2 weeks</item>
+        <item>3 weeks</item>
+        <item>4 weeks</item>
+    </string-array>
+
+    <string-array name="repeat">
+        <item>One time</item>
+        <item>Everyday</item>
+        <item>Select days</item>
+    </string-array>
+
+</resources>

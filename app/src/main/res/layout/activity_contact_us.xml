@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".HomeActivity.ContactUsActivity">
+
+    <ImageView
+        android:id="@+id/backReturn"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:elevation="1dp"/>
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnableOverScrollBounce="true">
+
+        <com.scwang.smart.refresh.header.FalsifyHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="92dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="102dp"
+                        android:layout_height="102dp"
+                        android:background="?android:attr/colorBackground"
+                        android:elevation="1dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/idir" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/custom_background_white_"
+                    android:layout_marginTop="52dp">
+
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="52dp"
+                        android:elevation="1dp"
+                        android:text="IDIR Belmokhtar"
+                        android:textColor="@color/blue"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:text="Boumerdes, Algeria"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="36dp"
+                        android:background="@color/blue_"
+                        android:elevation="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:backgroundTint="?android:attr/colorBackground"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.7"
+                        app:layout_constraintStart_toEndOf="@+id/textView2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.7">
+
+                        <LinearLayout
+                            android:id="@+id/clickMore"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="4dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/icons8_more" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!--<LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:background="?android:attr/colorBackground"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+                        app:layout_constraintTop_toTopOf="@+id/cardView2">
+
+                        <LinearLayout
+                            android:id="@+id/contactGmail"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:gravity="start"
+                            android:orientation="horizontal"
+                            android:paddingVertical="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:src="@drawable/icons8_gmail_1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Gmail"
+                                android:textColor="@color/blue"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:background="@color/blue_" />
+
+                        <LinearLayout
+                            android:id="@+id/contactMessenger"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:gravity="start"
+                            android:orientation="horizontal"
+                            android:paddingVertical="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:src="@drawable/icons8_facebook_messenger" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Messenger"
+                                android:textColor="@color/blue"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:background="@color/blue_" />
+
+                        <LinearLayout
+                            android:id="@+id/contactWhatsapp"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:gravity="start"
+                            android:orientation="horizontal"
+                            android:paddingVertical="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:src="@drawable/icons8_whatsapp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Whatsapp"
+                                android:textColor="@color/blue"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:background="@color/blue_" />
+
+                        <LinearLayout
+                            android:id="@+id/contactFacebook"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:gravity="start"
+                            android:orientation="horizontal"
+                            android:paddingVertical="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:src="@drawable/icons8_facebook" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Facebook"
+                                android:textColor="@color/blue"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:background="@color/blue_" />
+
+                        <LinearLayout
+                            android:id="@+id/contactInstagram"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:gravity="start"
+                            android:orientation="horizontal"
+                            android:paddingVertical="6dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:src="@drawable/icons8_instagram" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Instagram"
+                                android:textColor="@color/blue"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:animateLayoutChanges="true"
+                        android:background="@drawable/custom_background_white"
+                        android:elevation="2dp"
+                        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+                        <LinearLayout
+                            android:id="@+id/contactSocialMedia_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="6sp"
+                            android:layout_marginBottom="8dp"
+                            android:animateLayoutChanges="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="4dp"
+                                android:text="Social Media"
+                                android:textColor="@color/blue"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    app:cardCornerRadius="9dp">
+
+                                    <ImageView
+                                        android:id="@+id/instagram_home"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_instagram" />
+
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    app:cardCornerRadius="9dp">
+
+                                    <ImageView
+                                        android:id="@+id/facebook_home"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_facebook" />
+
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    app:cardCornerRadius="9dp">
+
+                                    <ImageView
+                                        android:id="@+id/whatsapp_home"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_whatsapp" />
+
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    app:cardCornerRadius="9dp">
+
+                                    <ImageView
+                                        android:id="@+id/messenger_home"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_messenger" />
+
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    app:cardCornerRadius="9dp">
+
+                                    <ImageView
+                                        android:id="@+id/gmail_home"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_gmail" />
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Contact Us"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                    <TextView
+                        android:id="@+id/dev_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable"
+                        android:layout_marginTop="4dp"
+                        android:text="Naciria, Boumerdes, Algeria"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@+id/textView9"
+                        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                    <TextView
+                        android:id="@+id/dev_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable"
+                        android:text="@string/dev_phone"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@+id/dev_location"
+                        app:layout_constraintTop_toBottomOf="@+id/dev_location" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="48dp"
+                        android:layout_marginEnd="24dp"
+                        android:gravity="center_vertical"
+                        android:hint="Name"
+                        android:textColorHint="@color/blue"
+                        android:theme="@style/TextInputLineColor"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/blue"
+                        app:hintTextColor="@color/blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dev_location">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactNameInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="textPersonName"
+                            android:maxLength="30"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.3dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:background="@color/blue_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contactName" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:gravity="center_vertical"
+                        android:hint="Email"
+                        android:textColorHint="@color/blue"
+                        android:theme="@style/TextInputLineColor"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/blue"
+                        app:hintTextColor="@color/blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/contactName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactEmailInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="textEmailAddress"
+                            android:maxLength="50"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.3dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:background="@color/blue_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contactEmail" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:gravity="center_vertical"
+                        android:hint="Phone"
+                        android:textColorHint="@color/blue"
+                        android:theme="@style/TextInputLineColor"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/blue"
+                        app:hintTextColor="@color/blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/contactEmail">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactPhoneInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="phone"
+                            android:maxLength="15"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.3dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:background="@color/blue_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contactPhone" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/contactComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="144dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:gravity="center_vertical"
+                        android:hint="Comment"
+                        android:textColorHint="@color/blue"
+                        android:theme="@style/TextInputLineColor"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/blue"
+                        app:hintTextColor="@color/blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/contactPhone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/contactCommentInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="top"
+                            android:background="@color/transparent"
+                            android:gravity="top"
+                            android:inputType="text"
+                            android:maxLines="60"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.3dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:background="@color/blue_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contactComment" />
+
+                    <Button
+                        android:id="@+id/button_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38sp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/custom_button_blue_circle_sign_in"
+                        android:paddingHorizontal="36dp"
+                        android:text="Submit"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.scwang.smart.refresh.header.FalsifyFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:attr/colorBackground"/>
+
+        </com.scwang.smart.refresh.header.FalsifyFooter>
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/search"
+        android:title="Search"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/note"
+        android:title="Note"
+        android:icon="@drawable/ic_icons8_note_1"
+        app:showAsAction="always"/>
+</menu>

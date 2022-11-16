@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="24dp"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/custom_background_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/new_details"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button_blue_left"
+            android:text="Details"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/new_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button_blue"
+            android:text="Tags"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/new_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button_blue_right"
+            android:text="Deadline"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/dialog_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Title"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/new_task_editTextTextTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/custom_button_stroke_black"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:maxLength="50"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"
+                    android:theme="@style/TextInputLineColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Description"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/new_task_editTextTextDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/custom_button_stroke_black"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:minHeight="112dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"
+                    android:theme="@style/TextInputLineColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/new_cancelBtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="Cancel"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/new_nextBtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/custom_button_blue_circle"
+                        android:text="Next"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialog_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Priority"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/new_priority_low"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_priority"
+                        android:text="Low"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/new_priority_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_priority"
+                        android:text="Medium"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/new_priority_high"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_priority"
+                        android:text="High"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Category"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/categorys_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:visibility="visible" />
+
+                            <LinearLayout
+                                android:id="@+id/add_category_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:id="@+id/_editText_category"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="4dp"
+                                    android:background="@drawable/custom_button_stroke_category"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/editText_category"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="36sp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginEnd="4dp"
+                                        android:background="@drawable/transparent_background"
+                                        android:hint="Name"
+                                        android:paddingHorizontal="16dp"
+                                        android:textColor="@color/colorViewOne"
+                                        android:textColorHint="@color/colorViewOne"
+                                        android:textSize="14sp"
+                                        android:theme="@style/TextInputLineColor"
+                                        android:visibility="visible" />
+
+                                    <androidx.cardview.widget.CardView
+                                        android:id="@+id/editText_category_icon"
+                                        android:layout_width="24dp"
+                                        android:layout_height="24dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginEnd="8dp"
+                                        android:visibility="visible"
+                                        app:cardCornerRadius="18dp"
+                                        app:cardElevation="0dp">
+
+                                        <ImageView
+                                            android:id="@+id/editText_category_icon_"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:background="@color/colorViewOne"
+                                            android:visibility="visible" />
+
+                                    </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/category_colors"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color1"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewOne" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color2"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewTwo" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color3"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewThree" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color4"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewFour" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color5"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewFive" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color6"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewSix" />
+
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/category_color7"
+                                        android:layout_width="36dp"
+                                        android:layout_height="36dp"
+                                        android:layout_marginEnd="4dp"
+                                        android:src="@color/colorViewSeven" />
+                                </LinearLayout>
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/editText_category_done"
+                                    android:layout_width="36dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginEnd="4dp"
+                                    android:background="@drawable/custom_button_blue_circle"
+                                    android:padding="6dp"
+                                    android:src="@drawable/icons8_checkmark"
+                                    android:visibility="visible" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/new_category_add"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/custom_button_add_circle"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_baseline_add_24"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/new_cancelBtn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="Cancel"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/new_nextBtn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/custom_button_blue_circle"
+                        android:text="Next"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialog_deadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:visibility="visible"
+                        android:text="Date"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_button_stroke_black_spinners">
+
+                            <TextView
+                                android:id="@+id/textView_month"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="12dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:text="September"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:src="@drawable/ic_icons8_expand_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_month"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_button_stroke_black_spinners">
+
+                            <TextView
+                                android:id="@+id/textView_day"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="12dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:text="06"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:src="@drawable/ic_icons8_expand_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_day"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_button_stroke_black_spinners">
+
+                            <TextView
+                                android:id="@+id/textView_year"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="12dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:text="2022"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:src="@drawable/ic_icons8_expand_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_year"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSelectDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:visibility="gone"
+                        android:text="Days repeat"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutSelectDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginBottom="16sp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/days_sunday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days_full"
+                                    android:text="Sunday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white_"
+                                    android:layout_marginEnd="8dp"
+                                    android:textSize="12sp" />
+
+                                <Button
+                                    android:id="@+id/days_monday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days"
+                                    android:text="Monday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blue"
+                                    android:layout_marginEnd="8dp"
+                                    android:textSize="12sp" />
+
+                                <Button
+                                    android:id="@+id/days_tuesday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days"
+                                    android:text="Tuesday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blue"
+                                    android:layout_marginEnd="8dp"
+                                    android:textSize="12sp" />
+
+                                <Button
+                                    android:id="@+id/days_wednesday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days"
+                                    android:text="Wednesday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blue"
+                                    android:layout_marginEnd="8dp"
+                                    android:textSize="12sp" />
+
+                                <Button
+                                    android:id="@+id/days_thursday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days"
+                                    android:text="Thursday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blue"
+                                    android:layout_marginEnd="8dp"
+                                    android:textSize="12sp" />
+
+                                <Button
+                                    android:id="@+id/days_friday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days"
+                                    android:text="Friday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blue"
+                                    android:layout_marginEnd="8dp"
+                                    android:textSize="12sp" />
+
+                                <Button
+                                    android:id="@+id/days_saturday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:background="@drawable/custom_button_days"
+                                    android:text="Saturday"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/blue"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </HorizontalScrollView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/textViewStartAndEndDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Start date"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="End date"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutSelectDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_button_stroke_black_spinners">
+
+                            <TextView
+                                android:id="@+id/textView_startDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="12dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:text="Sep 04, 2022"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:src="@drawable/ic_icons8_expand_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_startDate"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout_endDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/custom_button_stroke_black_spinners">
+
+                            <TextView
+                                android:id="@+id/textView_endDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="12dp"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:text="Nov 02, 2022"
+                                android:textColor="@color/blue"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/ImageView_endDate"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:src="@drawable/ic_icons8_expand_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/textView_endDate"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Time"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_stroke_black_spinners">
+
+                        <TextView
+                            android:id="@+id/textView_hour"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12dp"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:text="11"
+                            android:textColor="@color/blue"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_icons8_expand_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textView_hour"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_stroke_black_spinners">
+
+                        <TextView
+                            android:id="@+id/textView_minute"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12dp"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:text="00"
+                            android:textColor="@color/blue"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_icons8_expand_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textView_minute"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_button_stroke_black_spinners">
+
+                        <TextView
+                            android:id="@+id/textView_time_mode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12dp"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:text="PM"
+                            android:textColor="@color/blue"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_icons8_expand_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textView_time_mode"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView_time_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|end"
+                    android:text="Time left"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reminder"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutReminder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="0dp"
+                                android:layout_height="36dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/custom_button_stroke_black_spinners">
+
+                                <Spinner
+                                    android:id="@+id/spinner_reminder_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="6dp"
+                                    android:background="@null"
+                                    android:gravity="center_vertical"
+                                    android:textColor="@color/blue"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:layout_marginEnd="12dp"
+                                    android:src="@drawable/ic_icons8_expand_arrow"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/spinner_reminder_time"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Repeat"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutRepeat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="120dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/custom_button_stroke_black_spinners">
+
+                                <Spinner
+                                    android:id="@+id/spinner_repeat_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="6dp"
+                                    android:background="@null"
+                                    android:gravity="center_vertical"
+                                    android:textColor="@color/blue"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:layout_marginEnd="12dp"
+                                    android:src="@drawable/ic_icons8_expand_arrow"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/spinner_repeat_time"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/new_cancelBtn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="Cancel"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/new_saveBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/custom_button_blue_circle"
+                        android:text="Save"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

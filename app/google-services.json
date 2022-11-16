@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "599843916126",
+    "firebase_url": "https://schedule-time-e3a40-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "schedule-time-e3a40",
+    "storage_bucket": "schedule-time-e3a40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599843916126:android:2395bdc85e690a57d5e7cf",
+        "android_client_info": {
+          "package_name": "com.ecommerce.scheduletime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599843916126-rnvsft4ihn78kktphcrfpf8g866c48ck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecommerce.scheduletime",
+            "certificate_hash": "7df5bcbd5162ce82dda0be5cdc93ea72e468a734"
+          }
+        },
+        {
+          "client_id": "599843916126-460r9fijemlvmeijsd8d1ueshcd18pd7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFrVCUKmaAkTpTGAhMisokkH-RBcDRA-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599843916126-460r9fijemlvmeijsd8d1ueshcd18pd7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

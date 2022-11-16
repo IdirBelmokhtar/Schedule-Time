@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_margin="24dp"
+    android:background="@drawable/custom_background_white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="32dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by"
+            android:textColor="@color/blue"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/exit_dialog_sort"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icons8_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="24dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp">
+
+        <RadioGroup
+            android:id="@+id/sort_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/sort_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/blue"
+                android:minHeight="48dp"
+                android:text="Due Date and Time"
+                android:textColor="@color/blue" />
+
+            <RadioButton
+                android:id="@+id/sort_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/blue"
+                android:minHeight="48dp"
+                android:text="Priority"
+                android:textColor="@color/blue" />
+
+            <RadioButton
+                android:id="@+id/sort_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/blue"
+                android:minHeight="48dp"
+                android:text="Category"
+                android:textColor="@color/blue" />
+
+            <RadioButton
+                android:id="@+id/sort_task_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/blue"
+                android:minHeight="48dp"
+                android:text="Tasks Done"
+                android:textColor="@color/blue" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</LinearLayout>

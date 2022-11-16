@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/header_drawer_nav"
+    android:gravity="center|bottom"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="48dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/drawer_nav_profile_image"
+            android:layout_width="98dp"
+            android:layout_height="98dp"
+            android:src="@drawable/ic_avatar_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/drawer_nav_profile_auth_background"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@color/white"
+            android:layout_margin="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/drawer_nav_profile_auth"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_icons8_google_1"
+            android:layout_margin="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/drawer_nav_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Name User"
+            android:textSize="18sp"
+            android:maxLength="30"
+            android:textColor="@color/blue"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/drawer_nav_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name@exemple.com"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+
+</LinearLayout>

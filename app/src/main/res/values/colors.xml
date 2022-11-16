@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#18314F</color>
+    <color name="purple_500">#6892C3</color>
+    <color name="purple_700">#18314F</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="_black">#66000000</color>
+    <color name="_white">#BFFFFFFF</color>
+    <color name="sss">#D6DCE8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_">#F2F2F2</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="_blue">#6618314F</color>
+    <color name="blue">#18314F</color>
+    <color name="blue_">#F0F4FA</color>
+    <color name="blue_2">#73A0D4</color>
+    <color name="blue_3">#2F4D71</color>
+    <color name="black_overlay">#40909094</color>
+    <color name="white_overlay">#BF909094</color>
+    <color name="red">#B95050</color>
+    <color name="done">#2BDA9D</color>
+    <color name="done_minus">#90CC6C</color>
+    <color name="minus">#F5BE3B</color>
+    <color name="delete">#F0476F</color>
+
+    <color name="basic_blue">#0000FF</color>
+
+    <color name="default_">#1F78D1</color>
+    <color name="low">#1AAA55</color>
+    <color name="medium">#FC9403</color>
+    <color name="high">#DB3B21</color>
+
+    <color name="colorViewOne">#6287D7</color>
+    <color name="colorViewTwo">#E59B52</color>
+    <color name="colorViewThree">#4CC595</color>
+    <color name="colorViewFour">#E3B3AB</color>
+    <color name="colorViewFive">#B96ED7</color>
+    <color name="colorViewSix">#FF856A</color>
+    <color name="colorViewSeven">#FF6CCF</color>
+</resources>

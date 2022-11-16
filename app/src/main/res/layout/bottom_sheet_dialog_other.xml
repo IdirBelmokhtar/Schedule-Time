@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:orientation="vertical"
+        android:background="@drawable/custom_background_white">
+
+        <LinearLayout
+            android:id="@+id/other_dialog_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:textColor="@color/blue"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:paddingVertical="4dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@color/blue_"/>
+
+        <LinearLayout
+            android:id="@+id/other_dialog_duplicate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duplicate"
+                android:textColor="@color/blue"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:paddingVertical="4dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@color/blue_"/>
+
+        <LinearLayout
+            android:id="@+id/other_dialog_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textColor="@color/red"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/custom_background_white">
+
+        <LinearLayout
+            android:id="@+id/other_dialog_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="@color/blue_2"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity2">
+    <!--
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlEnableOverScrollBounce="true">
+
+            <com.scwang.smart.refresh.header.FalsifyHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
+
+            <com.scwang.smart.refresh.header.FalsifyFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>-->
+
+    <!-- <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="36sp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/custom_button_stroke_category"
+            android:hint="Add category"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/blue"
+            android:textColorHint="@color/blue_2"
+            android:textSize="14sp"
+            android:theme="@style/TextInputLineColor"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewOne" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewTwo" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color3"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewThree" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color4"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewFour" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color5"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewFive" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color6"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewSix" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/category_color7"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:src="@color/colorViewSeven" />
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/new_category_add"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/custom_button_blue_circle"
+            android:padding="6dp"
+            android:src="@drawable/icons8_checkmark" />
+
+    </LinearLayout> -->
+
+    <!--<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true"
+        android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/contactGmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:paddingVertical="6dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icons8_gmail_1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gmail"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue_"
+        android:layout_marginHorizontal="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/contactMessenger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:paddingVertical="6dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icons8_facebook_messenger"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Messenger"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue_"
+        android:layout_marginHorizontal="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/contactWhatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:paddingVertical="6dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icons8_whatsapp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whatsapp"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue_"
+        android:layout_marginHorizontal="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/contactFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:paddingVertical="6dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icons8_facebook"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facebook"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue_"
+        android:layout_marginHorizontal="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/contactInstagram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:paddingVertical="6dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icons8_instagram"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instagram"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    </LinearLayout>-->
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="9dp">
+
+            <ImageView
+                android:id="@+id/instagram_home"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_instagram" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="9dp">
+
+            <ImageView
+                android:id="@+id/facebook_home"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_facebook" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="9dp">
+
+            <ImageView
+                android:id="@+id/whatsapp_home"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_whatsapp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="9dp">
+
+            <ImageView
+                android:id="@+id/messenger_home"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_messenger" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="9dp">
+
+            <ImageView
+                android:id="@+id/gmail_home"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_gmail" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>-->
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/categorys_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/add_category_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/_editText_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/custom_button_stroke_category"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editText_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36sp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/transparent_background"
+                            android:hint="Name"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="@color/colorViewOne"
+                            android:textColorHint="@color/colorViewOne"
+                            android:textSize="14sp"
+                            android:theme="@style/TextInputLineColor"
+                            android:visibility="visible" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/editText_category_icon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="8dp"
+                            android:visibility="visible"
+                            app:cardCornerRadius="18dp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:id="@+id/editText_category_icon_"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:background="@color/colorViewOne"
+                                android:visibility="visible" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/category_colors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color1"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewOne" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color2"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewTwo" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color3"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewThree" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color4"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewFour" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color5"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewFive" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color6"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewSix" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/category_color7"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="4dp"
+                            android:src="@color/colorViewSeven" />
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/editText_category_done"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/custom_button_blue_circle"
+                        android:padding="6dp"
+                        android:src="@drawable/icons8_checkmark"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/new_category_add"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/custom_button_add_circle"
+                android:padding="6dp"
+                android:src="@drawable/ic_baseline_add_24"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>

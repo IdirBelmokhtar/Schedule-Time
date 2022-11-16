@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable-v24/toolbar_dropshadow.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/bottom_app_bar.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_bulleted_list_1.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_calendar_minus.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ic_icons8_note_1.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/icons_list.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ripple_list_item_bg.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/ripple_list_item_bg_circle.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/drawable/transparent_background.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/layout/activity_main2.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/layout/fragment_calender.xml" value="0.17980072463768115" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/layout/fragment_list.xml" value="0.22" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/layout/header_drawer_layout.xml" value="0.209375" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/menu/app_bar_menu.xml" value="0.209375" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/menu/drawer_menu.xml" value="0.209375" />
+        <entry key="..\:/Users/ibelm/AndroidStudioProjects/ScheduleTime/app/src/main/res/menu/my_menu_list.xml" value="0.209375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
