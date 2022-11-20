@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    style="@style/Theme.AppCompat.background">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchViewDialog"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/custom_button_stroke_black_search"
+        style="@style/Theme.AppCompat.custom_button_stroke_black_search"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

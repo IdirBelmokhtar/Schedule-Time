@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeActivity.ProfileActivity">
+    tools:context=".HomeActivity.ProfileActivity"
+    style="@style/Theme.AppCompat.background_">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_profile"
@@ -76,15 +77,44 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/profile_image"
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="84dp"
                                 android:layout_height="84dp"
-                                android:layout_marginVertical="8dp"
-                                android:layout_marginStart="16sp"
-                                android:layout_marginEnd="8dp"
-                                android:src="@drawable/ic_avatar_default" />
+                                android:layout_marginVertical="16dp"
+                                android:layout_marginStart="24sp"
+                                android:layout_marginEnd="8dp">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/profile_image"
+                                    android:layout_width="84dp"
+                                    android:layout_height="84dp"
+                                    android:src="@drawable/ic_avatar_default"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.5" />
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/profile_auth_background"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@color/white"
+                                    android:layout_margin="2dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent" />
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/profile_auth"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_icons8_google_1"
+                                    android:layout_margin="2dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                             <LinearLayout
@@ -100,7 +130,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
                                     android:text="Name User"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
 
@@ -111,7 +141,7 @@
                                     android:layout_marginTop="4dp"
                                     android:gravity="start"
                                     android:text="name@exemple.com"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="14sp" />
 
                             </LinearLayout>
@@ -123,7 +153,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@color/blue_"
+                        style="@style/Theme.AppCompat.View"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +179,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="?android:attr/colorBackground"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable2"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -163,11 +193,9 @@
                                 android:paddingTop="6dp"
                                 android:paddingEnd="2dp"
                                 android:paddingBottom="12sp"
-                                android:textColorHint="@color/blue_3"
                                 android:theme="@style/TextInputLineColor"
                                 app:endIconMode="clear_text"
-                                app:endIconTint="@color/blue_3"
-                                app:hintTextColor="@color/blue_3">
+                                style="@style/Theme.AppCompat.TextInputLayout.Colors">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/profile_editTextTextName"
@@ -178,8 +206,7 @@
                                     android:drawableEnd="@drawable/ic_icons8_edit"
                                     android:inputType="textPersonName"
                                     android:maxLength="50"
-                                    android:textColor="@color/blue_3"
-                                    android:textColorHint="@color/blue_3" />
+                                    style="@style/Theme.AppCompat.TextInputLayout.Colors" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                         </LinearLayout>
@@ -206,7 +233,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="?android:attr/colorBackground"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable2"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -220,11 +247,9 @@
                                 android:paddingTop="6dp"
                                 android:paddingEnd="2dp"
                                 android:paddingBottom="12sp"
-                                android:textColorHint="@color/blue_3"
                                 android:theme="@style/TextInputLineColor"
                                 app:endIconMode="clear_text"
-                                app:endIconTint="@color/blue_3"
-                                app:hintTextColor="@color/blue_3">
+                                style="@style/Theme.AppCompat.TextInputLayout.Colors">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/profile_editTextTextEmail"
@@ -236,8 +261,7 @@
                                     android:inputType="textEmailAddress"
                                     android:maxLength="50"
                                     android:text="name@exemple.com"
-                                    android:textColor="@color/blue_3"
-                                    android:textColorHint="@color/blue_3" />
+                                    style="@style/Theme.AppCompat.TextInputLayout.Colors" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                         </LinearLayout>

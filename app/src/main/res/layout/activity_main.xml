@@ -43,12 +43,12 @@
                 android:id="@+id/bottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:paddingHorizontal="26dp"
                 android:background="@drawable/transparent_background"
-                app:menu="@menu/app_bar_menu"
+                android:paddingHorizontal="26dp"
+                app:itemIconTint="@drawable/bottom_app_bar"
                 app:itemRippleColor="@color/transparent"
                 app:labelVisibilityMode="unlabeled"
-                app:itemIconTint="@drawable/bottom_app_bar">
+                app:menu="@menu/app_bar_menu">
 
             </com.google.android.material.bottomnavigation.BottomNavigationView>
 
@@ -58,14 +58,15 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="fab"
             android:src="@drawable/ic_baseline_add_24"
             app:backgroundTint="@color/blue"
-            android:onClick="fab"
             app:layout_anchor="@id/bottomAppBar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
+        style="@style/Theme.AppCompat.background"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start">
@@ -77,7 +78,7 @@
 
             <com.scwang.smart.refresh.header.FalsifyHeader
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -92,64 +93,61 @@
 
                     <com.google.android.material.navigation.NavigationView
                         android:id="@+id/drawer_nav_view"
+                        style="@style/Theme.AppCompat.background"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="start"
+                        android:layout_weight="1"
                         android:elevation="0dp"
-                        app:elevation="0dp"
-                        app:itemTextColor="@color/blue"
                         android:fitsSystemWindows="true"
                         android:theme="@style/ThemeOverlay.AppCompat.navThemeDrawer"
+                        app:elevation="0dp"
                         app:headerLayout="@layout/header_drawer_layout"
-                        app:menu="@menu/drawer_menu">
-                    </com.google.android.material.navigation.NavigationView>
+                        app:menu="@menu/drawer_menu"></com.google.android.material.navigation.NavigationView>
 
                     <TextView
                         android:id="@+id/drawer_HelpAndFeedback"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable_"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Help &amp; Feedback"
-                        android:textColor="@color/blue"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginStart="16dp"
                         android:layout_gravity="bottom"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
                         android:gravity="bottom"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable"/>
+                        android:text="Help &amp; Feedback" />
+
                     <TextView
                         android:id="@+id/drawer_TermsOfUse"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable_"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Terms of Use"
-                        android:textColor="@color/blue"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginStart="16dp"
                         android:layout_gravity="bottom"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
                         android:gravity="bottom"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable"/>
+                        android:text="Terms of Use" />
+
                     <TextView
                         android:id="@+id/drawer_ContactUs"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable_"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Us"
-                        android:textColor="@color/blue"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginStart="16dp"
                         android:layout_gravity="bottom"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
                         android:gravity="bottom"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable"/>
+                        android:text="Contact Us" />
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
             <com.scwang.smart.refresh.header.FalsifyFooter
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
     </com.google.android.material.navigation.NavigationView>
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

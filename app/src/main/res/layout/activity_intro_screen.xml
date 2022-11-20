@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen.IntroScreenActivity">
+    tools:context=".SplashScreen.IntroScreenActivity"
+    style="@style/Theme.AppCompat.background">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slide_intro_ViewPager"
@@ -24,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="Skip"
-        android:textColor="@color/blue"
+        style="@style/Theme.AppCompat.Textview"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,12 +59,11 @@
             android:layout_height="48dp"
             android:layout_marginBottom="24dp"
             android:layout_marginHorizontal="24dp"
-            android:background="@drawable/custom_button_blue_circle_sign_in"
-            android:text="@string/start"
+            style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable3"            android:text="@string/start"
             android:textAllCaps="false"
             android:textColor="@color/white_"
             android:textSize="20sp"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

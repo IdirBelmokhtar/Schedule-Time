@@ -11,12 +11,12 @@
         android:id="@+id/backReturn"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
-        android:elevation="1dp"/>
+        android:layout_marginTop="24dp"
+        android:elevation="1dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
 
         <com.scwang.smart.refresh.header.FalsifyHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -41,8 +41,8 @@
                     android:id="@+id/cardView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="24dp"
                     android:layout_gravity="center"
+                    app:cardCornerRadius="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -59,37 +59,37 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/Theme.AppCompat.custom_background_"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="52dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:background="@drawable/custom_background_white_"
-                    android:layout_marginTop="52dp">
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
 
                     <TextView
                         android:id="@+id/textView2"
+                        style="@style/Theme.AppCompat.Textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="52dp"
                         android:elevation="1dp"
                         android:text="IDIR Belmokhtar"
-                        android:textColor="@color/blue"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView3"
+                        style="@style/Theme.AppCompat.Textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="1dp"
                         android:text="Boumerdes, Algeria"
-                        android:textColor="@color/blue"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -97,10 +97,10 @@
 
                     <View
                         android:id="@+id/view"
+                        style="@style/Theme.AppCompat.View"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="36dp"
-                        android:background="@color/blue_"
                         android:elevation="1dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -130,9 +130,9 @@
                             android:padding="4dp">
 
                             <ImageView
+                                style="@style/Theme.AppCompat.icon.more"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icons8_more" />
+                                android:layout_height="wrap_content" />
 
                         </LinearLayout>
 
@@ -310,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:animateLayoutChanges="true"
-                        android:background="@drawable/custom_background_white"
+                        style="@style/Theme.AppCompat.custom_background"
                         android:elevation="2dp"
                         app:layout_constraintEnd_toEndOf="@+id/cardView2"
                         app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -331,7 +331,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginVertical="4dp"
                                 android:text="Social Media"
-                                android:textColor="@color/blue"
+                                style="@style/Theme.AppCompat.Textview"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -423,12 +423,12 @@
 
                     <TextView
                         android:id="@+id/textView9"
+                        style="@style/Theme.AppCompat.Textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
                         android:text="Contact Us"
-                        android:textColor="@color/blue"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -436,29 +436,28 @@
 
                     <TextView
                         android:id="@+id/dev_location"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable"
                         android:layout_marginTop="4dp"
                         android:text="Naciria, Boumerdes, Algeria"
-                        android:textColor="@color/blue"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/textView9"
                         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                     <TextView
                         android:id="@+id/dev_phone"
+                        style="@style/Theme.ScheduleTime.TextView.Clickable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable"
                         android:text="@string/dev_phone"
-                        android:textColor="@color/blue"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/dev_location"
                         app:layout_constraintTop_toBottomOf="@+id/dev_location" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contactName"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="24dp"
@@ -466,23 +465,20 @@
                         android:layout_marginEnd="24dp"
                         android:gravity="center_vertical"
                         android:hint="Name"
-                        android:textColorHint="@color/blue"
                         android:theme="@style/TextInputLineColor"
                         app:endIconMode="clear_text"
-                        app:endIconTint="@color/blue"
-                        app:hintTextColor="@color/blue"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dev_location">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/contactNameInput"
+                            style="@style/Theme.AppCompat.Textview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/transparent"
                             android:inputType="textPersonName"
                             android:maxLength="30"
-                            android:textColor="@color/blue"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -498,6 +494,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contactEmail"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="24dp"
@@ -505,11 +502,8 @@
                         android:layout_marginEnd="24dp"
                         android:gravity="center_vertical"
                         android:hint="Email"
-                        android:textColorHint="@color/blue"
                         android:theme="@style/TextInputLineColor"
                         app:endIconMode="clear_text"
-                        app:endIconTint="@color/blue"
-                        app:hintTextColor="@color/blue"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/contactName">
@@ -521,7 +515,7 @@
                             android:background="@color/transparent"
                             android:inputType="textEmailAddress"
                             android:maxLength="50"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -538,6 +532,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contactPhone"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="24dp"
@@ -545,11 +540,8 @@
                         android:layout_marginEnd="24dp"
                         android:gravity="center_vertical"
                         android:hint="Phone"
-                        android:textColorHint="@color/blue"
                         android:theme="@style/TextInputLineColor"
                         app:endIconMode="clear_text"
-                        app:endIconTint="@color/blue"
-                        app:hintTextColor="@color/blue"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/contactEmail">
@@ -561,12 +553,13 @@
                             android:background="@color/transparent"
                             android:inputType="phone"
                             android:maxLength="15"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <View
                         android:id="@+id/view4"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="1.3dp"
                         android:layout_marginHorizontal="24dp"
@@ -578,6 +571,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/contactComment"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="144dp"
                         android:layout_marginStart="24dp"
@@ -585,11 +579,8 @@
                         android:layout_marginEnd="24dp"
                         android:gravity="center_vertical"
                         android:hint="Comment"
-                        android:textColorHint="@color/blue"
                         android:theme="@style/TextInputLineColor"
                         app:endIconMode="clear_text"
-                        app:endIconTint="@color/blue"
-                        app:hintTextColor="@color/blue"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/contactPhone">
@@ -603,7 +594,7 @@
                             android:gravity="top"
                             android:inputType="text"
                             android:maxLines="60"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -644,10 +635,11 @@
         <com.scwang.smart.refresh.header.FalsifyFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?android:attr/colorBackground"/>
+                style="@style/Theme.AppCompat.background_" />
 
         </com.scwang.smart.refresh.header.FalsifyFooter>
 

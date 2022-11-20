@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccount.Fragment.SignUpFragment">
+    tools:context=".CreateAccount.Fragment.SignUpFragment"
+    style="@style/Theme.AppCompat.background_">
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="136dp"
-                android:background="@drawable/custom_background_white_"
+                style="@style/Theme.AppCompat.custom_background_"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +62,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="48dp"
                     android:text="Let's Get Started!"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -75,13 +77,11 @@
                     android:layout_marginEnd="24dp"
                     android:gravity="center_vertical"
                     android:hint="Full Name"
-                    android:textColorHint="@color/blue"
                     app:endIconMode="clear_text"
-                    app:endIconTint="@color/blue"
-                    app:hintTextColor="@color/blue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4">
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    style="@style/Theme.AppCompat.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/sign_up_name"
@@ -90,7 +90,7 @@
                         android:background="@drawable/transparent_background"
                         android:inputType="textPersonName"
                         android:maxLength="50"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:textSize="16sp"
                         android:theme="@style/TextInputLineColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -114,11 +114,9 @@
                     android:layout_marginEnd="24dp"
                     android:gravity="center_vertical"
                     android:hint="Email"
-                    android:textColorHint="@color/blue"
+                    style="@style/Theme.AppCompat.TextInputLayout"
                     android:theme="@style/TextInputLineColor"
                     app:endIconMode="clear_text"
-                    app:endIconTint="@color/blue"
-                    app:hintTextColor="@color/blue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TextInputName">
@@ -130,7 +128,7 @@
                         android:background="@drawable/transparent_background"
                         android:inputType="textEmailAddress"
                         android:maxLength="50"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,11 +151,9 @@
                     android:layout_marginEnd="24dp"
                     android:gravity="center_vertical"
                     android:hint="Password"
-                    android:textColorHint="@color/blue"
+                    style="@style/Theme.AppCompat.TextInputLayout"
                     android:theme="@style/TextInputLineColor"
                     app:endIconMode="password_toggle"
-                    app:endIconTint="@color/blue"
-                    app:hintTextColor="@color/blue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TextInputLayout">
@@ -168,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
                         android:inputType="textPassword"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.TextInputLayout"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -189,7 +185,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="64dp"
                     android:layout_marginEnd="24dp"
-                    android:background="@drawable/custom_button_blue_circle_sign_in"
+                    style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable3"
                     android:text="Sign Up"
                     android:textAllCaps="false"
                     android:textColor="@color/white_"
@@ -217,7 +213,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="14dp"
                         android:text="Or Sign up with"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.Textview"
                         android:textSize="14sp" />
 
                     <LinearLayout

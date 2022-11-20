@@ -1,4 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.AppCompat.background_" parent="">
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+    <style name="Theme.AppCompat.background" parent="">
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="Theme.ScheduleTime" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -82,6 +90,11 @@
         <item name="android:background">@drawable/ripple_list_item_bg_circle_white_</item>
     </style>
 
+    <style name="Theme.ScheduleTime.LinearLayout.ListItem_" parent="">
+        <item name="android:clickable">false</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
     <style name="Widget.Schedule.TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
         <item name="android:lineSpacingExtra">-1.5sp</item>
@@ -101,6 +114,40 @@
         <item name="colorControlHighlight">@color/blue_2</item>
     </style>
 
+    <style name="Theme.AppCompat.EditText.textColor.textColorHint" parent="">
+        <item name="android:textColorHint">@color/_blue</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.AppCompat.TextInputLayout">
+        <item name="android:textColorHint">@color/blue</item>
+        <item name="endIconTint">@color/blue</item>
+        <item name="hintTextColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.AppCompat.TextInputLayout.Colors" parent="">
+        <item name="android:textColorHint">@color/blue_3</item>
+        <item name="endIconTint">@color/blue_3</item>
+        <item name="hintTextColor">@color/blue_3</item>
+        <item name="android:textColor">@color/blue_3</item>
+    </style>
+
+    <style name="Theme.AppCompat.custom_background" parent="">
+        <item name="android:background">@drawable/custom_background_white</item>
+    </style>
+
+    <style name="Theme.AppCompat.custom_background_" parent="">
+        <item name="android:background">@drawable/custom_background_white_</item>
+    </style>
+
+    <style name="Theme.AppCompat.View" parent="">
+        <item name="android:background">@color/blue_</item>
+    </style>
+
+    <style name="Theme.AppCompat.custom_button_stroke_black_search" parent="">
+        <item name="android:background">@drawable/custom_button_stroke_black_search</item>
+    </style>
+
     <style name="AppTheme.CardView.backgroundColor" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:backgroundTint">@color/blue_</item>
     </style>
@@ -110,16 +157,73 @@
         <item name="colorPrimary">@color/blue</item>
         <!-- Background color when SELECTED -->
         <item name="colorControlHighlight">@color/transparent</item>
+
+        <item name="itemTextColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.AppCompat.RadioButton" parent="">
+        <item name="android:buttonTint">@color/blue</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.AppCompat.CheckBox" parent="">
+        <item name="android:buttonTint">@color/blue</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColorHighlight">@color/blue</item>
+        <item name="android:textColorLink">@color/blue</item>
     </style>
 
     <style name="Theme.ScheduleTime.TextView.Clickable" parent="">
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/ripple_list_item_bg_text</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.ScheduleTime.TextView.Clickable_" parent="">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_list_item_bg_text</item>
+        <item name="android:textColor">@color/blue</item>
     </style>
 
     <style name="SheetDialogAnimation" >
         <item name="android:windowEnterAnimation">@anim/slide_in_y</item>
         <item name="android:windowExitAnimation">@anim/slide_out_y</item>
+    </style>
+
+    <style name="Color1SwitchStyle">
+        <item name="colorControlActivated">@color/blue_2</item>
+    </style>
+
+    <style name="Theme.AppCompat.calendarView" parent="">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Theme.AppCompat.Textview" parent="">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.AppCompat.Textview_" parent="">
+        <item name="android:textColor">@color/blue_3</item>
+    </style>
+
+    <style name="Theme.AppCompat._Textview" parent="">
+        <item name="android:textColor">@color/_blue</item>
+    </style>
+
+    <style name="Theme.AppCompat.icon.edit" parent="">
+        <item name="android:src">@drawable/ic_icons8_edit</item>
+    </style>
+
+    <style name="Theme.AppCompat.icon.delete" parent="">
+        <item name="android:src">@drawable/icons8_delete</item>
+    </style>
+
+    <style name="Theme.AppCompat.icon.more" parent="">
+        <item name="android:src">@drawable/icons8_more</item>
+    </style>
+
+    <style name="Theme.AppCompat.icon.trash" parent="">
+        <item name="android:src">@drawable/icons8_trash_can_2</item>
     </style>
 
     <style name="WindowAnimationFadeInOut">

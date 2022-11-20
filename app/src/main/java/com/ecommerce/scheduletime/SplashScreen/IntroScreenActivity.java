@@ -1,6 +1,7 @@
 package com.ecommerce.scheduletime.SplashScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -93,7 +94,16 @@ public class IntroScreenActivity extends AppCompatActivity {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8728;"));
             mDots[i].setTextSize(32);
-            mDots[i].setTextColor(getResources().getColor(R.color.blue));
+            //DARK MODE
+            SharedPreferences preferences_ = getSharedPreferences("dark_mode", MODE_PRIVATE);
+            String state = preferences_.getString("state", "");
+            if (state.equals("true")) {
+                mDots[i].setTextColor(getResources().getColor(R.color.white_));
+            } else if (state.equals("false")) {
+                mDots[i].setTextColor(getResources().getColor(R.color.blue));
+            } else {
+                mDots[i].setTextColor(getResources().getColor(R.color.blue));
+            }
             mDots[i].setLayoutParams(params);
 
             dots_intro_Layout.addView(mDots[i]);
@@ -102,7 +112,16 @@ public class IntroScreenActivity extends AppCompatActivity {
         if (mDots.length > 0) {
             mDots[position].setText(Html.fromHtml("&#8226;"));
             mDots[position].setTextSize(44);
-            mDots[position].setTextColor(getResources().getColor(R.color.blue));
+            //DARK MODE
+            SharedPreferences preferences_ = getSharedPreferences("dark_mode", MODE_PRIVATE);
+            String state = preferences_.getString("state", "");
+            if (state.equals("true")) {
+                mDots[position].setTextColor(getResources().getColor(R.color.white_));
+            } else if (state.equals("false")) {
+                mDots[position].setTextColor(getResources().getColor(R.color.blue));
+            } else {
+                mDots[position].setTextColor(getResources().getColor(R.color.blue));
+            }
             mDots[position].setLayoutParams(params);
         }
 

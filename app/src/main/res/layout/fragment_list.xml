@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ListFragment">
+    tools:context=".Fragments.ListFragment"
+    style="@style/Theme.AppCompat.background_">
 
     <View
         android:id="@+id/status_bar_list"
@@ -194,7 +195,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="end"
                                     android:text="Sort by : Time"
-                                    android:textColor="@color/blue"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 
@@ -239,7 +239,7 @@
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="8dp"
                                         android:text="Tasks"
-                                        android:textColor="@color/blue"
+                                        style="@style/Theme.AppCompat.Textview"
                                         android:textSize="18sp"
                                         android:textStyle="bold" />
 
@@ -290,7 +290,7 @@
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="18dp"
                                         android:text="Tomorrow"
-                                        android:textColor="@color/blue"
+                                        style="@style/Theme.AppCompat.Textview"
                                         android:textSize="18sp"
                                         android:textStyle="bold" />
 

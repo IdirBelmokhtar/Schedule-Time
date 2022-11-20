@@ -26,6 +26,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         String id_ = intent.getStringExtra("id_");
         String title_ = intent.getStringExtra("title_");
         String color_ = intent.getStringExtra("color_");
+        String description = intent.getStringExtra("description");
 
         int color = ContextCompat.getColor(context, R.color.default_);
 
@@ -39,11 +40,15 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             color = ContextCompat.getColor(context, R.color.low);
         }
 
-        sendOnChannel3(context, intent, id_, title_, "Description", color);
+        try {
+            sendOnChannel3(context, id_, title_, description, color);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void sendOnChannel3(Context context, Intent intent, String id_, String title, String description, int color) {
+    public void sendOnChannel3(Context context, String id_, String title, String description, int color) {
         NotificationManagerCompat notificationManager;
         notificationManager = NotificationManagerCompat.from(context);
         notificationManager.cancel(3);// Remove previous Notification.
@@ -52,11 +57,11 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         SharedPreferences.Editor editor = context.getSharedPreferences("id_task", MODE_PRIVATE).edit();
         editor.putString("idName", id_);
         editor.apply();
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, activityIntent, 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, activityIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Intent broadcastIntent = new Intent(context, NotificationReceiver.class);
         broadcastIntent.putExtra("Message", description);
-        PendingIntent actionIntent = PendingIntent.getBroadcast(context, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent actionIntent = PendingIntent.getBroadcast(context, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_3_ID)
                 .setSmallIcon(R.drawable.schedule_time_icon)

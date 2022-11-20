@@ -17,6 +17,8 @@
     <color name="blue_">#F0F4FA</color>
     <color name="blue_2">#73A0D4</color>
     <color name="blue_3">#2F4D71</color>
+    <color name="dark_">#070d15</color>
+    <color name="dark">#0d1928</color>
     <color name="black_overlay">#40909094</color>
     <color name="white_overlay">#BF909094</color>
     <color name="red">#B95050</color>

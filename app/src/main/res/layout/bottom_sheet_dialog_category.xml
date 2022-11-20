@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_margin="6dp"
-    android:background="@drawable/custom_background_white">
+    style="@style/Theme.AppCompat.custom_background">
 
     <TextView
         android:id="@+id/sheet_dialog_title"
@@ -16,7 +16,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginHorizontal="24dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/blue"
+        style="@style/Theme.AppCompat.Textview"
         android:textSize="20sp"/>
 
     <HorizontalScrollView
@@ -172,6 +172,7 @@
                 android:id="@+id/new_category_add"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:layout_gravity="center"
                 android:background="@drawable/custom_button_add_circle"
                 android:padding="6dp"
                 android:src="@drawable/ic_baseline_add_24"

@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:layout_margin="24dp"
     android:animateLayoutChanges="true"
-    android:background="@drawable/custom_background_white"
+    style="@style/Theme.AppCompat.custom_background"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="Details"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +49,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/icons8_edit"
+                    style="@style/Theme.AppCompat.icon.edit"
                     app:layout_constraintStart_toEndOf="@+id/textView"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +57,7 @@
                     android:id="@+id/exit_dialog_details"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/icons8_delete"
+                    style="@style/Theme.AppCompat.icon.delete"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -83,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Finish Ui Designs"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp" />
 
                 <TextView
@@ -91,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     android:text="Description"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -101,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Finis Schedule time before september 5, 2022"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp" />
 
                 <TextView
@@ -109,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     android:text="Priority"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -130,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     android:text="Category"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -163,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     android:text="Reminder"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -173,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Naver"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp" />
 
             </LinearLayout>

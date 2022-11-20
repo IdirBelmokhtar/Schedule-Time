@@ -9,14 +9,17 @@ import static com.ecommerce.scheduletime.HomeActivity.MainActivity.fOpen;
 import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.os.BuildCompat;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -323,7 +326,16 @@ public class EditTaskActivity extends AppCompatActivity {
         spinner_reminder_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                //DARK MODE
+                SharedPreferences preferences_ = getSharedPreferences("dark_mode", MODE_PRIVATE);
+                String state = preferences_.getString("state", "");
+
                 ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.blue));
+                if (state.equals("true")) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.white_));
+                } else if (state.equals("false")) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.blue));
+                }
 
                 String spinner_text = adapterView.getItemAtPosition(position).toString();
                 if (spinner_text.equals("Never")) {
@@ -415,7 +427,7 @@ public class EditTaskActivity extends AppCompatActivity {
         }
             //category_ids = Arrays.asList(removeLastString(task_category.substring(1)).split(", "));
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 72);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 108);
             params.setMarginEnd(8);
 
             category_btn = new Button[category_ids_new.size()];//category_ids.size

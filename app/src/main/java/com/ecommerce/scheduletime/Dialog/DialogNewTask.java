@@ -1,5 +1,6 @@
 package com.ecommerce.scheduletime.Dialog;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.currentTime;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.date_selected;
 
@@ -8,6 +9,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -34,10 +36,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.ecommerce.scheduletime.HomeActivity.EditTaskActivity;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_category;
 import com.ecommerce.scheduletime.R;
 
@@ -598,7 +602,16 @@ public class DialogNewTask extends Dialog {
         spinner_reminder_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                //DARK MODE
+                SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                String state = preferences_.getString("state", "");
+
                 ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                if (state.equals("true")) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                } else if (state.equals("false")) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                }
 
                 String spinner_text = adapterView.getItemAtPosition(position).toString();
                 if (spinner_text.equals("Never")) {
@@ -688,7 +701,16 @@ public class DialogNewTask extends Dialog {
         spinner_repeat_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                //DARK MODE
+                SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                String state = preferences_.getString("state", "");
+
                 ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                if (state.equals("true")) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                } else if (state.equals("false")) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                }
 
                 String spinner_text = adapterView.getItemAtPosition(position).toString();
                 if (spinner_text.equals("One time")) {
@@ -739,13 +761,20 @@ public class DialogNewTask extends Dialog {
     }
 
     private void checkPossibilityOfEndDate() {
-        if (calendar_end.getTimeInMillis() - calendar_start.getTimeInMillis() < 432000000){// 5 Days
+        if ((calendar_end.getTimeInMillis() - calendar_start.getTimeInMillis() < 432000000L) || (calendar_end.getTimeInMillis() - calendar_start.getTimeInMillis() > 31536000000L)){// 5 Days >  > 1 year
             findViewById(R.id.constraintLayout_endDate).setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_stroke_red_spinners));
             textView_endDate.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
             Glide.with(getContext()).load(ContextCompat.getDrawable(getContext(), R.drawable.ic_icons8_expand_arrow_red)).into((ImageView) findViewById(R.id.ImageView_endDate));
         }else {
             findViewById(R.id.constraintLayout_endDate).setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_stroke_black_spinners));
-            textView_endDate.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+            //DARK MODE
+            SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+            String state = preferences_.getString("state", "");
+            if (state.equals("true")) {
+                textView_endDate.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+            } else if (state.equals("false")) {
+                textView_endDate.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+            }
             Glide.with(getContext()).load(ContextCompat.getDrawable(getContext(), R.drawable.ic_icons8_expand_arrow)).into((ImageView) findViewById(R.id.ImageView_endDate));
         }
     }
@@ -765,6 +794,14 @@ public class DialogNewTask extends Dialog {
                 if (sunday){
                     days_sunday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_sunday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_sunday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_sunday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_sunday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_sunday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -779,6 +816,14 @@ public class DialogNewTask extends Dialog {
                 if (monday){
                     days_monday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_monday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_monday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_monday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_monday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_monday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -793,6 +838,14 @@ public class DialogNewTask extends Dialog {
                 if (tuesday){
                     days_tuesday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_tuesday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_tuesday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_tuesday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_tuesday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_tuesday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -807,6 +860,14 @@ public class DialogNewTask extends Dialog {
                 if (wednesday){
                     days_wednesday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_wednesday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_wednesday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_wednesday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_wednesday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_wednesday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -821,6 +882,14 @@ public class DialogNewTask extends Dialog {
                 if (thursday){
                     days_thursday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_thursday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_thursday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_thursday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_thursday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_thursday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -835,6 +904,14 @@ public class DialogNewTask extends Dialog {
                 if (friday){
                     days_friday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_friday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_friday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_friday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_friday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_friday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -849,6 +926,14 @@ public class DialogNewTask extends Dialog {
                 if (saturday){
                     days_saturday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days));
                     days_saturday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    //DARK MODE
+                    SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+                    String state = preferences_.getString("state", "");
+                    if (state.equals("true")) {
+                        days_saturday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
+                    } else if (state.equals("false")) {
+                        days_saturday.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                    }
                 }else {
                     days_saturday.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_button_days_full));
                     days_saturday.setTextColor(ContextCompat.getColor(getContext(), R.color.white_));
@@ -1057,7 +1142,7 @@ public class DialogNewTask extends Dialog {
         category_btn = new Button[cursor.getCount()];
         categorys_layout.removeAllViews();
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 72);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 108);
         params.setMarginEnd(8);
 
         for (int i = 0; i < category_btn.length; i++) {

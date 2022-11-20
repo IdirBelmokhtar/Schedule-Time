@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccount.FacebookAuthActivity">
+    tools:context=".CreateAccount.FacebookAuthActivity"
+    style="@style/Theme.AppCompat.background">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

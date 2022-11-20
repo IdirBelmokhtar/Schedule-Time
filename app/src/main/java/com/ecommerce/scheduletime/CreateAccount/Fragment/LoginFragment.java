@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +85,7 @@ public class LoginFragment extends Fragment {
             sign_in_email.setText(name);
             sign_in_password.setText(password);
 
-            if (!name.equals("") && !password.equals("")){
+            if (!name.equals("") && !password.equals("")) {
                 checkBox.setChecked(true);
             }
 
@@ -262,8 +263,7 @@ public class LoginFragment extends Fragment {
             return;
         }
         //progress Dialog
-        progressDialog = new ProgressDialog(getContext()
-        );
+        progressDialog = new ProgressDialog(getContext());
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
         progressDialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
@@ -281,7 +281,7 @@ public class LoginFragment extends Fragment {
                         editor.putString("email", email_);
                         editor.putString("password", password_);
                         editor.apply();
-                    }else {
+                    } else {
                         SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
                         editor.putString("email", "");
                         editor.putString("password", "");
@@ -355,5 +355,29 @@ public class LoginFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (getView() == null) {
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    // handle back button's click listener
+                    getActivity().finish();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }

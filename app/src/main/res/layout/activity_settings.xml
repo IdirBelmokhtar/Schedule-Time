@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeActivity.SettingsActivity">
+    tools:context=".HomeActivity.SettingsActivity"
+    style="@style/Theme.AppCompat.background_">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_settings"
@@ -88,7 +89,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Notification"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -97,7 +98,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="All"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -145,7 +146,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Language"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -154,7 +155,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="English"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -186,7 +187,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="?android:attr/colorBackground"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem_"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -202,7 +203,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Theme"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -212,7 +213,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="Clair"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -223,6 +224,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="8dp"
+                                android:theme="@style/Color1SwitchStyle"
                                 android:checked="false"
                                 android:src="@drawable/ic_icons8_more_than" />
 
@@ -262,7 +264,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Rate Schedule-App"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -271,7 +273,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="Rate our app"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -319,7 +321,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Privacy Policy"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -375,7 +377,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="2dp"
                                         android:text="Help &amp; Feedback"
-                                        android:textColor="@color/blue"
+                                        style="@style/Theme.AppCompat.Textview"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
 
@@ -384,7 +386,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="2dp"
                                         android:text="Ui/Ux Design"
-                                        android:textColor="@color/blue_3"
+                                        style="@style/Theme.AppCompat.Textview_"
                                         android:textSize="12sp" />
 
                                 </LinearLayout>
@@ -433,7 +435,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="About us"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -442,7 +444,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="Developer/Owner"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -490,7 +492,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Share"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -499,7 +501,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="Share Schedule App with friends"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -532,7 +534,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="?android:attr/colorBackground"
+                            style="@style/Theme.ScheduleTime.LinearLayout.ListItem_"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -548,7 +550,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Version"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
 
@@ -557,7 +559,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="@string/version"
-                                    android:textColor="@color/blue_3"
+                                    style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
                             </LinearLayout>

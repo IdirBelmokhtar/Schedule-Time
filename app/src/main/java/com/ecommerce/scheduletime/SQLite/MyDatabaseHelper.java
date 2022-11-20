@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -88,23 +89,18 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             MyDatabaseHelper myDB = new MyDatabaseHelper(context);
             Cursor cursor = myDB.readAllData();
             int id_ = 0;
-            String title_ = "Schedule Time";
-            String color_ = "default_";
             if (cursor.getCount() != 0) {
                 while (cursor.moveToNext()) {
                     id_ = Integer.parseInt(cursor.getString(0));
-                    title_ = cursor.getString(2);
-                    color_ = cursor.getString(4);
                 }
             }
             TASK_NEW_ID = id_;
             Intent intent = new Intent(context, MyBroadcastReceiver.class);
             intent.putExtra("id_", String.valueOf(id_));
-            intent.putExtra("title_", title_);
-            intent.putExtra("color_", color_);
+            intent.putExtra("title_", title);
+            intent.putExtra("color_", priority);
+            intent.putExtra("description", description);
 
-            PendingIntent alarmIntent = PendingIntent.getBroadcast(context, id_,
-                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
             /**
             For Alarm notifications,
             Samsung devices have a limit of 500 scheduled alarms
@@ -133,7 +129,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
             // Set alarm.
             // set(type, milliseconds, intent)
-            alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
+            try {
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, id_,
+                        intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+
+                alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //alarm.setRepeating(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), 10000 , alarmIntent);
 
             // Cancel alarm
@@ -184,18 +188,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         if (result == -1) {
             Toast.makeText(context, "Failed Add", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
             /** @param Update Alarm Notification */
             Intent intent = new Intent(context, MyBroadcastReceiver.class);
             intent.putExtra("id_", row_id);
             intent.putExtra("title_", title);
             intent.putExtra("color_", priority);
-
-            PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
-                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-            AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarm.cancel(alarmIntent);
+            intent.putExtra("description", description);
 
             // Create time.
             List<String> date_ = Arrays.asList(date.split("-"));
@@ -214,9 +213,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             startTime.set(Calendar.MINUTE, minute);
             startTime.set(Calendar.SECOND, 0);
 
-            Calendar nowTime = Calendar.getInstance();
-            if (nowTime.getTimeInMillis() < startTime.getTimeInMillis()) {
-                alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
+            try {
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
+                        intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+                AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                alarm.cancel(alarmIntent);
+
+
+                Calendar nowTime = Calendar.getInstance();
+                if (nowTime.getTimeInMillis() < startTime.getTimeInMillis()) {
+                    alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -227,16 +237,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         if (result == -1) {
             Toast.makeText(context, "Failed Delete", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
             /** @param Delete Alarm Notification */
             Intent intent = new Intent(context, MyBroadcastReceiver.class);
             intent.putExtra("id_", row_id);
 
-            PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
-                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            try {
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
+                        intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-            AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarm.cancel(alarmIntent);
+                AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                alarm.cancel(alarmIntent);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
     }
 

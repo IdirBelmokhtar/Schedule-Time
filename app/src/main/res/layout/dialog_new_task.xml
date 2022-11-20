@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:layout_margin="24dp"
     android:animateLayoutChanges="true"
-    android:background="@drawable/custom_background_white"
+    style="@style/Theme.AppCompat.custom_background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Title"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
                     android:maxLength="50"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="8dp"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:theme="@style/TextInputLineColor"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Description"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                     android:minHeight="112dp"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="12dp"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:theme="@style/TextInputLineColor"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="Cancel"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.Textview"
                         android:textStyle="bold" />
 
                     <Button
@@ -174,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Priority"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -225,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Category"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -380,6 +380,7 @@
                             android:id="@+id/new_category_add"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
+                            android:layout_gravity="center"
                             android:background="@drawable/custom_button_add_circle"
                             android:padding="6dp"
                             android:src="@drawable/ic_baseline_add_24"
@@ -404,7 +405,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="Cancel"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.Textview"
                         android:textStyle="bold" />
 
                     <Button
@@ -442,7 +443,7 @@
                         android:layout_marginStart="16dp"
                         android:visibility="visible"
                         android:text="Date"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.Textview"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -472,7 +473,7 @@
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:text="September"
-                                android:textColor="@color/blue"
+                                style="@style/Theme.AppCompat.Textview"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -504,7 +505,7 @@
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:text="06"
-                                android:textColor="@color/blue"
+                                style="@style/Theme.AppCompat.Textview"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -536,7 +537,7 @@
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:text="2022"
-                                android:textColor="@color/blue"
+                                style="@style/Theme.AppCompat.Textview"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -562,7 +563,7 @@
                         android:layout_marginStart="16dp"
                         android:visibility="gone"
                         android:text="Days repeat"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.Textview"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -607,7 +608,7 @@
                                     android:background="@drawable/custom_button_days"
                                     android:text="Monday"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
                                     android:textSize="12sp" />
 
@@ -618,7 +619,7 @@
                                     android:background="@drawable/custom_button_days"
                                     android:text="Tuesday"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
                                     android:textSize="12sp" />
 
@@ -629,7 +630,7 @@
                                     android:background="@drawable/custom_button_days"
                                     android:text="Wednesday"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
                                     android:textSize="12sp" />
 
@@ -640,7 +641,7 @@
                                     android:background="@drawable/custom_button_days"
                                     android:text="Thursday"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
                                     android:textSize="12sp" />
 
@@ -651,7 +652,7 @@
                                     android:background="@drawable/custom_button_days"
                                     android:text="Friday"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
                                     android:textSize="12sp" />
 
@@ -662,7 +663,7 @@
                                     android:background="@drawable/custom_button_days"
                                     android:text="Saturday"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -684,7 +685,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Start date"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -693,7 +694,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="End date"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -725,7 +726,7 @@
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:text="Sep 04, 2022"
-                                android:textColor="@color/blue"
+                                style="@style/Theme.AppCompat.Textview"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -758,7 +759,7 @@
                                 android:background="@null"
                                 android:gravity="center_vertical"
                                 android:text="Nov 02, 2022"
-                                android:textColor="@color/blue"
+                                style="@style/Theme.AppCompat.Textview"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -786,7 +787,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="18dp"
                     android:text="Time"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -815,7 +816,7 @@
                             android:background="@null"
                             android:gravity="center_vertical"
                             android:text="11"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -847,7 +848,7 @@
                             android:background="@null"
                             android:gravity="center_vertical"
                             android:text="00"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -879,7 +880,7 @@
                             android:background="@null"
                             android:gravity="center_vertical"
                             android:text="PM"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -907,7 +908,7 @@
                     android:background="@null"
                     android:gravity="center_vertical|end"
                     android:text="Time left"
-                    android:textColor="@color/blue"
+                    style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -931,7 +932,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reminder"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -959,7 +960,7 @@
                                     android:layout_marginStart="6dp"
                                     android:background="@null"
                                     android:gravity="center_vertical"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -990,7 +991,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Repeat"
-                            android:textColor="@color/blue"
+                            style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -1016,7 +1017,7 @@
                                     android:layout_marginStart="6dp"
                                     android:background="@null"
                                     android:gravity="center_vertical"
-                                    android:textColor="@color/blue"
+                                    style="@style/Theme.AppCompat.Textview"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -1054,7 +1055,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="Cancel"
-                        android:textColor="@color/blue"
+                        style="@style/Theme.AppCompat.Textview"
                         android:textStyle="bold" />
 
                     <Button

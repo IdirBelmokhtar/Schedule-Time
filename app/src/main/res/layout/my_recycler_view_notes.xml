@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="Title"
-                android:textColor="@color/blue"
+                style="@style/Theme.AppCompat.Textview"
                 android:textStyle="bold"
                 android:textSize="16sp" />
 
@@ -54,7 +54,7 @@
                 android:layout_marginTop="4dp"
                 android:gravity="start"
                 android:text="Description"
-                android:textColor="@color/blue"
+                style="@style/Theme.AppCompat.Textview"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -72,7 +72,7 @@
                     android:gravity="start"
                     android:paddingBottom="4dp"
                     android:text="Nov 11, 2022 - 08:22 AM"
-                    android:textColor="@color/_blue"
+                    style="@style/Theme.AppCompat._Textview"
                     android:textSize="12sp" />
 
                 <LinearLayout
@@ -85,7 +85,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/icons8_trash_can_2" />
+                        style="@style/Theme.AppCompat.icon.trash" />
 
                 </LinearLayout>
 

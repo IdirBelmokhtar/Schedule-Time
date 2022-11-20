@@ -1,5 +1,7 @@
 package com.ecommerce.scheduletime.HomeActivity;
 
+import static android.provider.ContactsContract.Intents.Insert.ACTION;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -7,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.os.BuildCompat;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -156,8 +159,6 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
 
-
-
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     switchCompat.setChecked(true);
                     settings_theme_txt.setText("Sombre");
@@ -166,8 +167,6 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.putString("state", "true");
                     editor.apply();
                 } else {
-
-
 
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     switchCompat.setChecked(false);
@@ -179,6 +178,9 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
                 recreate();
+
+                //Intent intent = new Intent();
+                //intent.setAction("action_theme_changed");
             }
         });
 

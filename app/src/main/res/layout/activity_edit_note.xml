@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteActivity.EditNoteActivity">
+    tools:context=".NoteActivity.EditNoteActivity"
+    style="@style/Theme.AppCompat.background_">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_editNote"
@@ -68,14 +69,13 @@
                     android:gravity="top|start"
                     android:background="@color/transparent"
                     android:hint="Title"
-                    android:textColorHint="@color/_blue"
                     android:inputType="textMultiLine"
                     android:maxLength="50"
                     android:layout_marginBottom="16sp"
-                    android:textColor="@color/blue"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:theme="@style/TextInputLineColor" />
+                    style="@style/Theme.AppCompat.EditText.textColor.textColorHint"
+                    android:theme="@style/TextInputLineColor"/>
 
                 <EditText
                     android:id="@+id/edit_note_description"
@@ -87,11 +87,10 @@
                     android:gravity="top|start"
                     android:background="@color/transparent"
                     android:hint="Description"
-                    android:textColorHint="@color/_blue"
                     android:layout_marginVertical="4dp"
                     android:inputType="textMultiLine"
-                    android:textColor="@color/blue"
                     android:textSize="20sp"
+                    style="@style/Theme.AppCompat.EditText.textColor.textColorHint"
                     android:theme="@style/TextInputLineColor" />
 
                 <TextView
@@ -102,7 +101,7 @@
                     android:gravity="bottom|end"
                     android:text="Nov 11, 2022 - 08:22 AM"
                     android:paddingBottom="4dp"
-                    android:textColor="@color/_blue"
+                    style="@style/Theme.AppCompat._Textview"
                     android:textSize="12sp" />
 
             </LinearLayout>

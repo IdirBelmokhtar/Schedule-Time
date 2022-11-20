@@ -1,11 +1,15 @@
 package com.ecommerce.scheduletime.HomeActivity;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 import com.ecommerce.scheduletime.R;
@@ -19,12 +23,29 @@ import com.haibin.calendarview.MonthView;
 public class CustomMonthView extends MonthView {
 
     public void onCustomise() {
+        //DARK MODE
+        SharedPreferences preferences_ = getContext().getSharedPreferences("dark_mode", MODE_PRIVATE);
+        String state = preferences_.getString("state", "");
+        if (state.equals("true")) {
+            mSchemePaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
+            mOtherMonthTextPaint.setColor(ContextCompat.getColor(getContext(), R.color._white));
+            mSchemeTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+            mSelectTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
+            mCurDayTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+        } else if (state.equals("false")) {
+            mSchemePaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+            mOtherMonthTextPaint.setColor(ContextCompat.getColor(getContext(), R.color._black));
+            mSchemeTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
+            mSelectTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+            mCurDayTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
+        } else {
+            mSchemePaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+            mOtherMonthTextPaint.setColor(ContextCompat.getColor(getContext(), R.color._black));
+            mSchemeTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
+            mSelectTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
+            mCurDayTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
+        }
         mSelectedPaint.setColor(ContextCompat.getColor(getContext(), R.color.transparent));
-        mSchemePaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
-        mSelectTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
-        mCurDayTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
-        mSchemeTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.blue));
-        mOtherMonthTextPaint.setColor(ContextCompat.getColor(getContext(), R.color._black));
         mCurMonthTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.purple_500));
 
 //        mCurMonthLunarTextPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorViewOne));

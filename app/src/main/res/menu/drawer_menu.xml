@@ -18,7 +18,7 @@
     <group android:checkableBehavior="single" android:id="@+id/group3">
         <item
             android:id="@+id/drawer_nav_logout"
-            android:title="Log In / Log Out" />
+            android:title="Log Out" />
     </group>
     <group android:checkableBehavior="single" android:id="@+id/group4">
         <item android:title=""/>

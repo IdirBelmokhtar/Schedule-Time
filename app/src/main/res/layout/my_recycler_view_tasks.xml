@@ -40,8 +40,8 @@
                 android:layout_height="wrap_content"
                 android:text="Task one"
                 android:textSize="16sp"
-                android:textColor="@color/blue"
                 android:textStyle="bold"
+                style="@style/Theme.AppCompat.Textview"
                 android:layout_marginStart="24dp"/>
 
             <TextView
@@ -50,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="00:00 AM"
+                style="@style/Theme.AppCompat.Textview"
                 android:textSize="14sp"
-                android:textColor="@color/blue"
                 android:layout_marginStart="24dp"/>
 
         </LinearLayout>

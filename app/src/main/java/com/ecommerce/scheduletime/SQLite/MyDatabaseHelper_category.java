@@ -55,7 +55,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         if (result == -1) {
             Toast.makeText(context, "Failed add category" , Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
 
     }

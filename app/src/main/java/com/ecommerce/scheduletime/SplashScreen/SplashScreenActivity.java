@@ -4,6 +4,8 @@ import static com.ecommerce.scheduletime.HomeActivity.MainActivity.scrollToNewTa
 import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.BuildCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +40,23 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        //DARK MODE
+        SharedPreferences preferences_ = getSharedPreferences("dark_mode", MODE_PRIVATE);
+        String state = preferences_.getString("state", "");
+
+        if (state.equals("true")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (state.equals("false")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            if (BuildCompat.isAtLeastP()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+            }
+
+        }
 
         try {
             // Scroll to task notification id.

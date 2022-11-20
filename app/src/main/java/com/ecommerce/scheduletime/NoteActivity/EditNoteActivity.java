@@ -63,7 +63,7 @@ public class EditNoteActivity extends AppCompatActivity {
         }else {
             time_ =       String.valueOf(calendar.get(Calendar.YEAR)) + // calendar.getTime().getYear() return year = 122 not 2022!
                     "-" + String.valueOf(calendar.getTime().getMonth()) +
-                    "-" + String.valueOf(calendar.getTime().getDay()) +
+                    "-" + String.valueOf(calendar.getTime().getDate()) +
                     "-" + String.valueOf(calendar.getTime().getHours()) +
                     "-" + String.valueOf(calendar.getTime().getMinutes());
         }
@@ -109,6 +109,11 @@ public class EditNoteActivity extends AppCompatActivity {
                         }
                         break;
                     case R.id.save_edit_note:
+                        time_ =       String.valueOf(calendar.get(Calendar.YEAR)) + // calendar.getTime().getYear() return year = 122 not 2022!
+                                "-" + String.valueOf(calendar.getTime().getMonth()) +
+                                "-" + String.valueOf(calendar.getTime().getDate()) +
+                                "-" + String.valueOf(calendar.getTime().getHours()) +
+                                "-" + String.valueOf(calendar.getTime().getMinutes());
                         if (id.equals("")) {
                             myDB.addBook(title.getText().toString().trim(),
                                     description.getText().toString().trim(),
