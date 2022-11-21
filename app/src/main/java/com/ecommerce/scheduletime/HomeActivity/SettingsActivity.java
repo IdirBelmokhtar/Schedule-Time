@@ -115,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
-                i.putExtra(Intent.EXTRA_TEXT, "http://www.shedule_time_app_in_google_play.com");
+                i.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getPackageName());
                 startActivity(Intent.createChooser(i, "Share URL"));
             }
         });

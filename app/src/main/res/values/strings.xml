@@ -24,6 +24,9 @@
     <string name="search_hint">Search Here ...</string>
     <string name="dev_phone">+213 659 23 92 69</string>
     <string name="dev_location">36.71631, 3.82707</string>
+    <string name="notification_channel_id">my canal id</string>
+    <string name="notification_channel_title">my cannal title</string>
+    <string name="notification_channel_description">ma cannal description</string>
 
     <string-array name="reminder">
         <item>Never</item>
