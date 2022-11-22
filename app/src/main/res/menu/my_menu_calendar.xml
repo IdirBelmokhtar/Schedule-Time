@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/search"
-        android:title="Call"
+        android:title="@string/search"
         android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="always"/>
 
     <item android:id="@+id/note"
-        android:title="Menu"
+        android:title="@string/notes"
         android:icon="@drawable/ic_icons8_note_1"
         app:showAsAction="always"/>
 </menu>

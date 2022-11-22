@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.ecommerce.scheduletime.Notification.MyBroadcastReceiver;
+import com.ecommerce.scheduletime.R;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -82,7 +83,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
-            Toast.makeText(context, "Failed Add", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
             /** @param Add Alarm Notification */
@@ -186,7 +187,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
         if (result == -1) {
-            Toast.makeText(context, "Failed Add", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
             /** @param Update Alarm Notification */
@@ -235,7 +236,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result == -1) {
-            Toast.makeText(context, "Failed Delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_delete), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
             /** @param Delete Alarm Notification */

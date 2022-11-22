@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Notes"
+            android:text="@string/notes"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add new note."
+            android:text="@string/add_new_note"
             android:textColor="@color/sss"
             android:textSize="16sp" />
 

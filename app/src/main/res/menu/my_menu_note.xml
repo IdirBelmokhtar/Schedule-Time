@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/search_note"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.widget.SearchView" />
 
     <item android:id="@+id/filter_note"
-        android:title="Filter"
+        android:title="@string/filter"
         android:icon="@drawable/ic_baseline_filter_list_24"
         app:showAsAction="always"/>
 </menu>

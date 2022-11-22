@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Settings"
+            android:text="@string/settings"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
@@ -88,7 +88,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="Notification"
+                                    android:text="@string/notification"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -97,7 +97,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="All"
+                                    android:text="@string/all"
                                     style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
@@ -145,7 +145,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="Language"
+                                    android:text="@string/language"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -202,7 +202,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="Theme"
+                                    android:text="@string/theme"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -212,7 +212,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="Clair"
+                                    android:text="@string/clair"
                                     style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
@@ -263,7 +263,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="Rate Schedule-App"
+                                    android:text="@string/rate_schedule_app"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -272,7 +272,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="Rate our app"
+                                    android:text="@string/rate_our_app"
                                     style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
@@ -320,7 +320,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="Privacy Policy"
+                                    android:text="@string/privacy_policy"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -367,7 +367,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_weight="1"
                                     android:orientation="vertical">
@@ -376,7 +376,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="2dp"
-                                        android:text="Help &amp; Feedback"
+                                        android:text="@string/help_amp_feedback"
                                         style="@style/Theme.AppCompat.Textview"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -385,7 +385,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="2dp"
-                                        android:text="Ui/Ux Design"
+                                        android:text="@string/ui_ux_design"
                                         style="@style/Theme.AppCompat.Textview_"
                                         android:textSize="12sp" />
 
@@ -434,7 +434,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="About us"
+                                    android:text="@string/about_us"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -443,7 +443,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="Developer/Owner"
+                                    android:text="@string/developer_owner"
                                     style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 
@@ -491,7 +491,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:text="Share"
+                                    android:text="@string/share"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -500,7 +500,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="Share Schedule App with friends"
+                                    android:text="@string/share_schedule_app_with_friends"
                                     style="@style/Theme.AppCompat.Textview_"
                                     android:textSize="12sp" />
 

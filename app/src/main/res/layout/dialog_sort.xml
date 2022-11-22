@@ -23,7 +23,7 @@
             style="@style/Theme.AppCompat.Textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort by"
+            android:text="@string/sort_by"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
-                android:text="Due Date and Time"
+                android:text="@string/due_date_and_time"
                 style="@style/Theme.AppCompat.RadioButton"/>
 
             <RadioButton
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
-                android:text="Priority"
+                android:text="@string/priority"
                 style="@style/Theme.AppCompat.RadioButton" />
 
             <RadioButton
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
-                android:text="Category"
+                android:text="@string/category"
                 style="@style/Theme.AppCompat.RadioButton" />
 
             <RadioButton
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
-                android:text="Tasks Done"
+                android:text="@string/tasks_done"
                 style="@style/Theme.AppCompat.RadioButton" />
         </RadioGroup>
 

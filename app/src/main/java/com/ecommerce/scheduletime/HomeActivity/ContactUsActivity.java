@@ -47,7 +47,7 @@ public class ContactUsActivity extends AppCompatActivity {
         clickMore.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Toast.makeText(ContactUsActivity.this, "Social Media", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContactUsActivity.this, getResources().getString(R.string.social_media), Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -129,7 +129,7 @@ public class ContactUsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("vnd.android.cursor.dir/email");
-                String to[] = {getString(R.string.gmail)};
+                String to[] = {getResources().getString(R.string.gmail)};
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
                 startActivity(Intent.createChooser(emailIntent, "Send email..."));
 

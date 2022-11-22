@@ -267,7 +267,7 @@ public class ListFragment extends Fragment {
             dateOfTheDayDesiered_list(getData.getTime());
             if ((date_selected.getDay() != getData.getTime().getDay()) && (date_selected.getDay() != getData.getTime().getMonth()) && (date_selected.getDay() != getData.getTime().getDay())) {
                 returnToToday.setVisibility(View.VISIBLE);
-                firstTask_title.setText("Tasks");
+                firstTask_title.setText(getResources().getString(R.string.tasks));
                 secondTask_title.setVisibility(View.GONE);
                 recyclerViewTask_2.setVisibility(View.GONE);
             }
@@ -276,7 +276,7 @@ public class ListFragment extends Fragment {
         } else {
             dateOfTheDayDesiered_list(date_selected);
             returnToToday.setVisibility(View.GONE);
-            firstTask_title.setText("Today tasks");
+            firstTask_title.setText(getResources().getString(R.string.today_tasks));
             secondTask_title.setVisibility(View.VISIBLE);
             recyclerViewTask_2.setVisibility(View.VISIBLE);
         }
@@ -350,7 +350,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 returnToToday.setVisibility(View.VISIBLE);
-                firstTask_title.setText("Tasks");
+                firstTask_title.setText(getResources().getString(R.string.tasks));
                 secondTask_title.setVisibility(View.GONE);
                 recyclerViewTask_2.setVisibility(View.GONE);
 
@@ -387,7 +387,7 @@ public class ListFragment extends Fragment {
         no_data_list = view.findViewById(R.id.no_data_list);
         no_data_list.setVisibility(View.GONE);
 
-        sortList.setText("Sort by : Time");
+        sortList.setText(getResources().getString(R.string.sort_by_time));
         sort = 0;
         sortList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -408,7 +408,7 @@ public class ListFragment extends Fragment {
                         int id = dialogSort.getSort_radioGroup().getCheckedRadioButtonId();
                         switch (id) {
                             case R.id.sort_date:
-                                sortList.setText("Sort by : Time");
+                                sortList.setText(getResources().getString(R.string.sort_by_time));
                                 sort = 0;
                                 if (scrollToNewTask) {
                                     storeDataInArraysCalenderList(getData.getTime(), view);
@@ -419,7 +419,7 @@ public class ListFragment extends Fragment {
                                 break;
 
                             case R.id.sort_priority:
-                                sortList.setText("Sort by : Priority");
+                                sortList.setText(getResources().getString(R.string.sort_by_priority));
                                 sort = 1;
                                 if (scrollToNewTask) {
                                     storeDataInArraysCalenderList(getData.getTime(), view);
@@ -430,7 +430,7 @@ public class ListFragment extends Fragment {
                                 break;
 
                             case R.id.sort_category:
-                                sortList.setText("Sort by : Category");
+                                sortList.setText(getResources().getString(R.string.sort_by_category));
                                 sort = 2;
                                 if (scrollToNewTask) {
                                     storeDataInArraysCalenderList(getData.getTime(), view);
@@ -441,7 +441,7 @@ public class ListFragment extends Fragment {
                                 break;
 
                             case R.id.sort_task_done:
-                                sortList.setText("Sort by : Tasks done");
+                                sortList.setText(getResources().getString(R.string.sort_by_tasks_done));
                                 sort = 3;
                                 if (scrollToNewTask) {
                                     storeDataInArraysCalenderList(getData.getTime(), view);
@@ -469,7 +469,7 @@ public class ListFragment extends Fragment {
                         public void run() {
                             horizontalCalendar.goToday(true);
                             returnToToday.setVisibility(View.GONE);
-                            firstTask_title.setText("Today tasks");
+                            firstTask_title.setText(getResources().getString(R.string.today_tasks));
                             secondTask_title.setVisibility(View.VISIBLE);
                             recyclerViewTask_2.setVisibility(View.VISIBLE);
                         }
@@ -477,7 +477,7 @@ public class ListFragment extends Fragment {
                 } else {
                     horizontalCalendar.goToday(true);
                     returnToToday.setVisibility(View.GONE);
-                    firstTask_title.setText("Today tasks");
+                    firstTask_title.setText(getResources().getString(R.string.today_tasks));
                     secondTask_title.setVisibility(View.VISIBLE);
                     recyclerViewTask_2.setVisibility(View.VISIBLE);
                 }
@@ -748,15 +748,15 @@ public class ListFragment extends Fragment {
         String tomorrowDate = dateFormat.format(cal_.getTime());
 
         if (dayDate.equals(dateFormat.format(currentTime.getTime()))) {
-            list_date_textView1.setText("Today");
+            list_date_textView1.setText(getResources().getString(R.string.today));
             returnToToday.setVisibility(View.GONE);
-            firstTask_title.setText("Today tasks");
+            firstTask_title.setText(getResources().getString(R.string.today_tasks));
             secondTask_title.setVisibility(View.VISIBLE);
             recyclerViewTask_2.setVisibility(View.VISIBLE);
         } else if (dayDate.equals(yesterdayDate)) {
-            list_date_textView1.setText("Yesterday");
+            list_date_textView1.setText(getResources().getString(R.string.yesterday));
         } else if (dayDate.equals(tomorrowDate)) {
-            list_date_textView1.setText("Tomorrow");
+            list_date_textView1.setText(getResources().getString(R.string.tomorrow));
         } else {
             String my_year = dateFormat_yyyy.format(currentTime.getTime());
             String year = dateFormat_yyyy.format(calendar);
@@ -791,23 +791,23 @@ public class ListFragment extends Fragment {
 
                                 if (dd <= 7) {
                                     //this week
-                                    list_date_textView1.setText("This week");
+                                    list_date_textView1.setText(R.string.this_week);
                                 } else {
                                     if (dd <= 14) {
                                         //next week
-                                        list_date_textView1.setText("After a week");
+                                        list_date_textView1.setText(getResources().getString(R.string.after_a_week));
                                     } else {
                                         if (dd <= 21) {
                                             //after 2 week
-                                            list_date_textView1.setText("After 2 weeks");
+                                            list_date_textView1.setText(getResources().getString(R.string.after_two_weeks));
                                         } else {
                                             if (dd <= 28) {
                                                 //after 3 week
-                                                list_date_textView1.setText("After 3 weeks");
+                                                list_date_textView1.setText(getResources().getString(R.string.after_three_weeks));
                                             } else {
                                                 if (dd <= 30) {
                                                     //after 4 week
-                                                    list_date_textView1.setText("After 4 weeks");
+                                                    list_date_textView1.setText(getResources().getString(R.string.after_four_weeks));
                                                 }
                                             }
                                         }
@@ -820,23 +820,23 @@ public class ListFragment extends Fragment {
 
                                 if (dd >= -7) {
                                     //this week
-                                    list_date_textView1.setText("Past " + String.valueOf(Math.abs(dd)) + " days");
+                                    list_date_textView1.setText(getResources().getString(R.string.past_) + String.valueOf(Math.abs(dd)) + getResources().getString(R.string._days));
                                 } else {
                                     if (dd >= -14) {
                                         //last week
-                                        list_date_textView1.setText("Past week");
+                                        list_date_textView1.setText(getResources().getString(R.string.past_week));
                                     } else {
                                         if (dd >= -21) {
                                             //before 2 week
-                                            list_date_textView1.setText("Before 2 weeks");
+                                            list_date_textView1.setText(getResources().getString(R.string.before_two_weeks));
                                         } else {
                                             if (dd >= -28) {
                                                 //before 3 week
-                                                list_date_textView1.setText("Before 3 weeks");
+                                                list_date_textView1.setText(getResources().getString(R.string.before_three_weeks));
                                             } else {
                                                 if (dd >= -30) {
                                                     //before 4 week
-                                                    list_date_textView1.setText("Before 4 weeks");
+                                                    list_date_textView1.setText(getResources().getString(R.string.before_four_weeks));
                                                 }
                                             }
                                         }
@@ -850,32 +850,32 @@ public class ListFragment extends Fragment {
                 } else if (MM >= 1) {
                     //next month
                     if (MM == 1) {
-                        list_date_textView1.setText("Next month");
+                        list_date_textView1.setText(getResources().getString(R.string.next_month));
                     } else {
-                        list_date_textView1.setText("Next " + String.valueOf(Math.abs(MM)) + " months");
+                        list_date_textView1.setText(getResources().getString(R.string.next_) + String.valueOf(Math.abs(MM)) + getResources().getString(R.string._months));
                     }
                 } else {
                     //before month
                     if (MM == -1) {
-                        list_date_textView1.setText("Last month");
+                        list_date_textView1.setText(getResources().getString(R.string.last_month));
                     } else {
-                        list_date_textView1.setText("Last " + String.valueOf(Math.abs(MM)) + " months");
+                        list_date_textView1.setText(getResources().getString(R.string.last_) + String.valueOf(Math.abs(MM)) + getResources().getString(R.string._months));
                     }
                 }
 
             } else if (yy >= 1) {
                 //next years
                 if (yy == 1) {
-                    list_date_textView1.setText("Next year");
+                    list_date_textView1.setText(getResources().getString(R.string.next_year));
                 } else {
-                    list_date_textView1.setText("Next " + String.valueOf(Math.abs(yy)) + " years");
+                    list_date_textView1.setText(getResources().getString(R.string.next_) + String.valueOf(Math.abs(yy)) + getResources().getString(R.string._years));
                 }
             } else {
                 //before years
                 if (yy == -1) {
-                    list_date_textView1.setText("Last year");
+                    list_date_textView1.setText(getResources().getString(R.string.last_year));
                 } else {
-                    list_date_textView1.setText("Last " + String.valueOf(Math.abs(yy)) + " years");
+                    list_date_textView1.setText(getResources().getString(R.string.last_) + String.valueOf(Math.abs(yy)) + getResources().getString(R.string._years));
                 }
             }
 
@@ -1339,7 +1339,7 @@ public class ListFragment extends Fragment {
                         LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                         LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
 
-                        title.setText("Delete this task :\n\"" + tasks_.getTask_title() + "\" ?");
+                        title.setText(getResources().getString(R.string.delete_this_task) + " :\n\"" + tasks_.getTask_title() + "\" ?");
                         sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -1370,10 +1370,10 @@ public class ListFragment extends Fragment {
                         recyclerViewTasksListAdapter_1.notifyItemRemoved(position);
                         if (tasks_.getTask_done().equals("no")) {
                             myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "yes", Integer.parseInt(tasks_.getTask_reminder()));
-                            Toast.makeText(getContext(), "Task : ( " + tasks_.getTask_title() + " ) added to Tasks done with Successfully.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Task : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.added_to_tasks_done_with_successfully), Toast.LENGTH_LONG).show();
                         } else if (tasks_.getTask_done().equals("yes")) {
                             myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
-                            Toast.makeText(getContext(), "Task : ( " + tasks_.getTask_title() + " ) remove from Tasks done.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.remove_from_tasks_done), Toast.LENGTH_LONG).show();
                         }
                         break;
                 }
@@ -1410,11 +1410,11 @@ public class ListFragment extends Fragment {
 
                 if (sort == 3) {
                     new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                            .addSwipeLeftLabel("Delete")
+                            .addSwipeLeftLabel(getResources().getString(R.string.delete))
                             .setSwipeLeftLabelColor(ContextCompat.getColor(getContext(), R.color.white))
                             .addSwipeLeftActionIcon(R.drawable.icons8_trash_can)
                             .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.delete))
-                            .addSwipeRightLabel("Not done")
+                            .addSwipeRightLabel(getResources().getString(R.string.not_done))
                             .setSwipeRightLabelColor(ContextCompat.getColor(getContext(), R.color.white))
                             .addSwipeRightActionIcon(R.drawable.icons8_minus)
                             .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(), R.color.minus))
@@ -1422,11 +1422,11 @@ public class ListFragment extends Fragment {
                             .decorate();
                 } else {
                     new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                            .addSwipeLeftLabel("Delete")
+                            .addSwipeLeftLabel(getResources().getString(R.string.delete))
                             .setSwipeLeftLabelColor(ContextCompat.getColor(getContext(), R.color.white))
                             .addSwipeLeftActionIcon(R.drawable.icons8_trash_can)
                             .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.delete))
-                            .addSwipeRightLabel("Done")
+                            .addSwipeRightLabel(getResources().getString(R.string.done))
                             .setSwipeRightLabelColor(ContextCompat.getColor(getContext(), R.color.white))
                             .addSwipeRightActionIcon(R.drawable.icons8_checked)
                             .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(), R.color.done))

@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.ecommerce.scheduletime.HomeActivity.MainActivity;
+import com.ecommerce.scheduletime.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -113,7 +114,7 @@ public class FacebookAuthActivity extends Activity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(FacebookAuthActivity.this, "Authentication failed.",
+                            Toast.makeText(FacebookAuthActivity.this, getString(R.string.authentication_failed),
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -124,7 +125,7 @@ public class FacebookAuthActivity extends Activity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null){
-            Toast.makeText(FacebookAuthActivity.this, "Success !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FacebookAuthActivity.this, getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
             // Save data of user in SharedPreferences.
             SharedPreferences.Editor editor = getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();

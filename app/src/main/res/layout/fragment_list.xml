@@ -74,7 +74,7 @@
                                 android:id="@+id/list_date_textView1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Today"
+                                android:text="@string/today"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -194,7 +194,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="end"
-                                    android:text="Sort by : Time"
+                                    android:text="@string/sort_by_time"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 
@@ -238,7 +238,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="8dp"
-                                        android:text="Tasks"
+                                        android:text="@string/tasks"
                                         style="@style/Theme.AppCompat.Textview"
                                         android:textSize="18sp"
                                         android:textStyle="bold" />
@@ -268,7 +268,7 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Add new task here."
+                                            android:text="@string/add_new_task_here"
                                             android:layout_gravity="center"
                                             android:textSize="16sp"
                                             android:textColor="@color/sss"/>
@@ -289,7 +289,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16dp"
                                         android:layout_marginTop="18dp"
-                                        android:text="Tomorrow"
+                                        android:text="@string/tomorrow"
                                         style="@style/Theme.AppCompat.Textview"
                                         android:textSize="18sp"
                                         android:textStyle="bold" />

@@ -32,15 +32,15 @@ public class SliderIntroAdapter extends PagerAdapter {
             R.drawable.walcome3
     };
     public String[] slide_intro_heading_ = {
-            "Organize your task daily",
-            "Time for Hobbies",
-            "Across all mobile devices"
+            context.getResources().getString(R.string.slide_intro_heading_one),
+            context.getResources().getString(R.string.slide_intro_heading_two),
+            context.getResources().getString(R.string.slide_intro_heading_three)
 
     };
     public String[] slide_intro_description_ = {
-            "Organize your projects and never worry about missing a deadline ever again!",
-            "Stay productive by keeping track of your tasks and you will have more free time for yourself!",
-            "Your progress is now stored in a cloud storage and will never be lost again if you changed devices",
+            context.getResources().getString(R.string.slide_intro_description_one),
+            context.getResources().getString(R.string.slide_intro_description_two),
+            context.getResources().getString(R.string.slide_intro_description_three),
     };
 
     @Override

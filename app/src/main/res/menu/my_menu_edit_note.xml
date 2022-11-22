@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/delete_edit_note"
-        android:title="Delete"
+        android:title="@string/delete"
         android:icon="@drawable/icons8_delete_file"
         app:showAsAction="always"/>
 
     <item android:id="@+id/save_edit_note"
-        android:title="Save"
+        android:title="@string/save"
         android:icon="@drawable/icons8_checkmark_2"
         app:showAsAction="always"/>
 </menu>

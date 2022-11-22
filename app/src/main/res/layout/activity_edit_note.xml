@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Title"
+            android:text="@string/title"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
@@ -68,7 +68,7 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="top|start"
                     android:background="@color/transparent"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:inputType="textMultiLine"
                     android:maxLength="50"
                     android:layout_marginBottom="16sp"
@@ -86,7 +86,7 @@
                     android:minHeight="480dp"
                     android:gravity="top|start"
                     android:background="@color/transparent"
-                    android:hint="Description"
+                    android:hint="@string/description"
                     android:layout_marginVertical="4dp"
                     android:inputType="textMultiLine"
                     android:textSize="20sp"

@@ -19,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -35,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Details"
+                    android:text="@string/details"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -73,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="@string/title"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -91,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
-                    android:text="Description"
+                    android:text="@string/description"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -109,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
-                    android:text="Priority"
+                    android:text="@string/priority"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -121,7 +120,7 @@
                     android:layout_height="36dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_button_priority"
-                    android:text="Default"
+                    android:text="@string/default_"
                     android:textAllCaps="false"
                     android:textColor="@color/white_"
                     android:textSize="14sp" />
@@ -130,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
-                    android:text="Category"
+                    android:text="@string/category"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -163,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
-                    android:text="Reminder"
+                    android:text="@string/reminder"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -173,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Naver"
+                    android:text="@string/never"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="18sp" />
 

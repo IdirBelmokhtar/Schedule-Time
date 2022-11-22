@@ -38,7 +38,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -141,7 +140,7 @@ public class SignUpFragment extends Fragment {
                             new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
-                                    Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
                                     // Save data of user in SharedPreferences.
                                     SharedPreferences.Editor editor = getContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
@@ -181,7 +180,7 @@ public class SignUpFragment extends Fragment {
                             new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
-                                    Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
                                     // Save data of user in SharedPreferences.
                                     SharedPreferences.Editor editor = getContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
@@ -224,19 +223,19 @@ public class SignUpFragment extends Fragment {
         String string_password = sign_up_password.getText().toString().trim();
 
         if (TextUtils.isEmpty(string_name)) {
-            sign_up_name.setError("Name Required");
+            sign_up_name.setError(getString(R.string.name_required));
             return;
         }
         if (TextUtils.isEmpty(string_email)) {
-            sign_up_email.setError("Email Required");
+            sign_up_email.setError(getString(R.string.email_required));
             return;
         }
         if (TextUtils.isEmpty(string_password)) {
-            sign_up_password.setError("Password Required");
+            sign_up_password.setError(getString(R.string.password_required));
             return;
         }
         if (string_password.length() < 6) {
-            sign_up_password.setError("Password must be >6 characters");
+            sign_up_password.setError(getString(R.string.password_must_be_more_then_six_caractaire));
             return;
         }
         //progress Dialog
@@ -301,7 +300,7 @@ public class SignUpFragment extends Fragment {
 
             } catch (ApiException e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(), "there is an error " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.there_is_an_error)+ " :" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -314,7 +313,7 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
                             // Save data of user in SharedPreferences.
                             SharedPreferences.Editor editor = getContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
@@ -329,7 +328,7 @@ public class SignUpFragment extends Fragment {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

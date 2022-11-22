@@ -41,7 +41,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
-import com.google.firebase.auth.UserInfo;
 
 public class LoginFragment extends Fragment {
 
@@ -176,7 +175,7 @@ public class LoginFragment extends Fragment {
                             new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
-                                    Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
                                     // Save data of user in SharedPreferences.
                                     SharedPreferences.Editor editor = getContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
@@ -216,7 +215,7 @@ public class LoginFragment extends Fragment {
                             new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
-                                    Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
                                     // Save data of user in SharedPreferences.
                                     SharedPreferences.Editor editor = getContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
@@ -255,11 +254,11 @@ public class LoginFragment extends Fragment {
         String password_ = sign_in_password.getText().toString().trim();
 
         if (TextUtils.isEmpty(email_)) {
-            sign_in_email.setError("Email Required");
+            sign_in_email.setError(getString(R.string.email_required));
             return;
         }
         if (TextUtils.isEmpty(password_)) {
-            sign_in_password.setError("Password Required");
+            sign_in_password.setError(getString(R.string.password_required));
             return;
         }
         //progress Dialog
@@ -273,7 +272,7 @@ public class LoginFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
                     if (checkBox.isChecked()) {
                         //Remember user and password
@@ -325,7 +324,7 @@ public class LoginFragment extends Fragment {
 
             } catch (ApiException e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(), "there is an error " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.there_is_an_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -337,7 +336,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Success !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
                             // Save data of user in SharedPreferences.
                             SharedPreferences.Editor editor = getContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
                             editor.putString("user_full_name", mAuth.getCurrentUser().getDisplayName());
@@ -351,7 +350,7 @@ public class LoginFragment extends Fragment {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getResources().getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

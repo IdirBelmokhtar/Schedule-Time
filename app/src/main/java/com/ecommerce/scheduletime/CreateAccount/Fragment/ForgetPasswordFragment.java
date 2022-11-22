@@ -63,7 +63,7 @@ public class ForgetPasswordFragment extends Fragment {
         String string_email = forgot_email.getText().toString();
 
         if (TextUtils.isEmpty(string_email)){
-            forgot_email.setError("Email Required");
+            forgot_email.setError(getString(R.string.email_required));
             return;
         }
         //progress Dialog
@@ -75,7 +75,7 @@ public class ForgetPasswordFragment extends Fragment {
         mAuth.sendPasswordResetEmail(string_email).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(getContext(), "We have sent you a recovery email", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.we_have_sent_you_a_recovery_email), Toast.LENGTH_LONG).show();
                 //Open Sign in fragment
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerViewAuth, new LoginFragment())

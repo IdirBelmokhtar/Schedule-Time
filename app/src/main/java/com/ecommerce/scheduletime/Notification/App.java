@@ -23,8 +23,8 @@ public class App extends Application {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
-            NotificationChannel channel3 = new NotificationChannel(CHANNEL_3_ID,"Task Channel", NotificationManager.IMPORTANCE_HIGH);
-            channel3.setDescription("Task Notification");
+            NotificationChannel channel3 = new NotificationChannel(CHANNEL_3_ID,"Tasks Channel", NotificationManager.IMPORTANCE_HIGH);
+            channel3.setDescription("Tasks Notification");
         }
     }
 }

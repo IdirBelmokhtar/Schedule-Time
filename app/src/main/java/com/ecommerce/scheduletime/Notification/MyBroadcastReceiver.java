@@ -75,7 +75,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                 .setDeleteIntent(actionIntent) // Notification dismiss (swipe left or right)
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
-                .addAction(R.mipmap.ic_launcher, "Dismiss", actionIntent)
+                .addAction(R.mipmap.ic_launcher, context.getResources().getString(R.string.dismiss), actionIntent)
                 .build();
         //.setVibrate()
         //MediaPlayer mp= MediaPlayer.create(context, R.raw.alarm_notification);

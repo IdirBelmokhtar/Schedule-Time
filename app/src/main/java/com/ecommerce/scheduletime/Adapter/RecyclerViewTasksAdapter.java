@@ -33,9 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-import androidx.core.os.BuildCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -195,7 +193,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
             }
 
         } catch (Exception e) {
-            holder.task_time.setText("Error in time");
+            holder.task_time.setText(R.string.error_in_time);
             e.printStackTrace();
         }
 
@@ -243,23 +241,23 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                 dialogDetails.getDetails_title().setText(task.getTask_title());
                 dialogDetails.getDetails_description().setText(task.getTask_description());
                 if (task.getTask_priority().equals("default")) {
-                    dialogDetails.getDetails_priority().setText("Default");
+                    dialogDetails.getDetails_priority().setText(R.string.default_);
                     changeColorBtn(dialogDetails.getDetails_priority(), R.color.default_);
                 } else if (task.getTask_priority().equals("low")) {
-                    dialogDetails.getDetails_priority().setText("low");
+                    dialogDetails.getDetails_priority().setText(R.string.low);
                     changeColorBtn(dialogDetails.getDetails_priority(), R.color.low);
                 } else if (task.getTask_priority().equals("medium")) {
-                    dialogDetails.getDetails_priority().setText("medium");
+                    dialogDetails.getDetails_priority().setText(R.string.medium);
                     changeColorBtn(dialogDetails.getDetails_priority(), R.color.medium);
                 } else if (task.getTask_priority().equals("high")) {
-                    dialogDetails.getDetails_priority().setText("High");
+                    dialogDetails.getDetails_priority().setText(R.string.high);
                     changeColorBtn(dialogDetails.getDetails_priority(), R.color.high);
                 }
 
                 storeDataCategoryInArraysAndLayout(dialogDetails.getDetails_category_layout_(), task.getTask_category());
 
                 if (task.getTask_reminder().equals("0")) {
-                    dialogDetails.getDetails_reminder().setText("Never");
+                    dialogDetails.getDetails_reminder().setText(R.string.never);
                 }
                 if (task.getTask_reminder().equals("1")) {
                     dialogDetails.getDetails_reminder().setText("1 minute");
@@ -425,7 +423,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                         LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                         LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
 
-                        title.setText("Delete this task :\n\"" + String.valueOf(task.getTask_title()) + "\" ?");
+                        title.setText(context.getResources().getString(R.string.delete_this_task) + " :\n\"" + String.valueOf(task.getTask_title()) + "\" ?");
                         sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -452,7 +450,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                 bottomDialogOther.getOther_dialog_cancel().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getResources().getString(R.string.cancel), Toast.LENGTH_SHORT).show();
                         bottomDialogOther.dismiss();
                     }
                 });

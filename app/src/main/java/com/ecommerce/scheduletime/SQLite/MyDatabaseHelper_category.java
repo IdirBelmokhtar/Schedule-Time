@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.ecommerce.scheduletime.R;
+
 public class MyDatabaseHelper_category extends SQLiteOpenHelper {
 
     private Context context;
@@ -53,7 +55,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
-            Toast.makeText(context, "Failed add category" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add_category) , Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
@@ -103,9 +105,9 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result == -1) {
-            Toast.makeText(context, "Failed Delete", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_delete), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 

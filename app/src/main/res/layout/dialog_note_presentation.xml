@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Track your notes and reflect on your day."
+                android:text="@string/track_your_notes_and_reflect_on_your_day"
                 android:gravity="center"
                 android:layout_marginTop="16sp"
                 style="@style/Theme.AppCompat.Textview"
@@ -54,7 +54,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="6dp"
                 android:paddingHorizontal="28dp"
-                android:text="Get an overview of how you are performing to motivate yourself more."
+                android:text="@string/get_an_overview_of_how_you_are_performing_to_motivate_yourself_more"
                 android:gravity="center"
                 style="@style/Theme.AppCompat.Textview"
                 android:textSize="16sp" />

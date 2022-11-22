@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.drawer_nav_logout:
                         if (fUser == null) {
                             startActivity(new Intent(MainActivity.this, AuthenticationActivity.class));
-                            Toast.makeText(MainActivity.this, "Log In", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getResources().getString(R.string.login), Toast.LENGTH_SHORT).show();
                         } else {
 
                             //Firebase Logout *(Twitter)* *(Facebook)*
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-                            Toast.makeText(MainActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getResources().getString(R.string.log_out), Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
                     calendar_end.set(Calendar.DAY_OF_MONTH, Integer.parseInt(end_date.get(2)));
 
                     if (calendar_end.getTimeInMillis() - calendar_start.getTimeInMillis() < 432000000) {
-                        Toast.makeText(MainActivity.this, "This date not accepted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getResources().getString(R.string.this_date_not_accepted), Toast.LENGTH_SHORT).show();
                     } else {
                         while (calendar_start.getTimeInMillis() <= calendar_end.getTimeInMillis()) {
                             String date = String.valueOf(calendar_end.get(Calendar.YEAR)) + "-" + String.valueOf(calendar_end.get(Calendar.MONTH) + "-" + String.valueOf(calendar_end.get(Calendar.DAY_OF_MONTH)));
@@ -359,9 +359,9 @@ public class MainActivity extends AppCompatActivity {
                     List<Integer> days = dialogNewTask.getDays();
 
                     if (days.size() == 0) {
-                        Toast.makeText(MainActivity.this, "There is no day selected!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getResources().getString(R.string.there_is_no_day_selected), Toast.LENGTH_SHORT).show();
                     } else if (calendar_end.getTimeInMillis() - calendar_start.getTimeInMillis() < 432000000) {
-                        Toast.makeText(MainActivity.this, "This date not accepted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getResources().getString(R.string.this_date_not_accepted), Toast.LENGTH_SHORT).show();
                     } else {
                         while (calendar_start.getTimeInMillis() <= calendar_end.getTimeInMillis()) {
 

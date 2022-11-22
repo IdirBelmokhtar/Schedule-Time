@@ -78,7 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
                         // We can get the ReviewInfo object
                         reviewInfo = task.getResult();
                     } else {
-                        Toast.makeText(SettingsActivity.this, "Review failed to start", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, getResources().getString(R.string.review_failed_to_start), Toast.LENGTH_SHORT).show();
                     }
                 });
                 if (reviewInfo != null) {
@@ -138,18 +138,18 @@ public class SettingsActivity extends AppCompatActivity {
         if (state.equals("true")) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             switchCompat.setChecked(true);
-            settings_theme_txt.setText("Sombre");
+            settings_theme_txt.setText(getResources().getString(R.string.sombre));
         } else if (state.equals("false")) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             switchCompat.setChecked(false);
-            settings_theme_txt.setText("Clair");
+            settings_theme_txt.setText(getResources().getString(R.string.clair));
         } else {
             if (BuildCompat.isAtLeastP()) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                settings_theme_txt.setText("Auto");
+                settings_theme_txt.setText(getResources().getString(R.string.auto));
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-                settings_theme_txt.setText("Auto Battery");
+                settings_theme_txt.setText(getResources().getString(R.string.auto_battery));
             }
 
         }
@@ -161,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     switchCompat.setChecked(true);
-                    settings_theme_txt.setText("Sombre");
+                    settings_theme_txt.setText(getResources().getString(R.string.sombre));
 
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("state", "true");
@@ -170,7 +170,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     switchCompat.setChecked(false);
-                    settings_theme_txt.setText("Clair (Auto)");
+                    settings_theme_txt.setText(getResources().getString(R.string.auto));
 
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("state", "false");

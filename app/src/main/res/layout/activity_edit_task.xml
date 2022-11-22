@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Edit Task"
+            android:text="@string/edit_task"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
@@ -56,7 +56,6 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -68,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
-                            android:text="Title"
+                            android:text="@string/title"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -121,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="12sp"
-                            android:text="Description"
+                            android:text="@string/description"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -164,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="18sp"
-                            android:text="Priority"
+                            android:text="@string/priority"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -181,7 +180,7 @@
                                 android:layout_height="36dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/custom_button_priority"
-                                android:text="Low"
+                                android:text="@string/low"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white_"
                                 android:textSize="14sp" />
@@ -193,7 +192,7 @@
                                 android:layout_marginHorizontal="4dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/custom_button_priority"
-                                android:text="Medium"
+                                android:text="@string/medium"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white_"
                                 android:textSize="14sp" />
@@ -204,7 +203,7 @@
                                 android:layout_height="36dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/custom_button_priority"
-                                android:text="High"
+                                android:text="@string/high"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white_"
                                 android:textSize="14sp" />
@@ -216,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="18sp"
-                            android:text="Category"
+                            android:text="@string/category"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -269,7 +268,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="18sp"
-                            android:text="Date"
+                            android:text="@string/date"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -420,7 +419,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="12sp"
-                            android:text="Time"
+                            android:text="@string/time"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -571,7 +570,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="18sp"
-                            android:text="Reminder"
+                            android:text="@string/reminder"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -644,7 +643,7 @@
                         style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable3"
                         android:onClick="edit_task_change"
                         android:paddingHorizontal="36sp"
-                        android:text="Save Change"
+                        android:text="@string/save_change"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="16sp" />

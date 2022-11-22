@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.ecommerce.scheduletime.R;
+
 public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
 
     private Context context;
@@ -53,7 +55,7 @@ public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
-            Toast.makeText(context, "Failed Add Note!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add_note), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
@@ -93,7 +95,7 @@ public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
         if (result == -1) {
-            Toast.makeText(context, "Failed Update Note!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_update_note), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
         }
@@ -103,9 +105,9 @@ public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result == -1) {
-            Toast.makeText(context, "Failed Delete Note!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_delete), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Delete Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 

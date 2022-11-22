@@ -338,7 +338,7 @@ public class EditTaskActivity extends AppCompatActivity {
                 }
 
                 String spinner_text = adapterView.getItemAtPosition(position).toString();
-                if (spinner_text.equals("Never")) {
+                if (spinner_text.equals(getResources().getString(R.string.never))) {
                     reminder_ = 0;
                 }
                 if (spinner_text.equals("1 minute")) {
@@ -466,9 +466,9 @@ public class EditTaskActivity extends AppCompatActivity {
                         LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                         LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
                         TextView sheet_dialog_delete_text = dialog.findViewById(R.id.sheet_dialog_delete_text);
-                        sheet_dialog_delete_text.setText("Remove");
+                        sheet_dialog_delete_text.setText(R.string.remove);
 
-                        title.setText("Remove this category from task :\n\"" + String.valueOf(category_btn[finalI].getText()) + "\" ?");
+                        title.setText(getResources().getString(R.string.remove_this_category_from_task) + " :\n\"" + String.valueOf(category_btn[finalI].getText()) + "\" ?");
                         sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

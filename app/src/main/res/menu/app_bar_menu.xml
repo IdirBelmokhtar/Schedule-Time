@@ -5,7 +5,7 @@
         <item
             android:id="@+id/listFragment"
             android:icon="@drawable/ic_bulleted_list_1"
-            android:title="list" />
+            android:title="@string/list" />
         <item
             android:id="@+id/placeholder"
             android:title=""
@@ -13,6 +13,6 @@
         <item
             android:id="@+id/calenderFragment"
             android:icon="@drawable/ic_calendar_minus"
-            android:title="calender" />
+            android:title="@string/calender" />
     </group>
 </menu>

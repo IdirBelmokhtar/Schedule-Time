@@ -23,7 +23,7 @@
             android:layout_height="32dp"
             android:layout_weight="1"
             android:background="@drawable/custom_button_blue_left"
-            android:text="Details"
+            android:text="@string/details"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp" />
@@ -35,7 +35,7 @@
             android:layout_marginHorizontal="4dp"
             android:layout_weight="1"
             android:background="@drawable/custom_button_blue"
-            android:text="Tags"
+            android:text="@string/tags"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp" />
@@ -46,7 +46,7 @@
             android:layout_height="32dp"
             android:layout_weight="1"
             android:background="@drawable/custom_button_blue_right"
-            android:text="Deadline"
+            android:text="@string/deadline"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp" />
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Title"
+                    android:text="@string/title"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Description"
+                    android:text="@string/description"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:text="Cancel"
+                        android:text="@string/cancel"
                         style="@style/Theme.AppCompat.Textview"
                         android:textStyle="bold" />
 
@@ -153,7 +153,7 @@
                         android:layout_height="32dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/custom_button_blue_circle"
-                        android:text="Next"
+                        android:text="@string/next"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="14sp" />
@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Priority"
+                    android:text="@string/priority"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -190,7 +190,7 @@
                         android:layout_height="36dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_button_priority"
-                        android:text="Low"
+                        android:text="@string/low"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="14sp" />
@@ -202,7 +202,7 @@
                         android:layout_marginHorizontal="4dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_button_priority"
-                        android:text="Medium"
+                        android:text="@string/medium"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="14sp" />
@@ -213,7 +213,7 @@
                         android:layout_height="36dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_button_priority"
-                        android:text="High"
+                        android:text="@string/high"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="14sp" />
@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Category"
+                    android:text="@string/category"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -276,7 +276,7 @@
                                         android:layout_gravity="center"
                                         android:layout_marginEnd="4dp"
                                         android:background="@drawable/transparent_background"
-                                        android:hint="Name"
+                                        android:hint="@string/name"
                                         android:paddingHorizontal="16dp"
                                         android:textColor="@color/colorViewOne"
                                         android:textColorHint="@color/colorViewOne"
@@ -404,7 +404,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:text="Cancel"
+                        android:text="@string/cancel"
                         style="@style/Theme.AppCompat.Textview"
                         android:textStyle="bold" />
 
@@ -414,7 +414,7 @@
                         android:layout_height="32dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/custom_button_blue_circle"
-                        android:text="Next"
+                        android:text="@string/next"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="14sp" />
@@ -442,7 +442,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:visibility="visible"
-                        android:text="Date"
+                        android:text="@string/date"
                         style="@style/Theme.AppCompat.Textview"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -562,7 +562,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:visibility="gone"
-                        android:text="Days repeat"
+                        android:text="@string/days_repeat"
                         style="@style/Theme.AppCompat.Textview"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -595,7 +595,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days_full"
-                                    android:text="Sunday"
+                                    android:text="@string/sunday"
                                     android:textAllCaps="false"
                                     android:textColor="@color/white_"
                                     android:layout_marginEnd="8dp"
@@ -606,7 +606,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days"
-                                    android:text="Monday"
+                                    android:text="@string/monday"
                                     android:textAllCaps="false"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
@@ -617,7 +617,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days"
-                                    android:text="Tuesday"
+                                    android:text="@string/tuesday"
                                     android:textAllCaps="false"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
@@ -628,7 +628,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days"
-                                    android:text="Wednesday"
+                                    android:text="@string/wednesday"
                                     android:textAllCaps="false"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
@@ -639,7 +639,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days"
-                                    android:text="Thursday"
+                                    android:text="@string/thursday"
                                     android:textAllCaps="false"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
@@ -650,7 +650,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days"
-                                    android:text="Friday"
+                                    android:text="@string/friday"
                                     android:textAllCaps="false"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:layout_marginEnd="8dp"
@@ -661,7 +661,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:background="@drawable/custom_button_days"
-                                    android:text="Saturday"
+                                    android:text="@string/saturday"
                                     android:textAllCaps="false"
                                     style="@style/Theme.AppCompat.Textview"
                                     android:textSize="12sp" />
@@ -684,7 +684,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Start date"
+                            android:text="@string/start_date"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -693,7 +693,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="End date"
+                            android:text="@string/end_date"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -786,7 +786,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="18dp"
-                    android:text="Time"
+                    android:text="@string/time"
                     style="@style/Theme.AppCompat.Textview"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -931,7 +931,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Reminder"
+                            android:text="@string/reminder"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -990,7 +990,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Repeat"
+                            android:text="@string/repeat"
                             style="@style/Theme.AppCompat.Textview"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -1054,7 +1054,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:text="Cancel"
+                        android:text="@string/cancel"
                         style="@style/Theme.AppCompat.Textview"
                         android:textStyle="bold" />
 
@@ -1064,7 +1064,7 @@
                         android:layout_height="32dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/custom_button_blue_circle"
-                        android:text="Save"
+                        android:text="@string/save"
                         android:textAllCaps="false"
                         android:textColor="@color/white_"
                         android:textSize="14sp" />

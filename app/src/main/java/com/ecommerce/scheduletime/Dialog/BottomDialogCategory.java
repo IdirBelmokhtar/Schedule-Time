@@ -246,7 +246,7 @@ public class BottomDialogCategory extends Dialog {
                     public void onClick(View view) {
                         for (int j = 0; j < category_ids_new.size(); j++) {
                             if (category_ids_new.get(j).equals(category_id.get(finalI))){
-                                Toast.makeText(getContext(), "This category exist!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), getContext().getResources().getString(R.string.this_category_exist), Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         }
@@ -266,7 +266,7 @@ public class BottomDialogCategory extends Dialog {
                         LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                         LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
 
-                        title.setText("Delete this category :\n\"" + String.valueOf(category_btn[finalI].getText()) + "\" ?");
+                        title.setText(getContext().getResources().getString(R.string.delete_this_category) + " :\n\"" + String.valueOf(category_btn[finalI].getText()) + "\" ?");
                         sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

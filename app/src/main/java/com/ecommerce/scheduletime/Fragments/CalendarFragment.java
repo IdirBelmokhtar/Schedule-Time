@@ -495,12 +495,12 @@ public class CalendarFragment extends Fragment {
         String tomorrowDate = dateFormat.format(cal_.getTime());
 
         if (dayDate.equals(dateFormat.format(currentTime.getTime()))) {
-            calendar_date_textView1.setText("Today");
+            calendar_date_textView1.setText(getResources().getString(R.string.today));
             returnToCalendar.setVisibility(View.GONE);
         } else if (dayDate.equals(yesterdayDate)) {
-            calendar_date_textView1.setText("Yesterday");
+            calendar_date_textView1.setText(getResources().getString(R.string.yesterday));
         } else if (dayDate.equals(tomorrowDate)) {
-            calendar_date_textView1.setText("Tomorrow");
+            calendar_date_textView1.setText(getResources().getString(R.string.tomorrow));
         } else {
             String my_year = dateFormat_yyyy.format(currentTime.getTime());
             String year = dateFormat_yyyy.format(calendar);
@@ -535,23 +535,23 @@ public class CalendarFragment extends Fragment {
 
                                 if (dd <= 7) {
                                     //this week
-                                    calendar_date_textView1.setText("This week");
+                                    calendar_date_textView1.setText(getResources().getString(R.string.this_week));
                                 } else {
                                     if (dd <= 14) {
                                         //next week
-                                        calendar_date_textView1.setText("After a week");
+                                        calendar_date_textView1.setText(getResources().getString(R.string.after_a_week));
                                     } else {
                                         if (dd <= 21) {
                                             //after 2 week
-                                            calendar_date_textView1.setText("After 2 weeks");
+                                            calendar_date_textView1.setText(getResources().getString(R.string.after_two_weeks));
                                         } else {
                                             if (dd <= 28) {
                                                 //after 3 week
-                                                calendar_date_textView1.setText("After 3 weeks");
+                                                calendar_date_textView1.setText(getResources().getString(R.string.after_three_weeks));
                                             } else {
                                                 if (dd <= 30) {
                                                     //after 4 week
-                                                    calendar_date_textView1.setText("After 4 weeks");
+                                                    calendar_date_textView1.setText(getResources().getString(R.string.after_four_weeks));
                                                 }
                                             }
                                         }
@@ -564,23 +564,23 @@ public class CalendarFragment extends Fragment {
 
                                 if (dd >= -7) {
                                     //this week
-                                    calendar_date_textView1.setText("Past " + String.valueOf(Math.abs(dd)) + " days");
+                                    calendar_date_textView1.setText(getResources().getString(R.string.past_) + String.valueOf(Math.abs(dd)) + getResources().getString(R.string._days));
                                 } else {
                                     if (dd >= -14) {
                                         //last week
-                                        calendar_date_textView1.setText("Past week");
+                                        calendar_date_textView1.setText(getResources().getString(R.string.past_week));
                                     } else {
                                         if (dd >= -21) {
                                             //before 2 week
-                                            calendar_date_textView1.setText("Before 2 weeks");
+                                            calendar_date_textView1.setText(getResources().getString(R.string.before_two_weeks));
                                         } else {
                                             if (dd >= -28) {
                                                 //before 3 week
-                                                calendar_date_textView1.setText("Before 3 weeks");
+                                                calendar_date_textView1.setText(getResources().getString(R.string.before_three_weeks));
                                             } else {
                                                 if (dd >= -30) {
                                                     //before 4 week
-                                                    calendar_date_textView1.setText("Before 4 weeks");
+                                                    calendar_date_textView1.setText(getResources().getString(R.string.before_four_weeks));
                                                 }
                                             }
                                         }
@@ -594,32 +594,32 @@ public class CalendarFragment extends Fragment {
                 } else if (MM >= 1) {
                     //next month
                     if (MM == 1) {
-                        calendar_date_textView1.setText("Next month");
+                        calendar_date_textView1.setText(getResources().getString(R.string.next_month));
                     } else {
-                        calendar_date_textView1.setText("Next " + String.valueOf(Math.abs(MM)) + " months");
+                        calendar_date_textView1.setText(getResources().getString(R.string.next_) + String.valueOf(Math.abs(MM)) + getResources().getString(R.string._months));
                     }
                 } else {
                     //before month
                     if (MM == -1) {
-                        calendar_date_textView1.setText("Last month");
+                        calendar_date_textView1.setText(getResources().getString(R.string.last_month));
                     } else {
-                        calendar_date_textView1.setText("Last " + String.valueOf(Math.abs(MM)) + " months");
+                        calendar_date_textView1.setText(getResources().getString(R.string.last_) + String.valueOf(Math.abs(MM)) + getResources().getString(R.string._months));
                     }
                 }
 
             } else if (yy >= 1) {
                 //next years
                 if (yy == 1) {
-                    calendar_date_textView1.setText("Next year");
+                    calendar_date_textView1.setText(getResources().getString(R.string.next_year));
                 } else {
-                    calendar_date_textView1.setText("Next " + String.valueOf(Math.abs(yy)) + " years");
+                    calendar_date_textView1.setText(getResources().getString(R.string.next_) + String.valueOf(Math.abs(yy)) + getResources().getString(R.string._years));
                 }
             } else {
                 //before years
                 if (yy == -1) {
-                    calendar_date_textView1.setText("Last year");
+                    calendar_date_textView1.setText(getResources().getString(R.string.last_year));
                 } else {
-                    calendar_date_textView1.setText("Last " + String.valueOf(Math.abs(yy)) + " years");
+                    calendar_date_textView1.setText(getResources().getString(R.string.last_) + String.valueOf(Math.abs(yy)) + getResources().getString(R.string._years));
                 }
             }
 
@@ -863,7 +863,7 @@ public class CalendarFragment extends Fragment {
                         LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                         LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
 
-                        title.setText("Delete this task :\n\"" + tasks_.getTask_title() + "\" ?");
+                        title.setText(getResources().getString(R.string.delete_this_task) + " :\n\"" + tasks_.getTask_title() + "\" ?");
                         sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -892,10 +892,10 @@ public class CalendarFragment extends Fragment {
                         recyclerViewTasksCalendarAdapter.notifyDataSetChanged();
                         if (tasks_.getTask_done().equals("no")) {
                             myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "yes", Integer.parseInt(tasks_.getTask_reminder()));
-                            Toast.makeText(getContext(), "Task : ( " + tasks_.getTask_title() + " ) added to tasks done with Successfully.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.added_to_tasks_done_with_successfully), Toast.LENGTH_LONG).show();
                         } else if (tasks_.getTask_done().equals("yes")) {
                             myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
-                            Toast.makeText(getContext(), "Task : ( " + tasks_.getTask_title() + " ) remove from tasks done.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.remove_from_tasks_done), Toast.LENGTH_LONG).show();
                         }
                         break;
                 }
@@ -928,11 +928,11 @@ public class CalendarFragment extends Fragment {
 
                 }*/
                 new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                        .addSwipeLeftLabel("Delete")
+                        .addSwipeLeftLabel(getResources().getString(R.string.delete))
                         .setSwipeLeftLabelColor(ContextCompat.getColor(getContext(), R.color.white))
                         .addSwipeLeftActionIcon(R.drawable.icons8_trash_can)
                         .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.delete))
-                        .addSwipeRightLabel("Update")
+                        .addSwipeRightLabel(getResources().getString(R.string.update))
                         .setSwipeRightLabelColor(ContextCompat.getColor(getContext(), R.color.white))
                         .addSwipeRightActionIcon(R.drawable.icons8_checkmark_minus)
                         .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(), R.color.done_minus))
@@ -945,6 +945,7 @@ public class CalendarFragment extends Fragment {
 
     }
 
+    /*
     private void test(View view) {
         TextView task = view.findViewById(R.id.taskCalendar);
 
@@ -1055,7 +1056,7 @@ public class CalendarFragment extends Fragment {
                 ? null
                 : (s.substring(0, s.length() - 1));
     }
-
+*/
     private void delayText(int i, List<String> color, TextView textView, String colorCode) {
         new Handler().postDelayed(new Runnable() {
             @Override

@@ -128,7 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
             }
-            Toast.makeText(ProfileActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileActivity.this, getResources().getString(R.string.log_out), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -145,7 +145,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(ProfileActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, getResources().getString(R.string.saved), Toast.LENGTH_SHORT).show();
 
                     // Save data of user in SharedPreferences.
                     SharedPreferences.Editor editor = getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();

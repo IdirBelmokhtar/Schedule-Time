@@ -83,7 +83,7 @@ public class EditNoteActivity extends AppCompatActivity {
                             LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                             LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
 
-                            title.setText("Delete this note ?");
+                            title.setText(getResources().getString(R.string.delete_this_note) + " ?");
                             sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

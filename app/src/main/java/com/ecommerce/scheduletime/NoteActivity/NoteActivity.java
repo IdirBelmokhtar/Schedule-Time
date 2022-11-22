@@ -86,7 +86,7 @@ public class NoteActivity extends AppCompatActivity {
                 case R.id.search_note:
                     // Search note.
                     SearchView searchView = (SearchView) item.getActionView();
-                    searchView.setQueryHint("Search...");
+                    searchView.setQueryHint(getResources().getString(R.string.search));
                     searchView.clearFocus();
                     searchView.setIconified(false);
                     note_add.setVisibility(View.GONE);

@@ -161,7 +161,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.GONE);
                     changeColorBtn(new_deadline, R.color.blue);
                 } else {
-                    new_task_Title.setError("Title is empty!");
+                    new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -171,7 +171,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.GONE);
                     changeColorBtn(new_deadline, R.color.blue);
                 } else {
-                    new_task_Description.setError("Description is empty!");
+                    new_task_Description.setError(getContext().getResources().getString(R.string.description_is_empty));
                 }
             }
         });
@@ -197,7 +197,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.VISIBLE);
                     changeColorBtn(new_deadline, R.color.blue_2);
                 } else {
-                    new_task_Title.setError("Title is empty!");
+                    new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -207,7 +207,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.VISIBLE);
                     changeColorBtn(new_deadline, R.color.blue_2);
                 } else {
-                    new_task_Description.setError("Description is empty!");
+                    new_task_Description.setError(getContext().getResources().getString(R.string.description_is_empty));
                 }
             }
         });
@@ -244,7 +244,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.GONE);
                     changeColorBtn(new_deadline, R.color.blue);
                 } else {
-                    new_task_Title.setError("Title is empty!");
+                    new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -254,7 +254,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.GONE);
                     changeColorBtn(new_deadline, R.color.blue);
                 } else {
-                    new_task_Description.setError("Description is empty!");
+                    new_task_Description.setError(getContext().getResources().getString(R.string.description_is_empty));
                 }
             }
         });
@@ -280,7 +280,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.VISIBLE);
                     changeColorBtn(new_deadline, R.color.blue_2);
                 } else {
-                    new_task_Title.setError("Title is empty!");
+                    new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -290,7 +290,7 @@ public class DialogNewTask extends Dialog {
                     dialog_deadline.setVisibility(View.VISIBLE);
                     changeColorBtn(new_deadline, R.color.blue_2);
                 } else {
-                    new_task_Description.setError("Description is empty!");
+                    new_task_Description.setError(getContext().getResources().getString(R.string.description_is_empty));
                 }
             }
         });
@@ -614,7 +614,7 @@ public class DialogNewTask extends Dialog {
                 }
 
                 String spinner_text = adapterView.getItemAtPosition(position).toString();
-                if (spinner_text.equals("Never")) {
+                if (spinner_text.equals(getContext().getResources().getString(R.string.never))) {
                     reminder = 0;
                 }
                 if (spinner_text.equals("1 minute")) {
@@ -965,59 +965,59 @@ public class DialogNewTask extends Dialog {
                                 if (time_left > 31536000000L) {
                                     // Years
                                     if (((time_left % 31536000000L) / 2628288000L) == 0) {
-                                        textView_time_left.setText(String.valueOf(time_left / 31536000000L) + " year left");
+                                        textView_time_left.setText(String.valueOf(time_left / 31536000000L) + getContext().getResources().getString(R.string._year_left));
                                     } else {
-                                        textView_time_left.setText(String.valueOf(time_left / 31536000000L) + " year " + String.valueOf((time_left % 31536000000L) / 2628288000L) + " month left");
+                                        textView_time_left.setText(String.valueOf(time_left / 31536000000L) + getContext().getResources().getString(R.string._year_) + String.valueOf((time_left % 31536000000L) / 2628288000L) + getContext().getResources().getString(R.string._month_left));
                                     }
                                 } else {
                                     // Months
                                     if (((time_left % 2628288000l) / 86400000) == 0) {
-                                        textView_time_left.setText(String.valueOf(time_left / 2628288000l) + " month left");
+                                        textView_time_left.setText(String.valueOf(time_left / 2628288000l) + getContext().getResources().getString(R.string._month_left));
                                     } else {
-                                        textView_time_left.setText(String.valueOf(time_left / 2628288000l) + " month " + String.valueOf((time_left % 2628288000l) / 86400000) + " d left");
+                                        textView_time_left.setText(String.valueOf(time_left / 2628288000l) + getContext().getResources().getString(R.string._month_) + String.valueOf((time_left % 2628288000l) / 86400000) + getContext().getResources().getString(R.string._d_left));
                                     }
                                 }
                             } else {
                                 // Weeks we show the number of day not week.
                                 if (((time_left % 86400000) / 3600000) == 0) {
-                                    textView_time_left.setText(String.valueOf(time_left / 86400000) + " d left");
+                                    textView_time_left.setText(String.valueOf(time_left / 86400000) + getContext().getResources().getString(R.string._d_left));
                                 } else {
-                                    textView_time_left.setText(String.valueOf(time_left / 86400000) + " d " + String.valueOf((time_left % 86400000) / 3600000) + " h left");
+                                    textView_time_left.setText(String.valueOf(time_left / 86400000) + getContext().getResources().getString(R.string._d_) + String.valueOf((time_left % 86400000) / 3600000) + getContext().getResources().getString(R.string._h_left));
                                 }
                             }
                         } else {
                             // Days
                             if (((time_left % 86400000) / 3600000) == 0) {
-                                textView_time_left.setText(String.valueOf(time_left / 86400000) + " d left");
+                                textView_time_left.setText(String.valueOf(time_left / 86400000) + getContext().getResources().getString(R.string._d_left));
                             } else {
-                                textView_time_left.setText(String.valueOf(time_left / 86400000) + " d " + String.valueOf((time_left % 86400000) / 3600000) + " h left");
+                                textView_time_left.setText(String.valueOf(time_left / 86400000) + getContext().getResources().getString(R.string._d_) + String.valueOf((time_left % 86400000) / 3600000) + getContext().getResources().getString(R.string._h_left));
                             }
                         }
                     } else {
                         // Hours
                         if (((time_left % 3600000) / 60000) == 0) {
-                            textView_time_left.setText(String.valueOf(time_left / 3600000) + " h left");
+                            textView_time_left.setText(String.valueOf(time_left / 3600000) + getContext().getResources().getString(R.string._h_left));
                         } else {
-                            textView_time_left.setText(String.valueOf(time_left / 3600000) + " h " + String.valueOf((time_left % 3600000) / 60000) + " min left");
+                            textView_time_left.setText(String.valueOf(time_left / 3600000) + getContext().getResources().getString(R.string._h_) + String.valueOf((time_left % 3600000) / 60000) + getContext().getResources().getString(R.string._min_left));
                         }
                     }
                 } else {
                     // Minutes
                     if (((time_left % 60000) / 1000) == 0) {
-                        textView_time_left.setText(String.valueOf(time_left / 60000) + " min left");
+                        textView_time_left.setText(String.valueOf(time_left / 60000) + getContext().getResources().getString(R.string._min_left));
                     } else {
-                        textView_time_left.setText(String.valueOf(time_left / 60000) + " min " + String.valueOf((time_left % 60000) / 1000) + " sec left");
+                        textView_time_left.setText(String.valueOf(time_left / 60000) + getContext().getResources().getString(R.string._min_) + String.valueOf((time_left % 60000) / 1000) + getContext().getResources().getString(R.string._sec_left));
                     }
                 }
             } else {
                 // Seconds
-                textView_time_left.setText(String.valueOf(time_left / 1000) + " sec left");
+                textView_time_left.setText(String.valueOf(time_left / 1000) + getContext().getResources().getString(R.string._sec_left));
             }
         } else {
             if (time_left >= -60000) {
-                textView_time_left.setText("Now");
+                textView_time_left.setText(getContext().getResources().getString(R.string.now));
             } else {
-                textView_time_left.setText("Time is less than now!");
+                textView_time_left.setText(getContext().getResources().getString(R.string.time_is_less_than_now));
             }
         }
 
@@ -1173,7 +1173,7 @@ public class DialogNewTask extends Dialog {
                                 category_btn[finalI].setText(category_name.get(finalI).toString() + "\t\t" + Html.fromHtml("&#10003;"));
                                 category.add(category_id.get(finalI).toString());
                             } else {
-                                Toast.makeText(getContext(), "Select at most 5 category", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_at_most_five_categories), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -1190,7 +1190,7 @@ public class DialogNewTask extends Dialog {
                         LinearLayout sheet_dialog_cancel = dialog.findViewById(R.id.sheet_dialog_cancel);
                         LinearLayout sheet_dialog_delete = dialog.findViewById(R.id.sheet_dialog_delete);
 
-                        title.setText("Delete this category :\n\"" + String.valueOf(category_btn[finalI].getText()) + "\" ?");
+                        title.setText(getContext().getResources().getString(R.string.delete_this_category) + " :\n\"" + String.valueOf(category_btn[finalI].getText()) + "\" ?");
                         sheet_dialog_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
