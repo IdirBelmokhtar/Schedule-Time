@@ -60,7 +60,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginHorizontal="24dp"
             style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable3"
-            android:text="@string/start"
+            android:text="@string/"
             android:textAllCaps="false"
             android:textColor="@color/white_"
             android:textSize="20sp"
