@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.currentTime;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.fOpen;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.scrollToNewTask;
+import static com.ecommerce.scheduletime.HomeActivity.MainActivity.setLocale;
 import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import android.animation.ArgbEvaluator;
@@ -53,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewTasksAdapter.RecyclerViewTasksHolder> {
 
@@ -186,6 +188,42 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
             SimpleDateFormat HH = new SimpleDateFormat("HH");
             SimpleDateFormat mm = new SimpleDateFormat("mm");
             SimpleDateFormat aa = new SimpleDateFormat("aa");
+
+            SharedPreferences pref = context.getSharedPreferences("language", MODE_PRIVATE);
+            String lang = pref.getString("lang", "");
+
+            if (!lang.equals("")) {
+                if (lang.equals("en")) {
+                    Locale en = new Locale("en");
+                    KK = new SimpleDateFormat("KK", en);
+                    HH = new SimpleDateFormat("HH", en);
+                    mm = new SimpleDateFormat("mm", en);
+                    aa = new SimpleDateFormat("aa", en);
+                } else if (lang.equals("fr")) {
+                    Locale fr = new Locale("fr");
+                    KK = new SimpleDateFormat("KK", fr);
+                    HH = new SimpleDateFormat("HH", fr);
+                    mm = new SimpleDateFormat("mm", fr);
+                    aa = new SimpleDateFormat("aa", fr);
+                } else if (lang.equals("ar")) {
+                    Locale ar = new Locale("ar");
+                    KK = new SimpleDateFormat("KK", ar);
+                    HH = new SimpleDateFormat("HH", ar);
+                    mm = new SimpleDateFormat("mm", ar);
+                    aa = new SimpleDateFormat("aa", ar);
+                }
+            } else {
+                String lang_ = Locale.getDefault().getLanguage();
+                if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
+                    //Toast.makeText(this, getResources().getString(R.string.this_language_is_not_currently_available), Toast.LENGTH_LONG).show();
+                }else {
+                    Locale lng = Locale.getDefault();
+                    KK = new SimpleDateFormat("KK", lng);
+                    HH = new SimpleDateFormat("HH", lng);
+                    mm = new SimpleDateFormat("mm", lng);
+                    aa = new SimpleDateFormat("aa", lng);
+                }
+            }
             if (Integer.parseInt(task.getTask_time().substring(0, 2)) == 12) {
                 holder.task_time.setText(String.valueOf(HH.format(calendar_date_time.getTime())) + ":" + String.valueOf(mm.format(calendar_date_time.getTime())) + " " + String.valueOf(aa.format(calendar_date_time.getTime())));
             } else {

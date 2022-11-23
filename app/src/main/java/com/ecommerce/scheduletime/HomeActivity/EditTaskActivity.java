@@ -6,6 +6,7 @@ import static com.ecommerce.scheduletime.Fragments.ListFragment.endDate;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.horizontalCalendar;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.startDate;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.fOpen;
+import static com.ecommerce.scheduletime.HomeActivity.MainActivity.setLocale;
 import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.ecommerce.scheduletime.Dialog.BottomDialogCategory;
 import com.ecommerce.scheduletime.R;
@@ -54,6 +56,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -89,6 +92,24 @@ public class EditTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences pref = getSharedPreferences("language", MODE_PRIVATE);
+        String lang = pref.getString("lang", "");
+
+        if (!lang.equals("")) {
+            if (lang.equals("en")) {
+                setLocale(EditTaskActivity.this, "en");
+            } else if (lang.equals("fr")) {
+                setLocale(EditTaskActivity.this, "fr");
+            } else if (lang.equals("ar")) {
+                setLocale(EditTaskActivity.this, "ar");
+            }
+        } else {
+            String lang_ = Locale.getDefault().getLanguage();
+            setLocale(EditTaskActivity.this, lang_);
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                Toast.makeText(this, getResources().getString(R.string.this_language_is_not_currently_available), Toast.LENGTH_LONG).show();
+            }
+        }
         setContentView(R.layout.activity_edit_task);
 
         // Toolbar

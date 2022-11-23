@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class EditNoteActivity extends AppCompatActivity {
 
@@ -144,12 +146,65 @@ public class EditNoteActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Integer.parseInt(s.get(0)), Integer.parseInt(s.get(1)), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), Integer.parseInt(s.get(4)));
 
+        SimpleDateFormat MMM = new SimpleDateFormat("MMM");
+        SimpleDateFormat dd = new SimpleDateFormat("dd");
+        SimpleDateFormat yyyy = new SimpleDateFormat("yyyy");
         SimpleDateFormat KK = new SimpleDateFormat("KK");
         SimpleDateFormat HH = new SimpleDateFormat("HH");
         SimpleDateFormat mm = new SimpleDateFormat("mm");
         SimpleDateFormat aa = new SimpleDateFormat("aa");
 
-        date = (String) DateFormat.format("MMM", calendar) + " " + (String) DateFormat.format("dd", calendar) + ", " + (String) DateFormat.format("yyyy", calendar);
+        SharedPreferences pref = getSharedPreferences("language", MODE_PRIVATE);
+        String lang = pref.getString("lang", "");
+
+        if (!lang.equals("")) {
+            if (lang.equals("en")) {
+                Locale en = new Locale("en");
+                MMM = new SimpleDateFormat("MMM", en);
+                dd = new SimpleDateFormat("dd", en);
+                yyyy = new SimpleDateFormat("yyyy", en);
+                KK = new SimpleDateFormat("KK", en);
+                HH = new SimpleDateFormat("HH", en);
+                mm = new SimpleDateFormat("mm", en);
+                aa = new SimpleDateFormat("aa", en);
+            } else if (lang.equals("fr")) {
+                Locale fr = new Locale("fr");
+                MMM = new SimpleDateFormat("MMM", fr);
+                dd = new SimpleDateFormat("dd", fr);
+                yyyy = new SimpleDateFormat("yyyy", fr);
+                KK = new SimpleDateFormat("KK", fr);
+                HH = new SimpleDateFormat("HH", fr);
+                mm = new SimpleDateFormat("mm", fr);
+                aa = new SimpleDateFormat("aa", fr);
+            } else if (lang.equals("ar")) {
+                Locale ar = new Locale("ar");
+                MMM = new SimpleDateFormat("MMM", ar);
+                dd = new SimpleDateFormat("dd", ar);
+                yyyy = new SimpleDateFormat("yyyy", ar);
+                KK = new SimpleDateFormat("KK", ar);
+                HH = new SimpleDateFormat("HH", ar);
+                mm = new SimpleDateFormat("mm", ar);
+                aa = new SimpleDateFormat("aa", ar);
+            }
+        } else {
+            String lang_ = Locale.getDefault().getLanguage();
+
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                //Toast.makeText(getContext(), getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable), Toast.LENGTH_LONG).show();
+            }else {
+                Locale lng = Locale.getDefault();
+                MMM = new SimpleDateFormat("MMM", lng);
+                dd = new SimpleDateFormat("dd", lng);
+                yyyy = new SimpleDateFormat("yyyy", lng);
+                KK = new SimpleDateFormat("KK", lng);
+                HH = new SimpleDateFormat("HH", lng);
+                mm = new SimpleDateFormat("mm", lng);
+                aa = new SimpleDateFormat("aa", lng);
+            }
+        }
+
+        //date = (String) DateFormat.format("MMM", calendar) + " " + (String) DateFormat.format("dd", calendar) + ", " + (String) DateFormat.format("yyyy", calendar);
+        date = String.valueOf(MMM.format(calendar.getTime())) + " " + String.valueOf(dd.format(calendar.getTime())) + ", " + String.valueOf(yyyy.format(calendar.getTime()));
         if (Integer.parseInt(s.get(3)) == 12) {
             time = String.valueOf(HH.format(calendar.getTime())) + ":" + String.valueOf(mm.format(calendar.getTime())) + " " + String.valueOf(aa.format(calendar.getTime()));
         } else {

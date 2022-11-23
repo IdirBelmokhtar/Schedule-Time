@@ -107,38 +107,41 @@
 
                     </com.google.android.material.navigation.NavigationView>
 
-                    <TextView
-                        android:id="@+id/drawer_HelpAndFeedback"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable_"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:layout_gravity="bottom"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:gravity="bottom"
-                        android:text="@string/help_amp_feedback" />
+                        android:gravity="bottom">
 
-                    <TextView
-                        android:id="@+id/drawer_TermsOfUse"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable_"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:gravity="bottom"
-                        android:text="@string/terms_of_use" />
+                        <TextView
+                            android:id="@+id/drawer_HelpAndFeedback"
+                            style="@style/Theme.ScheduleTime.TextView.Clickable_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="@string/help_amp_feedback" />
 
-                    <TextView
-                        android:id="@+id/drawer_ContactUs"
-                        style="@style/Theme.ScheduleTime.TextView.Clickable_"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:gravity="bottom"
-                        android:text="@string/contact_us" />
+                        <TextView
+                            android:id="@+id/drawer_TermsOfUse"
+                            style="@style/Theme.ScheduleTime.TextView.Clickable_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="@string/terms_of_use" />
+
+                        <TextView
+                            android:id="@+id/drawer_ContactUs"
+                            style="@style/Theme.ScheduleTime.TextView.Clickable_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="@string/contact_us" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

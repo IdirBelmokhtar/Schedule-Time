@@ -15,6 +15,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
@@ -57,6 +59,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -87,6 +90,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences pref = getSharedPreferences("language", MODE_PRIVATE);
+        String lang = pref.getString("lang", "");
+
+        if (!lang.equals("")) {
+            if (lang.equals("en")) {
+                setLocale(MainActivity.this, "en");
+            } else if (lang.equals("fr")) {
+                setLocale(MainActivity.this, "fr");
+            } else if (lang.equals("ar")) {
+                setLocale(MainActivity.this, "ar");
+            }
+        } else {
+            String lang_ = Locale.getDefault().getLanguage();
+            setLocale(MainActivity.this, lang_);
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                Toast.makeText(this, getResources().getString(R.string.this_language_is_not_currently_available), Toast.LENGTH_LONG).show();
+            }
+        }
         setContentView(R.layout.activity_main);
 
         SharedPreferences prefs = getSharedPreferences("USER_INFO", MODE_PRIVATE);
@@ -505,6 +526,15 @@ public class MainActivity extends AppCompatActivity {
         }
         //TintUtils.tintList(this, menu, R.color.bar_icon_color);
         return true;
+    }
+
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
     @Override

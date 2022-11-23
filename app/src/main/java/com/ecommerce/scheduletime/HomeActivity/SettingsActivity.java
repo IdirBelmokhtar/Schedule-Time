@@ -13,15 +13,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ecommerce.scheduletime.Dialog.BottomDialogLanguages;
+import com.ecommerce.scheduletime.Dialog.BottomDialogOther;
 import com.ecommerce.scheduletime.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.review.ReviewInfo;
@@ -42,7 +49,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale();
         setContentView(R.layout.activity_settings);
 
         toolbar = findViewById(R.id.toolbar_settings);
@@ -136,19 +142,15 @@ public class SettingsActivity extends AppCompatActivity {
         String state = preferences.getString("state", "");
 
         if (state.equals("true")) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             switchCompat.setChecked(true);
             settings_theme_txt.setText(getResources().getString(R.string.sombre));
         } else if (state.equals("false")) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             switchCompat.setChecked(false);
             settings_theme_txt.setText(getResources().getString(R.string.clair));
         } else {
             if (BuildCompat.isAtLeastP()) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 settings_theme_txt.setText(getResources().getString(R.string.auto));
             } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
                 settings_theme_txt.setText(getResources().getString(R.string.auto_battery));
             }
 
@@ -176,8 +178,10 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.putString("state", "false");
                     editor.apply();
                 }
-                getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
-                recreate();
+                refresh();
+
+                //getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
+                //recreate();
 
                 //Intent intent = new Intent();
                 //intent.setAction("action_theme_changed");
@@ -185,10 +189,98 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         settings_language = findViewById(R.id.settings_language);
+        TextView language = (TextView) findViewById(R.id.lang);
+        SharedPreferences pref = getSharedPreferences("language", MODE_PRIVATE);
+        String lang = pref.getString("lang", "");
+
+        if (!lang.equals("")){
+            if (lang.equals("en")){
+                language.setText(getResources().getString(R.string.lang_english));
+            }else if (lang.equals("fr")){
+                language.setText(getResources().getString(R.string.lang_french));
+            }else if (lang.equals("ar")){
+                language.setText(getResources().getString(R.string.lang_arabic));
+            }
+        }else {
+            String lang_ = Locale.getDefault().getLanguage();
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable));
+            }else {
+                language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName());
+            }
+        }
         settings_language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
+                SharedPreferences.Editor editor = getSharedPreferences("language", MODE_PRIVATE).edit();
+
+                BottomDialogLanguages bottomDialogLanguages = new BottomDialogLanguages((Activity) SettingsActivity.this);
+
+                String lang_ = Locale.getDefault().getLanguage();
+                if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                    bottomDialogLanguages.getDialog_lang_default_system_().setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable));
+                }else {
+                    bottomDialogLanguages.getDialog_lang_default_system_().setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName());
+                }
+
+                bottomDialogLanguages.getDialog_lang_default_system().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String lang_ = Locale.getDefault().getLanguage();
+                        if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                            language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable));
+                        }else {
+                            language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName());
+                        }
+
+                        editor.putString("lang", "");
+                        editor.apply();
+                        bottomDialogLanguages.dismiss();
+                        refresh();
+                    }
+                });
+                bottomDialogLanguages.getDialog_lang_arabic().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        language.setText(getResources().getString(R.string.lang_arabic));
+
+                        editor.putString("lang", "ar");
+                        editor.apply();
+                        bottomDialogLanguages.dismiss();
+                        refresh();
+                    }
+                });
+                bottomDialogLanguages.getDialog_lang_english().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        language.setText(getResources().getString(R.string.lang_english));
+
+                        editor.putString("lang", "en");
+                        editor.apply();
+                        bottomDialogLanguages.dismiss();
+                        refresh();
+                    }
+                });
+                bottomDialogLanguages.getDialog_lang_french().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        language.setText(getResources().getString(R.string.lang_french));
+
+                        editor.putString("lang", "fr");
+                        editor.apply();
+                        bottomDialogLanguages.dismiss();
+                        refresh();
+                    }
+                });
+
+                bottomDialogLanguages.build();
+                bottomDialogLanguages.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                bottomDialogLanguages.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                bottomDialogLanguages.getWindow().setWindowAnimations(R.style.SheetDialogAnimation);
+                bottomDialogLanguages.getWindow().setGravity(Gravity.BOTTOM);
+
+
+                /*
                 final String[] listItems = {"English", "French", "عربي"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                 builder.setTitle("Choose Language ...");
@@ -235,27 +327,18 @@ public class SettingsActivity extends AppCompatActivity {
                 dialogLanguage.build();
                 Window window = dialogLanguage.getWindow();
                 window.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            */}
+            */
+            }
         });
 
     }
 
-    private void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        //save data in sharedPerformance
-        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-        editor.putString("language", lang);
-        editor.apply();
-    }
-
-    private void loadLocale() {
-        SharedPreferences preferences = getSharedPreferences("Settings", MODE_PRIVATE);
-        String language = preferences.getString("Settings", "");
-        setLocale(language);
+    private void refresh() {
+        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override

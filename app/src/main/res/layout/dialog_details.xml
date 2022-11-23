@@ -186,7 +186,7 @@
                 android:layout_marginBottom="24dp"
                 style="@style/Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable3"
                 android:paddingHorizontal="36sp"
-                android:text="Edit Task"
+                android:text="@string/edit_task"
                 android:textAllCaps="false"
                 android:textColor="@color/white_"
                 android:textSize="16sp" />

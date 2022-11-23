@@ -19,7 +19,7 @@
     <string name="low">منخفض</string>
     <string name="medium">متوسط</string>
     <string name="high">مرتفع</string>
-    <string name="category">فئة</string>
+    <string name="category">الفئة</string>
     <string name="date">التاريخ</string>
     <string name="time">الوقت</string>
     <string name="reminder">تذكير</string>
@@ -45,7 +45,7 @@
     <string name="about_us">معلومات عنا</string>
     <string name="developer_owner">المطور / المالك</string>
     <string name="share">مشاركة</string>
-    <string name="share_schedule_app_with_friends">مشاركة تطبيق الجدول مع الأصدقاء</string>
+    <string name="share_schedule_app_with_friends">شارك التطبيق مع أصدقائك</string>
     <string name="select_other_category">حدد فئة أخرى :</string>
     <string name="delete_lorem">حذف لوريم ؟</string>
     <string name="cancel">إلغاء</string>
@@ -72,7 +72,7 @@
     <string name="track_your_notes_and_reflect_on_your_day">اتبع ملاحظاتك وفكر في يومك.</string>
     <string name="get_an_overview_of_how_you_are_performing_to_motivate_yourself_more">احصل على لقطة لأدائك لتحفيزك أكثر.</string>
     <string name="no_data_found">لا تتوافر بيانات</string>
-    <string name="sort_by">فرز</string>
+    <string name="sort_by">فرز حسب</string>
     <string name="due_date_and_time">التاريخ و الوقت</string>
     <string name="tasks_done">المهام المنجزة</string>
     <string name="today">اليوم</string>
@@ -121,8 +121,8 @@
     <string name="sort_by_priority">فرز حسب : الأولوية</string>
     <string name="sort_by_category">الترتيب حسب: الفئة</string>
     <string name="sort_by_tasks_done">فرز حسب : المهام المنجزة</string>
-    <string name="yesterday">في الامس</string>
-    <string name="this_week">"البارحة "</string>
+    <string name="yesterday">في الأمس</string>
+    <string name="this_week">هذا الأسبوع</string>
     <string name="after_a_week">بعد أسبوع</string>
     <string name="after_two_weeks">بعد أسبوعين</string>
     <string name="after_three_weeks">بعد 3 أسابيع</string>
@@ -166,17 +166,17 @@
     <string name="calendar">تقويم</string>
     <string name="profile">الملف الشخصي</string>
     <string name="filter">فلتر</string>
-    <string name="_year_left">\ يتبقى عام</string>
+    <string name="_year_left">\ عام متبقية</string>
     <string name="_year_">\ عام\ </string>
-    <string name="_month_left">\ يتبقى شهر</string>
-    <string name="_d_left">\ يتبقى يوم</string>
+    <string name="_month_left">\ شهر متبقية</string>
+    <string name="_d_left">\ يوم متبقية</string>
     <string name="_month_">\ شهر\ </string>
     <string name="_d_">\ يوم\ </string>
-    <string name="_h_left">\ يتبقى ساعة</string>
+    <string name="_h_left">\ ساعة متبقية</string>
     <string name="_h_">\ ساعة\ </string>
-    <string name="_min_left">\ يتبقى دقيقة</string>
+    <string name="_min_left">\ دقيقة متبقية</string>
     <string name="_min_">\ دقيقة\ </string>
-    <string name="_sec_left">\ يتبقى ثانية</string>
+    <string name="_sec_left">\ ثانية متبقية</string>
     <string name="past_">منذ\ </string>
     <string name="_days">\ أيام</string>
     <string name="past_week">الأسبوع الماضي</string>
@@ -185,4 +185,11 @@
     <string name="last_">قبل\ </string>
     <string name="_years">\ سنوات</string>
     <string name="now">الآن</string>
+    <string name="category_name">إسم الفئة</string>
+    <string name="lang_english">الإنجليزية</string>
+    <string name="lang_arabic">العربية</string>
+    <string name="lang_french">الفرنسية</string>
+    <string name="system_default">لغة النظام</string>
+    <string name="this_language_is_not_currently_available">هذه اللغة ليست متوفرة حاليا</string>
+    <string name="currently_unavailable">غير متوفرة حاليا</string>
 </resources>

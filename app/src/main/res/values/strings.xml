@@ -8,7 +8,7 @@
 
     <string name="version" translatable="false">1.0.0</string>
 
-    <string name="">Start</string>
+    <string name="start" translatable="false">Start</string>
     <string name="suivant">Next</string>
     <string name="back">Back</string>
 
@@ -21,7 +21,7 @@
     <string name="lien_facebook" translatable="false">https://www.facebook.com/idir.belmokhtar/</string>
     <string name="lien_whatsapp" translatable="false">+213 659 23 92 69</string>
     <string name="gmail" translatable="false">belmokhtaridir@gmail.com</string>
-    <string name="search_hint">Search Here ...</string>
+    <string name="search_hint">Search Here …</string>
     <string name="dev_phone" translatable="false">+213 659 23 92 69</string>
     <string name="dev_location" translatable="false">36.71631, 3.82707</string>
     <string name="notification_channel_id" translatable="false">my canal id</string>
@@ -211,6 +211,7 @@
     <string name="calendar">calendar</string>
     <string name="profile">Profile</string>
     <string name="filter">Filter</string>
+    <string name="category_name">Category name</string>
 
     <string-array name="reminder">
         <item>Never</item>
@@ -244,5 +245,11 @@
         <item>Everyday</item>
         <item>Select days</item>
     </string-array>
+    <string name="lang_english">English</string>
+    <string name="lang_arabic">Arabic</string>
+    <string name="lang_french">Franch</string>
+    <string name="system_default">System Default</string>
+    <string name="this_language_is_not_currently_available">This language is not currently available</string>
+    <string name="currently_unavailable">Currently unavailable</string>
 
 </resources>

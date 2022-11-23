@@ -276,7 +276,7 @@
                                         android:layout_gravity="center"
                                         android:layout_marginEnd="4dp"
                                         android:background="@drawable/transparent_background"
-                                        android:hint="@string/name"
+                                        android:hint="@string/category_name"
                                         android:paddingHorizontal="16dp"
                                         android:textColor="@color/colorViewOne"
                                         android:textColorHint="@color/colorViewOne"

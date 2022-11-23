@@ -7,7 +7,7 @@
     <string name="contact_us">Contactez-nous</string>
     <string name="my_full_adresse">Naciria, Boumerdes, Algérie</string>
     <string name="name">Prénom</string>
-    <string name="email">Nom</string>
+    <string name="email">Email</string>
     <string name="phone">Téléphone</string>
     <string name="comment">Commentaire</string>
     <string name="title">Titre</string>
@@ -43,7 +43,7 @@
     <string name="about_us">À propos</string>
     <string name="developer_owner">Développeur</string>
     <string name="share">Partager</string>
-    <string name="share_schedule_app_with_friends">Partager l\'application Schedule avec des amis</string>
+    <string name="share_schedule_app_with_friends">Partager l\'application avec vos amis</string>
     <string name="select_other_category">Sélectionnez une autre catégorie :</string>
     <string name="delete_lorem">Supprimer Lorem ?</string>
     <string name="cancel">Annuler</string>
@@ -92,12 +92,12 @@
     <string name="remember">Se souvenir</string>
     <string name="or_login_with">Ou Connectez-vous avec</string>
     <string name="sign_up">S\'inscrire</string>
-    <string name="don_t_have_an_account">Vous n\'avez pas de compte ?</string>
+    <string name="don_t_have_an_account">Vous n\'avez pas de compte ?</string>
     <string name="or_sign_up_with">Ou Inscrivez-vous avec</string>
     <string name="already_have_an_account">Vous avez déjà un compte?</string>
     <string name="please_wait">Veuillez patienter…</string>
     <string name="let_s_get_started">Commençons!</string>
-    <string name="delete_this_note">Supprimer cette note ?</string>
+    <string name="delete_this_note">Supprimer cette note ?</string>
     <string name="delete_this_task">Supprimer cette tâche</string>
     <string name="email_required">Email requis</string>
     <string name="we_have_sent_you_a_recovery_email">Nous vous avons envoyé un e-mail de récupération</string>
@@ -110,8 +110,8 @@
     <string name="authentication_failed">Échec de l’authentification.</string>
     <string name="this_category_exist">Cette catégorie existe !</string>
     <string name="delete_this_category">Supprimer cette catégorie</string>
-    <string name="title_is_empty">Le titre est vide !</string>
-    <string name="description_is_empty">La description est vide !</string>
+    <string name="title_is_empty">Le titre est vide !</string>
+    <string name="description_is_empty">La description est vide !</string>
     <string name="select_at_most_five_categories">Sélectionnez au plus 5 catégories</string>
     <string name="now">Maintenant</string>
     <string name="time_is_less_than_now">Le temps est moins que maintenant!</string>
@@ -142,7 +142,7 @@
     <string name="remove">Retirer</string>
     <string name="remove_this_category_from_task">Supprimer cette catégorie de la tâche</string>
     <string name="this_date_not_accepted">Cette date n\'est pas acceptée !</string>
-    <string name="there_is_no_day_selected">Il n\'y a pas de jour sélectionné !</string>
+    <string name="there_is_no_day_selected">Il n\'y a pas de jour sélectionné !</string>
     <string name="saved">Enregistré!</string>
     <string name="review_failed_to_start">L\'évaluation n\'a pas pu démarrer</string>
     <string name="sombre">Sombre</string>
@@ -159,8 +159,8 @@
     <string name="failed_add">Échec de l\'ajout</string>
     <string name="failed_delete">Échec de la suppression</string>
     <string name="failed_add_category">Échec de l\'ajout de la catégorie</string>
-    <string name="failed_add_note">Échec de l\'ajout d\'une note !</string>
-    <string name="failed_update_note">Échec de mise à jour de la note !</string>
+    <string name="failed_add_note">Échec de l\'ajout d\'une note !</string>
+    <string name="failed_update_note">Échec de mise à jour de la note !</string>
     <string name="list">liste</string>
     <string name="calendar">calender</string>
     <string name="profile">Profil</string>
@@ -185,4 +185,11 @@
     <string name="_months">\ mois</string>
     <string name="submit">"Envoyer "</string>
     <string name="error_in_time">Erreur de temps</string>
+    <string name="category_name">Nom Catégorie</string>
+    <string name="lang_arabic">Arabe</string>
+    <string name="lang_french">Français</string>
+    <string name="lang_english">Anglais</string>
+    <string name="system_default">Système par défaut</string>
+    <string name="this_language_is_not_currently_available">Cette langue n’est pas disponible actuellement</string>
+    <string name="currently_unavailable">Actuellement indisponible</string>
 </resources>

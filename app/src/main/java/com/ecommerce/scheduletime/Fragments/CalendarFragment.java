@@ -10,6 +10,7 @@ import static com.ecommerce.scheduletime.HomeActivity.MainActivity.fab;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.getData;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.mDrawerLayout;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.scrollToNewTask;
+import static com.ecommerce.scheduletime.HomeActivity.MainActivity.setLocale;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
@@ -74,6 +76,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -113,7 +116,37 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        SharedPreferences pref = getContext().getSharedPreferences("language", MODE_PRIVATE);
+        String lang = pref.getString("lang", "");
+
+        if (!lang.equals("")) {
+            if (lang.equals("en")) {
+                setLocale((Activity) container.getContext(), "en");
+            } else if (lang.equals("fr")) {
+                setLocale((Activity) container.getContext(), "fr");
+            } else if (lang.equals("ar")) {
+                setLocale((Activity) container.getContext(), "ar");
+            }
+        } else {
+            String lang_ = Locale.getDefault().getLanguage();
+            setLocale((Activity) container.getContext(), lang_);
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                //Toast.makeText(this, getResources().getString(R.string.this_language_is_not_currently_available), Toast.LENGTH_LONG).show();
+            }
+        }
         View view = inflater.inflate(R.layout.fragment_calender, container, false);
+
+        // Make Status Bar (Auto Size).
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, result);
+        view.findViewById(R.id.status_bar_calendar).setLayoutParams(params);
+        CoordinatorLayout coordinatorLayout = view.findViewById(R.id.coordinatorLayout_calendar);
+        coordinatorLayout.setPadding(0, result, 0, 0);
+
 
         mCollapsingToolbar = view.findViewById(R.id.mCollapsingToolbar_calendar);
 
@@ -485,6 +518,50 @@ public class CalendarFragment extends Fragment {
         DateFormat dateFormat_month = new SimpleDateFormat("MMMM");
         DateFormat dateFormat_yyyy = new SimpleDateFormat("yyyy");
 
+        SharedPreferences pref = getContext().getSharedPreferences("language", MODE_PRIVATE);
+        String lang = pref.getString("lang", "");
+
+        if (!lang.equals("")){
+            if (lang.equals("en")){
+                Locale en = new Locale("en");
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd", en);
+                dateFormat_dd = new SimpleDateFormat("dd", en);
+                dateFormat_day = new SimpleDateFormat("EEEE", en);
+                dateFormat_MM = new SimpleDateFormat("MM", en);
+                dateFormat_month = new SimpleDateFormat("MMMM", en);
+                dateFormat_yyyy = new SimpleDateFormat("yyyy", en);
+            }else if (lang.equals("fr")){
+                Locale fr = new Locale("fr");
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd", fr);
+                dateFormat_dd = new SimpleDateFormat("dd", fr);
+                dateFormat_day = new SimpleDateFormat("EEEE", fr);
+                dateFormat_MM = new SimpleDateFormat("MM", fr);
+                dateFormat_month = new SimpleDateFormat("MMMM", fr);
+                dateFormat_yyyy = new SimpleDateFormat("yyyy", fr);
+            }else if (lang.equals("ar")){
+                Locale ar = new Locale("ar");
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd", ar);
+                dateFormat_dd = new SimpleDateFormat("dd", ar);
+                dateFormat_day = new SimpleDateFormat("EEEE", ar);
+                dateFormat_MM = new SimpleDateFormat("MM", ar);
+                dateFormat_month = new SimpleDateFormat("MMMM", ar);
+                dateFormat_yyyy = new SimpleDateFormat("yyyy", ar);
+            }
+        }else {
+            String lang_ = Locale.getDefault().getLanguage();
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                Toast.makeText(getContext(), getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable), Toast.LENGTH_LONG).show();
+            }else {
+                Locale lng = Locale.getDefault();
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd", lng);
+                dateFormat_dd = new SimpleDateFormat("dd", lng);
+                dateFormat_day = new SimpleDateFormat("EEEE", lng);
+                dateFormat_MM = new SimpleDateFormat("MM", lng);
+                dateFormat_month = new SimpleDateFormat("MMMM", lng);
+                dateFormat_yyyy = new SimpleDateFormat("yyyy", lng);
+            }
+        }
+
         java.util.Calendar _cal = java.util.Calendar.getInstance();
         _cal.add(java.util.Calendar.DATE, -1);
         java.util.Calendar cal_ = java.util.Calendar.getInstance();
@@ -644,9 +721,10 @@ public class CalendarFragment extends Fragment {
     }
 
     private void storeDataInArraysCalender(Date desired_date, View view) {
-        DateFormat dateFormat_yyyy = new SimpleDateFormat("yyyy");
-        DateFormat dateFormat_M = new SimpleDateFormat("M");
-        DateFormat dateFormat_d = new SimpleDateFormat("d");
+        Locale lang_ = new Locale("en");
+        DateFormat dateFormat_yyyy = new SimpleDateFormat("yyyy", lang_);
+        DateFormat dateFormat_M = new SimpleDateFormat("M", lang_);
+        DateFormat dateFormat_d = new SimpleDateFormat("d", lang_);
         String desired_yyyy = String.valueOf(dateFormat_yyyy.format(desired_date.getTime()));
         String desired_M = String.valueOf(dateFormat_M.format(desired_date.getTime()));
         String desired_d = String.valueOf(dateFormat_d.format(desired_date.getTime()));
