@@ -1,5 +1,6 @@
 package com.ecommerce.scheduletime.Fragments;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter.idNewTaskPosition;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.bottomAppBar;
@@ -26,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -34,6 +36,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +54,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewSearchAdapter;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter;
 import com.ecommerce.scheduletime.HomeActivity.CustomMonthView;
@@ -113,6 +117,8 @@ public class CalendarFragment extends Fragment {
     private RecyclerView recyclerViewTask;
     private LinearLayout no_data_calendar;
 
+    private LottieAnimationView swipe_hand;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -130,11 +136,20 @@ public class CalendarFragment extends Fragment {
         } else {
             String lang_ = Locale.getDefault().getLanguage();
             setLocale((Activity) container.getContext(), lang_);
-            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                 //Toast.makeText(this, getResources().getString(R.string.this_language_is_not_currently_available), Toast.LENGTH_LONG).show();
             }
         }
         View view = inflater.inflate(R.layout.fragment_calender, container, false);
+
+        // Swipe hand help
+        SharedPreferences preferences = container.getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE);
+        int swipe = preferences.getInt("swipe", 0); //0 is the default value.
+        swipe_hand = view.findViewById(R.id.swipe_hand_calendar);
+
+        if (swipe == 1) {
+            swipe_hand.setVisibility(View.VISIBLE);
+        }
 
         // Make Status Bar (Auto Size).
         int result = 0;
@@ -249,7 +264,8 @@ public class CalendarFragment extends Fragment {
                         return true;
                     case R.id.note:
                         // Start NoteActivity
-                        startActivity(new Intent(getContext(), NoteActivity.class));
+                        Intent intent = new Intent(getContext(), NoteActivity.class);
+                        startActivityForResult(intent, 7);
                         return true;
                 }
                 return true;
@@ -263,9 +279,9 @@ public class CalendarFragment extends Fragment {
         });
         SharedPreferences prefs = getContext().getSharedPreferences("NOTE", MODE_PRIVATE);
         String note = prefs.getString("note", "");
-        if (note.equals("")){
+        if (note.equals("")) {
             toolbar.getMenu().getItem(1).setIcon(ContextCompat.getDrawable(getContext(), R.drawable.icons8_note_2));
-        }else {
+        } else {
             toolbar.getMenu().getItem(1).setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_icons8_note_1));
         }
         toolbar_title = view.findViewById(R.id.toolbar_calendar_title);
@@ -521,8 +537,8 @@ public class CalendarFragment extends Fragment {
         SharedPreferences pref = getContext().getSharedPreferences("language", MODE_PRIVATE);
         String lang = pref.getString("lang", "");
 
-        if (!lang.equals("")){
-            if (lang.equals("en")){
+        if (!lang.equals("")) {
+            if (lang.equals("en")) {
                 Locale en = new Locale("en");
                 dateFormat = new SimpleDateFormat("yyyy-MM-dd", en);
                 dateFormat_dd = new SimpleDateFormat("dd", en);
@@ -530,7 +546,7 @@ public class CalendarFragment extends Fragment {
                 dateFormat_MM = new SimpleDateFormat("MM", en);
                 dateFormat_month = new SimpleDateFormat("MMMM", en);
                 dateFormat_yyyy = new SimpleDateFormat("yyyy", en);
-            }else if (lang.equals("fr")){
+            } else if (lang.equals("fr")) {
                 Locale fr = new Locale("fr");
                 dateFormat = new SimpleDateFormat("yyyy-MM-dd", fr);
                 dateFormat_dd = new SimpleDateFormat("dd", fr);
@@ -538,7 +554,7 @@ public class CalendarFragment extends Fragment {
                 dateFormat_MM = new SimpleDateFormat("MM", fr);
                 dateFormat_month = new SimpleDateFormat("MMMM", fr);
                 dateFormat_yyyy = new SimpleDateFormat("yyyy", fr);
-            }else if (lang.equals("ar")){
+            } else if (lang.equals("ar")) {
                 Locale ar = new Locale("ar");
                 dateFormat = new SimpleDateFormat("yyyy-MM-dd", ar);
                 dateFormat_dd = new SimpleDateFormat("dd", ar);
@@ -547,11 +563,11 @@ public class CalendarFragment extends Fragment {
                 dateFormat_month = new SimpleDateFormat("MMMM", ar);
                 dateFormat_yyyy = new SimpleDateFormat("yyyy", ar);
             }
-        }else {
+        } else {
             String lang_ = Locale.getDefault().getLanguage();
-            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                 Toast.makeText(getContext(), getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable), Toast.LENGTH_LONG).show();
-            }else {
+            } else {
                 Locale lng = Locale.getDefault();
                 dateFormat = new SimpleDateFormat("yyyy-MM-dd", lng);
                 dateFormat_dd = new SimpleDateFormat("dd", lng);
@@ -929,6 +945,17 @@ public class CalendarFragment extends Fragment {
                 int position = viewHolder.getAdapterPosition();
                 switch (direction) {
                     case ItemTouchHelper.LEFT:
+                        // Swipe hand help
+                        SharedPreferences preferences = getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE);
+                        int swipe = preferences.getInt("swipe", 0); //0 is the default value.
+                        if (swipe == 1) {
+                            swipe_hand.setVisibility(View.GONE);
+
+                            SharedPreferences.Editor editor = getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE).edit();
+                            editor.putInt("swipe", 2);
+                            editor.apply();
+                        }
+
                         tasks_ = tasks.get(position);
                         tasks.remove(position);
                         recyclerViewTasksCalendarAdapter.notifyItemRemoved(position);
@@ -1145,6 +1172,22 @@ public class CalendarFragment extends Fragment {
                 }
             }
         }, 8);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 7 && resultCode == RESULT_OK) {
+            String value = data.getStringExtra("key");
+            // Update the UI based on the value
+            if (value.equals("8")) {
+                //restart calendarFragment and scroll to new task
+                ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new CalendarFragment())
+                        .commit();
+                scrollToNewTask = true;
+            }
+        }
     }
 
     @Override

@@ -385,7 +385,6 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
         holder.task_layout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                //Toast.makeText(context, "long task", Toast.LENGTH_SHORT).show();
                 BottomDialogOther bottomDialogOther = new BottomDialogOther((Activity) context);
                 //bottomDialogDelete.getSheet_dialog_title().setText("Delete \"Lorem\" ?");
                 bottomDialogOther.getOther_dialog_edit().setOnClickListener(new View.OnClickListener() {

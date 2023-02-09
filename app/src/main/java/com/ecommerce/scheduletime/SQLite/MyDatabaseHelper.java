@@ -1,5 +1,6 @@
 package com.ecommerce.scheduletime.SQLite;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.getData;
 
 import android.app.AlarmManager;
@@ -7,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -86,6 +88,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, context.getResources().getString(R.string.failed_add), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+            SharedPreferences prefs = context.getSharedPreferences("swipe_hand", MODE_PRIVATE);
+            int swipe = prefs.getInt("swipe", 0); //0 is the default value.
+            if (swipe == 0){
+                SharedPreferences.Editor editor = context.getSharedPreferences("swipe_hand", MODE_PRIVATE).edit();
+                editor.putInt("swipe", 1);
+                editor.apply();
+            }
+
             /** @param Add Alarm Notification */
             MyDatabaseHelper myDB = new MyDatabaseHelper(context);
             Cursor cursor = myDB.readAllData();

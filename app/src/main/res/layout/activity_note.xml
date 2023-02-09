@@ -117,13 +117,45 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintStart_toStartOf="parent"
+        android:animateLayoutChanges="true">
 
         <ImageView
+            android:id="@+id/addNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icons8_add"
+            android:visibility="visible"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_margin="6dp"/>
+
+        <LinearLayout
+            android:id="@+id/deleteNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_margin="6dp">
+
+            <TextView
+                android:id="@+id/my_recycler_view_notes_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/delete"
+                android:textColor="@color/white"
+                android:layout_marginEnd="8sp"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icons8_delete_file"/>
+            
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -100,6 +100,7 @@
     <string name="already_have_an_account">هل لديك حساب؟</string>
     <string name="please_wait">يرجى الإنتظار…</string>
     <string name="delete_this_note">هل تريد حذف هذه الملاحظة؟</string>
+    <string name="delete_this_notes">هل تريد حذف هذه الملاحظات؟</string>
     <string name="error_in_time">يوجد خلل في الوقت</string>
     <string name="delete_this_task">حذف هذه المهمة</string>
     <string name="email_required">قم بإدخال بريد إلكتروني</string>
@@ -192,4 +193,8 @@
     <string name="system_default">لغة النظام</string>
     <string name="this_language_is_not_currently_available">هذه اللغة ليست متوفرة حاليا</string>
     <string name="currently_unavailable">غير متوفرة حاليا</string>
+    <string name="create_task">إنشاء مهمة</string>
+    <string name="select">اختار</string>
+    <string name="create_task_successful">تم انشاء المهمه بنجاح</string>
+    <string name="check_all">اختر الكل</string>
 </resources>

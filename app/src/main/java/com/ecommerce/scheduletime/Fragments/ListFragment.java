@@ -1,5 +1,6 @@
 package com.ecommerce.scheduletime.Fragments;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter.idNewTaskPosition;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.bottomAppBar;
@@ -27,6 +28,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -35,6 +37,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,13 +56,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewSearchAdapter;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Dialog.DialogSearch;
 import com.ecommerce.scheduletime.Dialog.DialogSort;
-import com.ecommerce.scheduletime.HomeActivity.MainActivity;
-import com.ecommerce.scheduletime.HomeActivity.ProfileActivity;
 import com.ecommerce.scheduletime.Model.RecyclerViewSearch;
 import com.ecommerce.scheduletime.Model.Tasks;
 import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
@@ -119,6 +121,8 @@ public class ListFragment extends Fragment {
 
     private LinearLayout no_data_list;
 
+    private LottieAnimationView swipe_hand;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -141,6 +145,15 @@ public class ListFragment extends Fragment {
             }
         }
         View view = inflater.inflate(R.layout.fragment_list, container, false);
+
+        // Swipe hand help
+        SharedPreferences preferences = container.getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE);
+        int swipe = preferences.getInt("swipe", 0); //0 is the default value.
+        swipe_hand = view.findViewById(R.id.swipe_hand_list);
+
+        if (swipe == 1) {
+            swipe_hand.setVisibility(View.VISIBLE);
+        }
 
         // Make Status Bar (Auto Size).
         int result = 0;
@@ -254,7 +267,8 @@ public class ListFragment extends Fragment {
 
                     case R.id.note:
                         // Start NoteActivity
-                        startActivity(new Intent(getContext(), NoteActivity.class));
+                        Intent intent = new Intent(getContext(), NoteActivity.class);
+                        startActivityForResult(intent, 7);
                         return true;
                 }
                 return true;
@@ -1400,7 +1414,7 @@ public class ListFragment extends Fragment {
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
+                return true;
             }
 
             @Override
@@ -1408,6 +1422,17 @@ public class ListFragment extends Fragment {
                 int position = viewHolder.getAdapterPosition();
                 switch (direction) {
                     case ItemTouchHelper.LEFT:
+                        // Swipe hand help
+                        SharedPreferences preferences = getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE);
+                        int swipe = preferences.getInt("swipe", 0); //0 is the default value.
+                        if (swipe == 1) {
+                            swipe_hand.setVisibility(View.GONE);
+
+                            SharedPreferences.Editor editor = getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE).edit();
+                            editor.putInt("swipe", 2);
+                            editor.apply();
+                        }
+
                         tasks_ = tasks.get(position);
                         tasks.remove(position);
                         recyclerViewTasksListAdapter_1.notifyItemRemoved(position);
@@ -1533,6 +1558,22 @@ public class ListFragment extends Fragment {
                 }
             }
         }, 8);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 7 && resultCode == RESULT_OK) {
+            String value = data.getStringExtra("key");
+            // Update the UI based on the value
+            if (value.equals("8")) {
+                //restart listFragment and scroll to new task
+                ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new ListFragment())
+                        .commit();
+                scrollToNewTask = true;
+            }
+        }
     }
 
     @Override

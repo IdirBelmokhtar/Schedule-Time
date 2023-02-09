@@ -39,6 +39,7 @@ public class EditNoteActivity extends AppCompatActivity {
     TextView time;
     String time_;
     String id = "";
+    String duplicate = "";
 
     MyDatabaseHelper_notes myDB = new MyDatabaseHelper_notes(EditNoteActivity.this);
 
@@ -57,13 +58,15 @@ public class EditNoteActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        if (!id.equals("")){
+
+
+        if (!id.equals("")) {
             edit_note_title_toolbar.setText(getIntent().getStringExtra("title"));
             title.setText(getIntent().getStringExtra("title"));
             description.setText(getIntent().getStringExtra("description"));
             time_ = getIntent().getStringExtra("time");
-        }else {
-            time_ =       String.valueOf(calendar.get(Calendar.YEAR)) + // calendar.getTime().getYear() return year = 122 not 2022!
+        } else {
+            time_ = String.valueOf(calendar.get(Calendar.YEAR)) + // calendar.getTime().getYear() return year = 122 not 2022!
                     "-" + String.valueOf(calendar.getTime().getMonth()) +
                     "-" + String.valueOf(calendar.getTime().getDate()) +
                     "-" + String.valueOf(calendar.getTime().getHours()) +
@@ -71,12 +74,19 @@ public class EditNoteActivity extends AppCompatActivity {
         }
         time.setText(String.valueOf(getTime(time_)));
 
+        duplicate = getIntent().getStringExtra("duplicate");
+        if (!duplicate.equals("")) {
+            edit_note_title_toolbar.setText(getIntent().getStringExtra("duplicate_title"));
+            title.setText(getIntent().getStringExtra("duplicate_title"));
+            description.setText(getIntent().getStringExtra("duplicate_description"));
+        }
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.delete_edit_note:
-                        if (!id.equals("")){
+                        if (!id.equals("")) {
                             final Dialog dialog = new Dialog(EditNoteActivity.this);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setContentView(R.layout.bottom_sheet_dialog_delete);
@@ -106,12 +116,12 @@ public class EditNoteActivity extends AppCompatActivity {
                             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                             dialog.getWindow().getAttributes().windowAnimations = R.style.SheetDialogAnimation;
                             dialog.getWindow().setGravity(Gravity.BOTTOM);
-                        }else {
+                        } else {
                             onBackPressed();
                         }
                         break;
                     case R.id.save_edit_note:
-                        time_ =       String.valueOf(calendar.get(Calendar.YEAR)) + // calendar.getTime().getYear() return year = 122 not 2022!
+                        time_ = String.valueOf(calendar.get(Calendar.YEAR)) + // calendar.getTime().getYear() return year = 122 not 2022!
                                 "-" + String.valueOf(calendar.getTime().getMonth()) +
                                 "-" + String.valueOf(calendar.getTime().getDate()) +
                                 "-" + String.valueOf(calendar.getTime().getHours()) +
@@ -120,7 +130,7 @@ public class EditNoteActivity extends AppCompatActivity {
                             myDB.addBook(title.getText().toString().trim(),
                                     description.getText().toString().trim(),
                                     time_);
-                        }else {
+                        } else {
                             myDB.updateData(id,
                                     title.getText().toString().trim(),
                                     description.getText().toString().trim(),
@@ -189,9 +199,9 @@ public class EditNoteActivity extends AppCompatActivity {
         } else {
             String lang_ = Locale.getDefault().getLanguage();
 
-            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                 //Toast.makeText(getContext(), getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable), Toast.LENGTH_LONG).show();
-            }else {
+            } else {
                 Locale lng = Locale.getDefault();
                 MMM = new SimpleDateFormat("MMM", lng);
                 dd = new SimpleDateFormat("dd", lng);
@@ -218,7 +228,7 @@ public class EditNoteActivity extends AppCompatActivity {
         //overridePendingTransition(0, 0);
         startActivity(new Intent(this, NoteActivity.class));
         //overridePendingTransition(0, 0);
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         super.onBackPressed();
     }
 }

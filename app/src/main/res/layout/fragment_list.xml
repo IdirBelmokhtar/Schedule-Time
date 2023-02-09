@@ -275,13 +275,44 @@
 
                                     </LinearLayout>
 
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/recyclerViewTasksList_1"
+                                    <androidx.constraintlayout.widget.ConstraintLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="6dp"
-                                        tools:itemCount="3"
-                                        tools:listitem="@layout/my_recycler_view_tasks" />
+                                        android:layout_marginTop="6dp">
+
+                                        <com.airbnb.lottie.LottieAnimationView
+                                            android:id="@+id/swipe_hand_list"
+                                            android:visibility="gone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="78dp"
+                                            android:layout_gravity="center"
+                                            android:scaleType="fitEnd"
+                                            android:layout_marginTop="18dp"
+                                            android:paddingHorizontal="24dp"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintHorizontal_bias="0.5"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:lottie_autoPlay="true"
+                                            app:lottie_loop="true"
+                                            app:lottie_rawRes="@raw/swipe_left"
+                                            android:elevation="2dp"
+                                            app:lottie_url="REPLACE_JSON_URL" />
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recyclerViewTasksList_1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintHorizontal_bias="0.5"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="0.5"
+                                            tools:itemCount="3"
+                                            tools:listitem="@layout/my_recycler_view_tasks" />
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                                     <TextView
                                         android:id="@+id/secondTask_title"

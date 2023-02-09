@@ -226,8 +226,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="8dp"
                                 android:theme="@style/Color1SwitchStyle"
-                                android:checked="false"
-                                android:src="@drawable/ic_icons8_more_than" />
+                                android:checked="false" />
 
                         </LinearLayout>
 

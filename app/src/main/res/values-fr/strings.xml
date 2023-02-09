@@ -98,6 +98,7 @@
     <string name="please_wait">Veuillez patienter…</string>
     <string name="let_s_get_started">Commençons!</string>
     <string name="delete_this_note">Supprimer cette note ?</string>
+    <string name="delete_this_notes">Supprimer ces notes ?</string>
     <string name="delete_this_task">Supprimer cette tâche</string>
     <string name="email_required">Email requis</string>
     <string name="we_have_sent_you_a_recovery_email">Nous vous avons envoyé un e-mail de récupération</string>
@@ -192,4 +193,8 @@
     <string name="system_default">Système par défaut</string>
     <string name="this_language_is_not_currently_available">Cette langue n’est pas disponible actuellement</string>
     <string name="currently_unavailable">Actuellement indisponible</string>
+    <string name="create_task">Créer une tâche</string>
+    <string name="select">Sélectionner</string>
+    <string name="create_task_successful">La tâche a été créée avec succès</string>
+    <string name="check_all">Sélectionner tout</string>
 </resources>

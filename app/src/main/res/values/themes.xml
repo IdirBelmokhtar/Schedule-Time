@@ -85,9 +85,14 @@
         <item name="android:background">@drawable/ripple_list_item_bg_circle_white</item>
     </style>
 
-    <style name="Theme.ScheduleTime.LinearLayout.ListItem.CircleClickable4" parent="">
+    <style name="Theme_ScheduleTime_LinearLayout_ListItem_CircleClickable4" parent="">
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/ripple_list_item_bg_circle_white_</item>
+    </style>
+
+    <style name="Theme_ScheduleTime_LinearLayout_ListItem_CircleClickable4_selection" parent="">
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/ripple_list_item_bg_circle_white_selection</item>
     </style>
 
     <style name="Theme.ScheduleTime.LinearLayout.ListItem_" parent="">

@@ -2,6 +2,7 @@ package com.ecommerce.scheduletime.HomeActivity;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,9 +41,12 @@ import com.ecommerce.scheduletime.CreateAccount.AuthenticationActivity;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.Fragments.ListFragment;
+import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.Sync.SyncDatabase;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -279,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        startActivity(new Intent(this, NoteActivity.class));
         //new SyncDatabase(MainActivity.this);
     }
 

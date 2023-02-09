@@ -16,6 +16,9 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.ecommerce.scheduletime.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SliderIntroAdapter extends PagerAdapter {
 
     Context context;
@@ -25,27 +28,9 @@ public class SliderIntroAdapter extends PagerAdapter {
         this.context = context;
     }
 
-    //Array
-    public int[] slide_intro_image_ = {
-            R.drawable.walcome1,
-            R.drawable.walcome2,
-            R.drawable.walcome3
-    };
-    public String[] slide_intro_heading_ = {
-            context.getResources().getString(R.string.slide_intro_heading_one),
-            context.getResources().getString(R.string.slide_intro_heading_two),
-            context.getResources().getString(R.string.slide_intro_heading_three)
-
-    };
-    public String[] slide_intro_description_ = {
-            context.getResources().getString(R.string.slide_intro_description_one),
-            context.getResources().getString(R.string.slide_intro_description_two),
-            context.getResources().getString(R.string.slide_intro_description_three),
-    };
-
     @Override
     public int getCount() {
-        return slide_intro_image_.length;
+        return 3;
     }
 
     @Override
@@ -63,10 +48,26 @@ public class SliderIntroAdapter extends PagerAdapter {
         TextView slide_intro_heading = (TextView) view.findViewById(R.id.slide_intro_heading);
         TextView slide_intro_description = (TextView) view.findViewById(R.id.slide_intro_description);
 
-        slide_intro_image.setImageResource(slide_intro_image_[position]);
-        slide_intro_heading.setText(slide_intro_heading_[position]);
+        //Array
+        List<Integer> slide_intro_image_ = new ArrayList<>();
+        slide_intro_image_.add(R.drawable.walcome1);
+        slide_intro_image_.add(R.drawable.walcome2);
+        slide_intro_image_.add(R.drawable.walcome3);
+
+        List<String> slide_intro_heading_ = new ArrayList<>();
+        slide_intro_heading_.add(container.getContext().getResources().getString(R.string.slide_intro_heading_one));
+        slide_intro_heading_.add(container.getContext().getResources().getString(R.string.slide_intro_heading_two));
+        slide_intro_heading_.add(container.getContext().getResources().getString(R.string.slide_intro_heading_three));
+
+        List<String> slide_intro_description_ = new ArrayList<>();
+        slide_intro_description_.add(container.getContext().getResources().getString(R.string.slide_intro_description_one));
+        slide_intro_description_.add(container.getContext().getResources().getString(R.string.slide_intro_description_two));
+        slide_intro_description_.add(container.getContext().getResources().getString(R.string.slide_intro_description_three));
+
+        slide_intro_image.setImageResource(slide_intro_image_.get(position));
+        slide_intro_heading.setText(slide_intro_heading_.get(position));
         slide_intro_heading.setTypeface(slide_intro_heading.getTypeface(), Typeface.BOLD);
-        slide_intro_description.setText(slide_intro_description_[position]);
+        slide_intro_description.setText(slide_intro_description_.get(position));
         slide_intro_description.setGravity(Gravity.CENTER_HORIZONTAL);
 
         container.addView(view);

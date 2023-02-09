@@ -28,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ecommerce.scheduletime.Dialog.BottomDialogLanguages;
-import com.ecommerce.scheduletime.Dialog.BottomDialogOther;
 import com.ecommerce.scheduletime.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.review.ReviewInfo;

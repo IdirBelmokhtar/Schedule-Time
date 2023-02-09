@@ -12,4 +12,10 @@
         android:title="@string/filter"
         android:icon="@drawable/ic_baseline_filter_list_24"
         app:showAsAction="always"/>
+
+    <item android:id="@+id/check_all_note"
+        android:title="@string/check_all"
+        android:icon="@drawable/icons8_check_all"
+        android:visible="false"
+        app:showAsAction="always"/>
 </menu>
