@@ -1,25 +1,28 @@
 package com.ecommerce.scheduletime.HomeActivity;
 
-import static com.ecommerce.scheduletime.Fragments.CalendarFragment.calendarView;
+import static com.ecommerce.scheduletime.Fragments.CalendarFragment.compactCalendarView;
+import static com.ecommerce.scheduletime.Fragments.CalendarFragment.createEvents;
+import static com.ecommerce.scheduletime.Fragments.CalendarFragment.recyclerViewTasksCalendarAdapter;
+import static com.ecommerce.scheduletime.Fragments.CalendarFragment.refresh;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.calendarViewHorizontal_layout;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.endDate;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.horizontalCalendar;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.startDate;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.fOpen;
+import static com.ecommerce.scheduletime.HomeActivity.MainActivity.getData;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.setLocale;
 import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.core.os.BuildCompat;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -47,6 +50,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.ecommerce.scheduletime.Dialog.BottomDialogCategory;
+import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_category;
@@ -356,6 +360,14 @@ public class EditTaskActivity extends AppCompatActivity {
                     ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.white_));
                 } else if (state.equals("false")) {
                     ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.blue));
+                } else {
+                    if (edit_title.getCurrentTextColor() == ContextCompat.getColor(EditTaskActivity.this, R.color.blue)) {
+                        // Light (default)
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.blue));
+                    } else if (edit_title.getCurrentTextColor() == ContextCompat.getColor(EditTaskActivity.this, R.color.white_)) {
+                        // Dark (default)
+                        ((TextView) adapterView.getChildAt(0)).setTextColor(ContextCompat.getColor(EditTaskActivity.this, R.color.white_));
+                    }
                 }
 
                 String spinner_text = adapterView.getItemAtPosition(position).toString();
@@ -679,10 +691,16 @@ public class EditTaskActivity extends AppCompatActivity {
             }
             horizontalCalendar.selectDate(calendar_, true);
         } else if (fOpen == 2) {
-            calendarView.scrollToCalendar(year_, month_ + 1, dayOfMonth_, true);
+            java.util.Calendar dateTime = java.util.Calendar.getInstance();
+            dateTime.set(java.util.Calendar.YEAR, year_);
+            dateTime.set(java.util.Calendar.MONTH, month_);
+            dateTime.set(java.util.Calendar.DAY_OF_MONTH, dayOfMonth_);
+            getData = dateTime;
+            refresh = true;
         }
         onBackPressed();
     }
+
 
     @Override
     public void onBackPressed() {

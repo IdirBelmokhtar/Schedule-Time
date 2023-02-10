@@ -4,7 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.currentTime;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.fOpen;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.scrollToNewTask;
-import static com.ecommerce.scheduletime.HomeActivity.MainActivity.setLocale;
 import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import android.animation.ArgbEvaluator;
@@ -58,6 +57,8 @@ import java.util.Locale;
 
 public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewTasksAdapter.RecyclerViewTasksHolder> {
 
+    int color_task_title;
+
     private List<Tasks> mTasks;
     private Context context;
 
@@ -96,6 +97,8 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                     SharedPreferences preferences_ = context.getSharedPreferences("dark_mode", MODE_PRIVATE);
                     String state = preferences_.getString("state", "");
 
+                    color_task_title = holder.task_title.getCurrentTextColor();
+
                     int colorFrom = context.getResources().getColor(R.color.black_overlay);
                     int colorTo = context.getResources().getColor(R.color.blue_);
 
@@ -105,6 +108,14 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                     } else if (state.equals("false")) {
                         colorFrom = context.getResources().getColor(R.color.black_overlay);
                         colorTo = context.getResources().getColor(R.color.blue_);
+                    }else {
+                        if (color_task_title == ContextCompat.getColor(context, R.color.blue)){
+                            colorFrom = context.getResources().getColor(R.color.black_overlay);
+                            colorTo = context.getResources().getColor(R.color.blue_);
+                        }else if (color_task_title == ContextCompat.getColor(context, R.color.white_)){
+                            colorFrom = context.getResources().getColor(R.color.black_overlay);
+                            colorTo = context.getResources().getColor(R.color.dark);
+                        }
                     }
 
                     ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
@@ -393,7 +404,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                         // Edit Your Task in EditTaskActivity.class
                         Intent intent = new Intent(context, EditTaskActivity.class);
                         intent.putExtra("id", task.getTask_id());
-                        ((Activity) context).startActivityForResult(intent, 1);
+                        ((Activity) context).startActivityForResult(intent, 10);
                         bottomDialogOther.dismiss();
                     }
                 });

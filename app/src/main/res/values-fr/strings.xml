@@ -21,7 +21,6 @@
     <string name="date">Date</string>
     <string name="time">Temps</string>
     <string name="reminder">Rappel</string>
-    <string name="save_change">Sauvegarder les modifications</string>
     <string name="skip">Sauter</string>
     <string name="help_amp_feedback"><![CDATA[Aide & Commentaire]]></string>
     <string name="terms_of_use">Conditions d\'utilisation</string>
@@ -140,6 +139,7 @@
     <string name="not_done">Pas fait</string>
     <string name="done">Fait</string>
     <string name="update">Mise à jour</string>
+    <string name="save_change">Modification enregistrée</string>
     <string name="remove">Retirer</string>
     <string name="remove_this_category_from_task">Supprimer cette catégorie de la tâche</string>
     <string name="this_date_not_accepted">Cette date n\'est pas acceptée !</string>
@@ -197,4 +197,5 @@
     <string name="select">Sélectionner</string>
     <string name="create_task_successful">La tâche a été créée avec succès</string>
     <string name="check_all">Sélectionner tout</string>
+    <string name="change_saved">Modification enregistrée</string>
 </resources>

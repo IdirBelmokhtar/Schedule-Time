@@ -187,6 +187,7 @@
     <string name="not_done">Not done</string>
     <string name="done">Done</string>
     <string name="update">Update</string>
+    <string name="change_saved">Change saved</string>
     <string name="remove">Remove</string>
     <string name="remove_this_category_from_task">Remove this category from task</string>
     <string name="this_date_not_accepted">This date not accepted!</string>

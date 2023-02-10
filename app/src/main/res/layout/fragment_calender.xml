@@ -99,6 +99,15 @@
                             android:layout_marginBottom="12dp"
                             android:src="@drawable/icons8_return" />
 
+                        <ImageView
+                            android:id="@+id/goToCalendar"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:src="@drawable/icons8_calendar" />
+
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -185,11 +194,25 @@
                             app:cardCornerRadius="12dp"
                             android:layout_margin="16dp">
 
-                            <com.haibin.calendarview.CalendarView
+<!--                            <com.haibin.calendarview.CalendarView
                                 android:id="@+id/calendarView"
                                 style="@style/Theme.AppCompat.calendarView"
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"/>-->
+
+                            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                                android:id="@+id/compactCalendarView"
+                                android:layout_width="match_parent"
+                                style="@style/Theme.AppCompat.compactCalendarView"
+                                android:layout_height="292dp"
+                                android:padding="10dp"
+                                app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
+                                app:compactCalendarEventIndicatorStyle="small_indicator"
+                                app:compactCalendarCurrentSelectedDayIndicatorStyle="fill_large_indicator"
+                                app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
+                                app:compactCalendarTargetHeight="292dp"
+                                app:compactCalendarTextSize="14sp" />
 
                         </androidx.cardview.widget.CardView>
 

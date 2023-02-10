@@ -203,6 +203,24 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="Theme.AppCompat.compactCalendarView" parent="">
+        <item name="compactCalendarOtherMonthDaysTextColor">@color/white_</item>
+        <item name="compactCalendarBackgroundColor">@color/blue_</item>
+        <item name="compactCalendarTextColor">@color/blue</item>
+        <item name="compactCalendarCurrentSelectedDayBackgroundColor">@color/blue_3</item>
+        <item name="compactCalendarCurrentDayBackgroundColor">@color/blue__</item>
+        <item name="compactCalendarMultiEventIndicatorColor">@color/white</item>
+        <item name="compactCalendarCurrentSelectedDayTextColor">@color/white_</item>
+    </style>
+
+    app:compactCalendarOtherMonthDaysTextColor="@color/white_"
+    app:compactCalendarBackgroundColor="@color/blue_"
+    app:compactCalendarTextColor="@color/blue"
+    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue_3"
+    app:compactCalendarCurrentDayBackgroundColor="@color/blue__"
+    app:compactCalendarMultiEventIndicatorColor="@color/white"
+    app:compactCalendarCurrentSelectedDayTextColor="@color/white_"
+
     <style name="Theme.AppCompat.Textview" parent="">
         <item name="android:textColor">@color/blue</item>
     </style>

@@ -14,6 +14,7 @@ import static com.ecommerce.scheduletime.HomeActivity.MainActivity.scrollToNewTa
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.setLocale;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +38,7 @@ import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,6 +51,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,26 +60,24 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewSearchAdapter;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter;
-import com.ecommerce.scheduletime.HomeActivity.CustomMonthView;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Dialog.DialogSearch;
+import com.ecommerce.scheduletime.HomeActivity.EditTaskActivity;
 import com.ecommerce.scheduletime.Model.RecyclerViewSearch;
 import com.ecommerce.scheduletime.Model.Tasks;
 import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.R;
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.haibin.calendarview.Calendar;
-import com.haibin.calendarview.CalendarView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -102,8 +103,11 @@ public class CalendarFragment extends Fragment {
     private CollapsingToolbarLayout mCollapsingToolbar;
     private boolean expanded = false;
     private TextView toolbar_title;
-    private ImageView returnToCalendar;
-    public static CalendarView calendarView;
+    private ImageView returnToCalendar, goToCalendar;
+    private int year_ = Calendar.getInstance().get(Calendar.YEAR);
+    private int month_ = Calendar.getInstance().get(Calendar.MONTH);
+    private int dayOfMonth_ = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    public static CompactCalendarView compactCalendarView;
     private NestedScrollView nestedScroll_calendar;
     private TextView taskCalendar;
     private LinearLayout calendar_sort_up;
@@ -111,13 +115,15 @@ public class CalendarFragment extends Fragment {
     private boolean scroll = false;
     Tasks tasks_ = null;
 
-    private RecyclerViewTasksAdapter recyclerViewTasksCalendarAdapter;
+    public static RecyclerViewTasksAdapter recyclerViewTasksCalendarAdapter;
 
     //private List<Tasks> tasks;
     private RecyclerView recyclerViewTask;
     private LinearLayout no_data_calendar;
 
     private LottieAnimationView swipe_hand;
+
+    public static boolean refresh = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -298,8 +304,9 @@ public class CalendarFragment extends Fragment {
         nestedScroll_calendar = view.findViewById(R.id.nestedScroll_calendar);
         taskCalendar = view.findViewById(R.id.taskCalendar);
 
-        calendarView = view.findViewById(R.id.calendarView);
+        compactCalendarView = view.findViewById(R.id.compactCalendarView);
         returnToCalendar = view.findViewById(R.id.returnToCalendar);
+        goToCalendar = view.findViewById(R.id.goToCalendar);
 
         no_data_calendar = view.findViewById(R.id.no_data_calendar);
         no_data_calendar.setVisibility(View.GONE);
@@ -374,29 +381,24 @@ public class CalendarFragment extends Fragment {
          */
         //Toast.makeText(getContext(), getData.getTime().toString(), Toast.LENGTH_SHORT).show();
 
-        calendarView.setMonthView(CustomMonthView.class);
-        calendarView.scrollToCalendar(Integer.parseInt(String.valueOf(dateFormat_yyyy.format(getData.getTime()))),
-                Integer.parseInt(String.valueOf(dateFormat_MM.format(getData.getTime()))),
-                Integer.parseInt(String.valueOf(dateFormat_dd.format(getData.getTime()))),
-                true);
-        calendarView.setOnCalendarSelectListener(new CalendarView.OnCalendarSelectListener() {
-            @Override
-            public void onCalendarOutOfRange(Calendar calendar) {
+        recyclerViewTask = view.findViewById(R.id.recyclerViewTasksCalendar);
 
-            }
+        compactCalendarView.setFirstDayOfWeek(java.util.Calendar.SUNDAY);
+        compactCalendarView.setCurrentDate(getData.getTime());
 
+        compactCalendarView.setUseThreeLetterAbbreviation(true);
+        createEvents(compactCalendarView, getContext());
+
+        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
-            public void onCalendarSelect(Calendar date, boolean isClick) {
+            public void onDayClick(Date dateClicked) {
                 returnToCalendar.setVisibility(View.VISIBLE);
 
-                Date calendar = new Date();
-                calendar.setTime(date.getTimeInMillis());
+                date_selected = dateClicked;
 
-                date_selected = calendar;
+                storeDataInArraysCalender(dateClicked, view);
 
-                storeDataInArraysCalender(calendar, view);
-
-                dateOfTheDayDesiered_calender(calendar);
+                dateOfTheDayDesiered_calender(dateClicked);
 
                 if (!scroll) {
                     nestedScroll_calendar.smoothScrollTo(0, taskCalendar.getTop());
@@ -404,14 +406,55 @@ public class CalendarFragment extends Fragment {
                     scroll = true;
                 }
             }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                // --
+            }
         });
+
         returnToCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendarView.scrollToCurrent(true);
-                nestedScroll_calendar.smoothScrollTo(0, calendarView.getTop());
+                compactCalendarView.setCurrentDate(currentTime);
+                storeDataInArraysCalender(currentTime, view);
+                dateOfTheDayDesiered_calender(currentTime);
+                nestedScroll_calendar.smoothScrollTo(0, compactCalendarView.getTop());
                 returnToCalendar.setVisibility(View.GONE);
                 appBarLayout.setExpanded(true);
+            }
+        });
+
+        goToCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Open DatePickerDialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getContext(),
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(year, month, dayOfMonth);
+                                year_ = year;
+                                month_ = month;
+                                dayOfMonth_ = dayOfMonth;
+
+                                date_selected = calendar.getTime();
+
+                                compactCalendarView.setCurrentDate(date_selected);
+                                storeDataInArraysCalender(date_selected, view);
+                                dateOfTheDayDesiered_calender(date_selected);
+                                nestedScroll_calendar.smoothScrollTo(0, compactCalendarView.getTop());
+                                returnToCalendar.setVisibility(View.VISIBLE);
+                                appBarLayout.setExpanded(true);
+                            }
+                        }, year_, month_, dayOfMonth_);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.updateDate(year_, month_, dayOfMonth_);
+                datePickerDialog.show();
+
             }
         });
 
@@ -476,11 +519,83 @@ public class CalendarFragment extends Fragment {
             }
         });
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshFragment();
+            }
+        }, 5000);
+
         //test(view);
         //test2(view);
         //test3(view);
 
         return view;
+    }
+
+    public static void createEvents(CompactCalendarView compactCalendarView, Context context) {
+        compactCalendarView.removeAllEvents();
+
+        ArrayList<String> task_id = new ArrayList<>();
+        ArrayList<String> task_date = new ArrayList<>();
+        ArrayList<String> task_title = new ArrayList<>();
+        ArrayList<String> task_description = new ArrayList<>();
+        ArrayList<String> task_priority = new ArrayList<>();
+        ArrayList<String> task_category = new ArrayList<>();
+        ArrayList<String> task_time = new ArrayList<>();
+
+        MyDatabaseHelper myDB = new MyDatabaseHelper(context);
+        Cursor taskCursor = myDB.readAllData();
+        if (taskCursor.getCount() == 0) {
+            // Empty.
+        } else {
+            while (taskCursor.moveToNext()) {
+                task_id.add(taskCursor.getString(0));
+                task_date.add(taskCursor.getString(1));
+                task_title.add(taskCursor.getString(2));
+                task_description.add(taskCursor.getString(3));
+                task_priority.add(taskCursor.getString(4));
+                task_category.add(taskCursor.getString(5));
+                task_time.add(taskCursor.getString(6));
+            }
+        }
+
+        for (int i = 0; i < task_id.size(); i++) {
+
+            // Create time.
+            List<String> date_ = Arrays.asList(task_date.get(i).split("-"));
+            List<String> time_ = Arrays.asList(task_time.get(i).split(":"));
+            final int year = Integer.parseInt(date_.get(0));
+            final int month = Integer.parseInt(date_.get(1));
+            final int day = Integer.parseInt(date_.get(2));
+            final int hour = Integer.parseInt(time_.get(0));
+            final int minute = Integer.parseInt(time_.get(1));
+
+            java.util.Calendar dateTime = java.util.Calendar.getInstance();
+            dateTime.set(java.util.Calendar.YEAR, year);
+            dateTime.set(java.util.Calendar.MONTH, month);
+            dateTime.set(java.util.Calendar.DAY_OF_MONTH, day);
+            dateTime.set(java.util.Calendar.HOUR_OF_DAY, hour);
+            dateTime.set(java.util.Calendar.MINUTE, minute);
+            dateTime.set(java.util.Calendar.SECOND, 0);
+
+            String color_ = task_priority.get(i);
+            int color = ContextCompat.getColor(context, R.color.default_);
+
+            if (color_.equals("default_") || color_.equals("default")){
+                color = ContextCompat.getColor(context, R.color.default_);
+            }else if (color_.equals("high")){
+                color = ContextCompat.getColor(context, R.color.high);
+            }else if (color_.equals("medium")){
+                color = ContextCompat.getColor(context, R.color.medium);
+            }else if (color_.equals("low")){
+                color = ContextCompat.getColor(context, R.color.low);
+            }
+
+            Event ev = new Event(color, dateTime.getTimeInMillis(), task_title.get(i));
+            compactCalendarView.addEvent(ev);
+
+        }
     }
 
     public void createNewTask(Context context) {
@@ -875,7 +990,6 @@ public class CalendarFragment extends Fragment {
 
     private void addDataToRecyclerViewTask(View view, List<String> desiredTaskIds) {
         //RecyclerView
-        recyclerViewTask = view.findViewById(R.id.recyclerViewTasksCalendar);
         recyclerViewTask.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         desiredTasks_.clear();
         for (int i = 0; i < desiredTaskIds.size(); i++) {
@@ -923,7 +1037,7 @@ public class CalendarFragment extends Fragment {
                 calendar_sort_up.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        nestedScroll_calendar.smoothScrollTo(0, calendarView.getTop());
+                        nestedScroll_calendar.smoothScrollTo(0, compactCalendarView.getTop());
                         showBottomAppBar();
                         appBarLayout.setExpanded(true);
                     }
@@ -1177,6 +1291,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(getContext(), String.valueOf(requestCode), Toast.LENGTH_SHORT).show();
         if (requestCode == 7 && resultCode == RESULT_OK) {
             String value = data.getStringExtra("key");
             // Update the UI based on the value
@@ -1187,6 +1302,30 @@ public class CalendarFragment extends Fragment {
                         .commit();
                 scrollToNewTask = true;
             }
+        }
+    }
+
+    private void refreshFragment(){
+        if (refresh){
+            refresh = false;
+            try {
+                Fragment fragment = new CalendarFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainerView, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+                scrollToNewTask = true;
+            } catch (Exception e) {
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.save_change), Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshFragment();
+                }
+            }, 1000);
         }
     }
 
@@ -1206,8 +1345,7 @@ public class CalendarFragment extends Fragment {
                 if (keyEvent.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     // handle back button's click listener
                     if (expanded) {
-                        nestedScroll_calendar.smoothScrollTo(0, calendarView.getTop());
-                        returnToCalendar.setVisibility(View.GONE);
+                        nestedScroll_calendar.smoothScrollTo(0, compactCalendarView.getTop());
                         appBarLayout.setExpanded(true);
                     } else {
                         getActivity().getSupportFragmentManager().beginTransaction()

@@ -141,6 +141,7 @@
     <string name="done">"المهمة منجزة "</string>
     <string name="not_done">المهمة غير منجزة</string>
     <string name="update">تحديث</string>
+    <string name="change_saved">تم حفظ التغيير</string>
     <string name="remove">إزالة</string>
     <string name="remove_this_category_from_task">إزالة هذه الفئة من المهمة</string>
     <string name="this_date_not_accepted">هذا التاريخ غير مقبول!</string>

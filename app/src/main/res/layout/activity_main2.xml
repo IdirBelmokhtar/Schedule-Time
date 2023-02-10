@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="12dp"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity2">
+
+    <!--<com.github.sundeepk.compactcalendarview.CompactCalendarView
+        android:id="@+id/compactcalendar_view"
+        style="@style/Theme.AppCompat.calendarView"
+        app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
+        app:compactCalendarEventIndicatorStyle="small_indicator"
+        app:compactCalendarCurrentSelectedDayIndicatorStyle="fill_large_indicator"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="292dp"
+        app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
+        app:compactCalendarOtherMonthDaysTextColor="@color/red"
+        app:compactCalendarTargetHeight="292dp"
+        app:compactCalendarTextSize="14sp"
+        app:compactCalendarBackgroundColor="@color/dark"
+        app:compactCalendarTextColor="@color/white"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue_3"
+        app:compactCalendarCurrentDayBackgroundColor="@color/_blue"
+        app:compactCalendarMultiEventIndicatorColor="@color/white"
+        />-->
+
     <!--
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
@@ -363,7 +385,7 @@
 
     </LinearLayout>-->
 
-    <HorizontalScrollView
+    <!--<HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -521,6 +543,6 @@
 
         </LinearLayout>
 
-    </HorizontalScrollView>
+    </HorizontalScrollView>-->
 
-</LinearLayout>
+</RelativeLayout>
