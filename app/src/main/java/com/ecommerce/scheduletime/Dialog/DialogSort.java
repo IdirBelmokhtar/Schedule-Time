@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.ecommerce.scheduletime.R;
 
 public class DialogSort extends Dialog {
@@ -17,6 +18,7 @@ public class DialogSort extends Dialog {
     private ImageView exit;
     private RadioGroup sort_radioGroup;
     private RadioButton sort_date, sort_priority, sort_category, sort_task_done;
+    private LottieAnimationView click_task_done;
     //constructor
     public DialogSort(Activity activity){
         super(activity , R.style.ThemeOverlay_AppCompat_Dialog);
@@ -28,6 +30,7 @@ public class DialogSort extends Dialog {
         this.sort_priority = findViewById(R.id.sort_priority);
         this.sort_category = findViewById(R.id.sort_category);
         this.sort_task_done = findViewById(R.id.sort_task_done);
+        this.click_task_done = findViewById(R.id.click_task_done);
 
         if (sort == 0) {
             sort_date.setChecked(true);
@@ -63,6 +66,10 @@ public class DialogSort extends Dialog {
 
     public RadioButton getSort_task_done() {
         return sort_task_done;
+    }
+
+    public LottieAnimationView getClick_task_done() {
+        return click_task_done;
     }
 
     public void build(){

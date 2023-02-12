@@ -24,7 +24,8 @@
     <string name="skip">Sauter</string>
     <string name="help_amp_feedback"><![CDATA[Aide & Commentaire]]></string>
     <string name="terms_of_use">Conditions d\'utilisation</string>
-    <string name="notes">Note</string>
+    <string name="notes">Notes</string>
+    <string name="note">Note</string>
     <string name="add_new_note">Ajouter une nouvelle note.</string>
     <string name="my_profile">Mon Profile</string>
     <string name="full_name">Nom Complet</string>
@@ -162,8 +163,8 @@
     <string name="failed_add_category">Échec de l\'ajout de la catégorie</string>
     <string name="failed_add_note">Échec de l\'ajout d\'une note !</string>
     <string name="failed_update_note">Échec de mise à jour de la note !</string>
-    <string name="list">liste</string>
-    <string name="calendar">calender</string>
+    <string name="list">Liste</string>
+    <string name="calendar">Calendrier</string>
     <string name="profile">Profil</string>
     <string name="filter">Filtre</string>
     <string name="my_adresse">Boumerdes, Algérie</string>
@@ -198,4 +199,13 @@
     <string name="create_task_successful">La tâche a été créée avec succès</string>
     <string name="check_all">Sélectionner tout</string>
     <string name="change_saved">Modification enregistrée</string>
+    <string name="add_new_task">Ajouter une nouvelle tâche</string>
+    <string name="Add_your_first_task_now">Ajoutez votre première tâche maintenant !</string>
+    <string name="You_can_get_all">Vous pouvez obtenir toutes vos tâches dans un calendrier</string>
+    <string name="list_of_task">Liste des tâches</string>
+    <string name="Here_you_will_find_all_the_tasks">Vous trouverez ici toutes les tâches quotidiennes que vous avez ajoutées</string>
+    <string name="enjoy">Amuse toi ;)</string>
+    <string name="swipe_right">Les tâches terminées, balayez vers la droite pour rendre la tâche inachevée</string>
+    <string name="github">GitHub</string>
+    <string name="source_code">Code source</string>
 </resources>

@@ -80,8 +80,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -410,6 +412,12 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 // --
+                int year_month = firstDayOfNewMonth.getYear() + firstDayOfNewMonth.getMonth();
+                int year_month_ = date_selected.getYear() + date_selected.getMonth();
+
+                if (year_month != year_month_){
+                    returnToCalendar.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -526,6 +534,7 @@ public class CalendarFragment extends Fragment {
             }
         }, 5000);
 
+        //Other things...
         //test(view);
         //test2(view);
         //test3(view);
@@ -562,7 +571,6 @@ public class CalendarFragment extends Fragment {
 
         for (int i = 0; i < task_id.size(); i++) {
 
-            // Create time.
             List<String> date_ = Arrays.asList(task_date.get(i).split("-"));
             List<String> time_ = Arrays.asList(task_time.get(i).split(":"));
             final int year = Integer.parseInt(date_.get(0));
@@ -580,6 +588,7 @@ public class CalendarFragment extends Fragment {
             dateTime.set(java.util.Calendar.SECOND, 0);
 
             String color_ = task_priority.get(i);
+
             int color = ContextCompat.getColor(context, R.color.default_);
 
             if (color_.equals("default_") || color_.equals("default")){
@@ -594,7 +603,43 @@ public class CalendarFragment extends Fragment {
 
             Event ev = new Event(color, dateTime.getTimeInMillis(), task_title.get(i));
             compactCalendarView.addEvent(ev);
+        }
 
+        // Remove duplicates events
+        for (int i = 0; i < task_id.size(); i++) {
+
+            List<String> date_ = Arrays.asList(task_date.get(i).split("-"));
+            List<String> time_ = Arrays.asList(task_time.get(i).split(":"));
+            final int year = Integer.parseInt(date_.get(0));
+            final int month = Integer.parseInt(date_.get(1));
+            final int day = Integer.parseInt(date_.get(2));
+            final int hour = Integer.parseInt(time_.get(0));
+            final int minute = Integer.parseInt(time_.get(1));
+
+            java.util.Calendar dateTime = java.util.Calendar.getInstance();
+            dateTime.set(java.util.Calendar.YEAR, year);
+            dateTime.set(java.util.Calendar.MONTH, month);
+            dateTime.set(java.util.Calendar.DAY_OF_MONTH, day);
+            dateTime.set(java.util.Calendar.HOUR_OF_DAY, hour);
+            dateTime.set(java.util.Calendar.MINUTE, minute);
+            dateTime.set(java.util.Calendar.SECOND, 0);
+
+            List<Event> evs = compactCalendarView.getEvents(dateTime.getTimeInMillis());
+            compactCalendarView.removeEvents(dateTime.getTimeInMillis());
+
+            List<Integer> evs_color = new ArrayList<>();
+            for (int j = 0; j < evs.size(); j++) {
+                evs_color.add(evs.get(j).getColor());
+            }
+
+            Set<Integer> set = new HashSet<>(evs_color);
+            evs_color.clear();
+            evs_color.addAll(set);
+
+            for (int j = 0; j < evs_color.size(); j++) {
+                Event ev = new Event(evs_color.get(j), dateTime.getTimeInMillis(), task_title.get(i));
+                compactCalendarView.addEvent(ev);
+            }
         }
     }
 
@@ -1291,7 +1336,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(getContext(), String.valueOf(requestCode), Toast.LENGTH_SHORT).show();
         if (requestCode == 7 && resultCode == RESULT_OK) {
             String value = data.getStringExtra("key");
             // Update the UI based on the value

@@ -41,51 +41,78 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="24dp"
-        android:orientation="vertical">
+        android:layout_marginVertical="24dp">
 
-        <RadioGroup
-            android:id="@+id/sort_radioGroup"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/click_task_done"
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:elevation="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/click_hand"
+            app:lottie_url="REPLACE_JSON_URL" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
 
-            <RadioButton
-                android:id="@+id/sort_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:text="@string/due_date_and_time"
-                style="@style/Theme.AppCompat.RadioButton"/>
+            <RadioGroup
+                android:id="@+id/sort_radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/sort_priority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:text="@string/priority"
-                style="@style/Theme.AppCompat.RadioButton" />
+                <RadioButton
+                    android:id="@+id/sort_date"
+                    style="@style/Theme.AppCompat.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="@string/due_date_and_time" />
 
-            <RadioButton
-                android:id="@+id/sort_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:text="@string/category"
-                style="@style/Theme.AppCompat.RadioButton" />
+                <RadioButton
+                    android:id="@+id/sort_priority"
+                    style="@style/Theme.AppCompat.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="@string/priority" />
 
-            <RadioButton
-                android:id="@+id/sort_task_done"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:text="@string/tasks_done"
-                style="@style/Theme.AppCompat.RadioButton" />
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/sort_category"
+                    style="@style/Theme.AppCompat.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="@string/category" />
 
-    </LinearLayout>
+                <RadioButton
+                    android:id="@+id/sort_task_done"
+                    style="@style/Theme.AppCompat.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="@string/tasks_done" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

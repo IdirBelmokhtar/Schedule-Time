@@ -39,7 +39,7 @@ import java.util.Locale;
 public class SettingsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private LinearLayout settings_notification, settings_language, settings_rate, settings_help, settings_about_us, settings_privacy_policy, settings_share_app;
+    private LinearLayout settings_notification, settings_language, settings_rate, settings_help, settings_source_code, settings_about_us, settings_privacy_policy, settings_share_app;
     private TextView settings_theme_txt;
     private SwitchCompat switchCompat;
 
@@ -102,6 +102,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.behance.net/gallery/126520417/To-Do-App-Design")));
+            }
+        });
+
+        settings_source_code = findViewById(R.id.settings_source_code);
+        settings_source_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/IdirBelmokhtar/Schedule-Time")));
             }
         });
 

@@ -28,6 +28,7 @@
     <string name="help_amp_feedback">المساعدة والتعليقات</string>
     <string name="terms_of_use">شروط الاستخدام</string>
     <string name="notes">الملاحظات</string>
+    <string name="note">الملاحظات</string>
     <string name="add_new_note">أضف ملاحظة جديدة.</string>
     <string name="my_profile">الملفي الشخصي</string>
     <string name="full_name">الاسم الكامل</string>
@@ -69,7 +70,7 @@
     <string name="end_date">تاريخ النهاية</string>
     <string name="repeat">التكرار</string>
     <string name="save">حفض</string>
-    <string name="track_your_notes_and_reflect_on_your_day">اتبع ملاحظاتك وفكر في يومك.</string>
+    <string name="track_your_notes_and_reflect_on_your_day">قم بتدوين ملاحظاتك وفكر في يومك.</string>
     <string name="get_an_overview_of_how_you_are_performing_to_motivate_yourself_more">احصل على لقطة لأدائك لتحفيزك أكثر.</string>
     <string name="no_data_found">لا تتوافر بيانات</string>
     <string name="sort_by">فرز حسب</string>
@@ -164,8 +165,8 @@
     <string name="failed_add_category">فشل في إضافة فئة</string>
     <string name="failed_add_note">فشل في إضافة ملاحظة!</string>
     <string name="failed_update_note">فشل في تحديث الملاحظة!</string>
-    <string name="list">قائمة</string>
-    <string name="calendar">تقويم</string>
+    <string name="list">القائمة</string>
+    <string name="calendar">التقويم</string>
     <string name="profile">الملف الشخصي</string>
     <string name="filter">فلتر</string>
     <string name="_year_left">\ عام متبقية</string>
@@ -198,4 +199,13 @@
     <string name="select">اختار</string>
     <string name="create_task_successful">تم انشاء المهمه بنجاح</string>
     <string name="check_all">اختر الكل</string>
+    <string name="add_new_task">أضافة مهمة جديدة</string>
+    <string name="Add_your_first_task_now">أضف مهمتك الأولى الآن!</string>
+    <string name="You_can_get_all">يمكنك الحصول على جميع المهام الخاصة بك في التقويم</string>
+    <string name="list_of_task">قائمة المهام</string>
+    <string name="Here_you_will_find_all_the_tasks">ستجد هنا جميع المهام اليومية التي أضفتها</string>
+    <string name="enjoy">استمتع (;</string>
+    <string name="swipe_right">المهام المكتملة، مرر سريعًا لليمين لجعل المهمة غير منتهية</string>
+    <string name="github">غيت هاب</string>
+    <string name="source_code">سورس كود</string>
 </resources>

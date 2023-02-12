@@ -279,7 +279,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:lottie_autoPlay="true"
                                 app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/swipe_left"
+                                app:lottie_rawRes="@raw/swipe_hand"
                                 android:elevation="2dp"
                                 app:lottie_url="REPLACE_JSON_URL" />
 

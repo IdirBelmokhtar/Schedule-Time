@@ -6,7 +6,7 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="version" translatable="false">1.0.0</string>
+    <string name="version" translatable="false">1.0.2</string>
 
     <string name="start" translatable="false">Start</string>
     <string name="suivant">Next</string>
@@ -22,7 +22,7 @@
     <string name="lien_whatsapp" translatable="false">+213 659 23 92 69</string>
     <string name="gmail" translatable="false">belmokhtaridir@gmail.com</string>
     <string name="search_hint">Search Here …</string>
-    <string name="dev_phone" translatable="false">+213 659 23 92 69</string>
+    <string name="dev_phone" translatable="false">+213 556 10 94 46</string>
     <string name="dev_location" translatable="false">36.71631, 3.82707</string>
     <string name="notification_channel_id" translatable="false">my canal id</string>
     <string name="notification_channel_title" translatable="false">my cannal title</string>
@@ -53,6 +53,7 @@
     <string name="help_amp_feedback"><![CDATA[Help & Feedback]]></string>
     <string name="terms_of_use">Terms of Use</string>
     <string name="notes">Notes</string>
+    <string name="note">Note</string>
     <string name="add_new_note">Add new note.</string>
     <string name="create_task_successful">Task created successfully</string>
     <string name="my_profile">My Profile</string>
@@ -210,8 +211,8 @@
     <string name="failed_add_category">Failed add category</string>
     <string name="failed_add_note">Failed Add Note!</string>
     <string name="failed_update_note">Failed Update Note!</string>
-    <string name="list">list</string>
-    <string name="calendar">calendar</string>
+    <string name="list">List</string>
+    <string name="calendar">Calendar</string>
     <string name="profile">Profile</string>
     <string name="filter">Filter</string>
     <string name="category_name">Category name</string>
@@ -257,5 +258,14 @@
     <string name="create_task">Create task</string>
     <string name="select">Select</string>
     <string name="check_all">Check All</string>
+    <string name="add_new_task">Add New Task</string>
+    <string name="Add_your_first_task_now">Add your first task now!</string>
+    <string name="You_can_get_all">You can get all your tasks in a calendar</string>
+    <string name="list_of_task">List of Tasks</string>
+    <string name="Here_you_will_find_all_the_tasks">Here you will find all the daily tasks you have added</string>
+    <string name="enjoy">Enjoy ;)</string>
+    <string name="swipe_right">Tasks done, swipe right to make the task unfinished</string>
+    <string name="github">GitHub</string>
+    <string name="source_code">Source code</string>
 
 </resources>

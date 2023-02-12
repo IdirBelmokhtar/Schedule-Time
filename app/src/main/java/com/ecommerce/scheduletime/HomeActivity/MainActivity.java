@@ -1,5 +1,7 @@
 package com.ecommerce.scheduletime.HomeActivity;
 
+import static com.ecommerce.scheduletime.Fragments.ListFragment.tapTargetSequenceList;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,8 +42,12 @@ import com.ecommerce.scheduletime.CreateAccount.AuthenticationActivity;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.Fragments.ListFragment;
+import com.ecommerce.scheduletime.MainActivity2;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -104,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String lang_ = Locale.getDefault().getLanguage();
             setLocale(MainActivity.this, lang_);
-            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                 Toast.makeText(this, getResources().getString(R.string.this_language_is_not_currently_available), Toast.LENGTH_LONG).show();
             }
         }
@@ -279,7 +285,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //startActivity(new Intent(this, NoteActivity.class));
+        SharedPreferences sharedPreferences = getSharedPreferences("tapTargetSequence", MODE_PRIVATE);
+        final boolean f = sharedPreferences.getBoolean("done", false);
+
+        if (!f){
+            tapTargetSequence(findViewById(android.R.id.content).getRootView());
+            SharedPreferences.Editor editor = getSharedPreferences("tapTargetSequence", MODE_PRIVATE).edit();
+            editor.putBoolean("done", true);
+            editor.apply();
+        }
+
+        //startActivity(new Intent(this, MainActivity2.class));
         //new SyncDatabase(MainActivity.this);
     }
 
@@ -536,6 +552,77 @@ public class MainActivity extends AppCompatActivity {
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+
+    private void tapTargetSequence(View view) {
+        TapTargetSequence sequence = new TapTargetSequence(MainActivity.this)
+                .targets(
+                        TapTarget.forView(view.findViewById(R.id.listFragment), getResources().getString(R.string.list_of_task), getResources().getString(R.string.Here_you_will_find_all_the_tasks))
+                                .outerCircleColor(R.color.blue)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.transparent)
+                                .titleTextSize(24)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(14)
+                                .textColor(R.color.white_)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(false)
+                                .targetRadius(60),
+                        TapTarget.forView(view.findViewById(R.id.calenderFragment), getResources().getString(R.string.calendar), getResources().getString(R.string.You_can_get_all))
+                                .outerCircleColor(R.color.blue)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.transparent)
+                                .titleTextSize(24)
+                                .titleTextColor(R.color.white_)
+                                .descriptionTextSize(14)
+                                .textColor(R.color.white)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(false)
+                                .targetRadius(60)
+                                .icon(getResources().getDrawable(R.drawable.ic_calendar_minus)),
+                        TapTarget.forView(view.findViewById(R.id.fab), getResources().getString(R.string.add_new_task), getResources().getString(R.string.Add_your_first_task_now))
+                                // All options below are optional
+                                .outerCircleColor(R.color.blue)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.transparent)
+                                .titleTextSize(24)
+                                .titleTextColor(R.color.white_)
+                                .descriptionTextSize(14)
+                                .textColor(R.color.white)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(false)
+                                .targetRadius(60)
+                                .icon(getResources().getDrawable(R.drawable.icons8_add))
+                ).listener(new TapTargetSequence.Listener() {
+                    // This listener will tell us when interesting(tm) events happen in regards
+                    // to the sequence
+                    @Override
+                    public void onSequenceFinish() {
+                        // Yay
+                        tapTargetSequenceList(view, MainActivity.this);
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                        // Perform action for the current target
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                        // Boo
+                    }
+                });
+
+        sequence.start();
     }
 
     @Override

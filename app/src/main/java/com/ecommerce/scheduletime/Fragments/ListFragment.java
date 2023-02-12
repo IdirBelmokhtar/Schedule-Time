@@ -67,8 +67,12 @@ import com.ecommerce.scheduletime.Model.Tasks;
 import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.R;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -121,7 +125,7 @@ public class ListFragment extends Fragment {
 
     private LinearLayout no_data_list;
 
-    private LottieAnimationView swipe_hand;
+    private LottieAnimationView swipe_hand, click_sort_by;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -146,10 +150,11 @@ public class ListFragment extends Fragment {
         }
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        // Swipe hand help
-        SharedPreferences preferences = container.getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE);
-        int swipe = preferences.getInt("swipe", 0); //0 is the default value.
+        // Swipe hand help (1st time)
+        SharedPreferences preferences1 = container.getContext().getSharedPreferences("swipe_hand", MODE_PRIVATE);
+        int swipe = preferences1.getInt("swipe", 0); //0 is the default value.
         swipe_hand = view.findViewById(R.id.swipe_hand_list);
+        click_sort_by = view.findViewById(R.id.click_sort_by);
 
         if (swipe == 1) {
             swipe_hand.setVisibility(View.VISIBLE);
@@ -498,12 +503,51 @@ public class ListFragment extends Fragment {
                                     storeDataInArraysCalenderList(date_selected, view);
                                 }
                                 dialogSort.dismiss();
+                                SharedPreferences preferences2 = getContext().getSharedPreferences("click_hand", MODE_PRIVATE);
+                                int click = preferences2.getInt("click", 0); //0 is the default value.
+
+                                if (click == 2) {
+                                    // Show guidance
+                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.swipe_right), Toast.LENGTH_LONG).show();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getContext(), getContext().getResources().getString(R.string.swipe_right), Toast.LENGTH_LONG).show();
+                                        }
+                                    }, 3500);
+
+                                    SharedPreferences.Editor editor_ = getContext().getSharedPreferences("click_hand", MODE_PRIVATE).edit();
+                                    editor_.putInt("click", 3);
+                                    editor_.apply();
+                                } else {
+                                    click_sort_by.setVisibility(View.GONE);
+                                    dialogSort.getClick_task_done().setVisibility(View.GONE);
+                                }
+
                                 break;
                             default:
                                 break;
                         }
                     }
                 });
+
+                // Click hand help (1st time)
+                SharedPreferences preferences2 = getContext().getSharedPreferences("click_hand", MODE_PRIVATE);
+                int click = preferences2.getInt("click", 0); //0 is the default value.
+
+                if (click == 1 || click == 2) {
+                    click_sort_by.setVisibility(View.GONE);
+                    // show click hand in dialog
+                    dialogSort.getClick_task_done().setVisibility(View.VISIBLE);
+
+                    SharedPreferences.Editor editor_ = getContext().getSharedPreferences("click_hand", MODE_PRIVATE).edit();
+                    editor_.putInt("click", 2);
+                    editor_.apply();
+                } else {
+                    click_sort_by.setVisibility(View.GONE);
+                    dialogSort.getClick_task_done().setVisibility(View.GONE);
+                }
+
                 dialogSort.build();
                 dialogSort.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             }
@@ -574,6 +618,7 @@ public class ListFragment extends Fragment {
 
         return view;
     }
+
 
     public void createNewTask(Context context) {
         currentTime = Calendar.getInstance().getTime();
@@ -1481,6 +1526,20 @@ public class ListFragment extends Fragment {
                             myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
                             Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.remove_from_tasks_done), Toast.LENGTH_LONG).show();
                         }
+
+                        // Click hand help (1st time)
+                        SharedPreferences preferences2 = getContext().getSharedPreferences("click_hand", MODE_PRIVATE);
+                        int click = preferences2.getInt("click", 0); //0 is the default value.
+
+                        if (click == 0) {
+                            click_sort_by.setVisibility(View.VISIBLE);
+
+                            SharedPreferences.Editor editor = getContext().getSharedPreferences("click_hand", MODE_PRIVATE).edit();
+                            editor.putInt("click", 1);
+                            editor.apply();
+                        } else {
+                            click_sort_by.setVisibility(View.GONE);
+                        }
                         break;
                 }
             }
@@ -1558,6 +1617,35 @@ public class ListFragment extends Fragment {
                 }
             }
         }, 8);
+    }
+
+    public static void tapTargetSequenceList(View view, Context context) {
+        TapTargetView.showFor((Activity) context ,
+                TapTarget.forView(view.findViewById(R.id.note), context.getResources().getString(R.string.note), context.getResources().getString(R.string.track_your_notes_and_reflect_on_your_day))
+                        // All options below are optional
+                        .outerCircleColor(R.color.blue)
+                        .outerCircleAlpha(0.96f)
+                        .targetCircleColor(R.color.transparent)
+                        .titleTextSize(24)
+                        .titleTextColor(R.color.white_)
+                        .descriptionTextSize(14)
+                        .textColor(R.color.white)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .tintTarget(true)
+                        .transparentTarget(false)
+                        .targetRadius(60)
+                        .icon(context.getResources().getDrawable(R.drawable.ic_icons8_note_1)),
+                new TapTargetView.Listener() {
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetClick(view);
+                        Toast.makeText(context, context.getResources().getString(R.string.enjoy), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
     }
 
     @Override
