@@ -3,6 +3,10 @@ What is SheduleTime ? An android app that helps you organize your time.
 # Description
 Schedule Time est une application qui vous aide à organiser votre temps en prend des notes sur votre journée
 - Envoyant des notifications pour vous rappeler les tâches quotidiennes
+# Download
+<a href="https://play.google.com/store/apps/details?id=com.ecommerce.scheduletime">
+  <img alt="Get it on Google Play" src="https://user-images.githubusercontent.com/88589019/218339085-7c6dd8a6-d2d8-4709-abe1-d6d23ade0062.png" width="200"/>
+</a>
 
 # Screenshots
 <img src="https://user-images.githubusercontent.com/88589019/205512350-d97856b9-d977-4b56-92e4-357bec341c14.png" width="256">
@@ -17,7 +21,3 @@ Schedule Time est une application qui vous aide à organiser votre temps en pren
 <img src="https://user-images.githubusercontent.com/88589019/205512364-e9718196-8f6d-4b8a-802c-3c6b953200a1.png" width="256">
 <img src="https://user-images.githubusercontent.com/88589019/205512366-646a6d25-0d9c-4695-82e2-a31e44a11dea.png" width="256">
 <img src="https://user-images.githubusercontent.com/88589019/205512367-0ef4eb5e-02f0-4720-841a-4da0d3ba7ef9.png" width="256">
-
-# Download
-in Google Play :
-https://play.google.com/store/apps/details?id=com.ecommerce.scheduletime
