@@ -4,7 +4,6 @@ import static com.ecommerce.scheduletime.Fragments.ListFragment.tapTargetSequenc
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,12 +42,10 @@ import com.ecommerce.scheduletime.CreateAccount.AuthenticationActivity;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.Fragments.ListFragment;
-import com.ecommerce.scheduletime.MainActivity2;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -289,10 +287,27 @@ public class MainActivity extends AppCompatActivity {
         final boolean f = sharedPreferences.getBoolean("done", false);
 
         if (!f){
-            tapTargetSequence(findViewById(android.R.id.content).getRootView());
-            SharedPreferences.Editor editor = getSharedPreferences("tapTargetSequence", MODE_PRIVATE).edit();
-            editor.putBoolean("done", true);
-            editor.apply();
+            final Dialog dialog = new Dialog(MainActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.dialog_welcome_presentation);
+            dialog.findViewById(R.id.dialog_welcome_presentation_layout).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    tapTargetSequence(findViewById(android.R.id.content).getRootView());
+                    SharedPreferences.Editor editor = getSharedPreferences("tapTargetSequence", MODE_PRIVATE).edit();
+                    editor.putBoolean("done", true);
+                    editor.apply();
+                }
+            });
+            dialog.show();
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
         //startActivity(new Intent(this, MainActivity2.class));

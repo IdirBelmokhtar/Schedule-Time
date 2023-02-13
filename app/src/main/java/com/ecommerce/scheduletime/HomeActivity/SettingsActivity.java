@@ -39,7 +39,8 @@ import java.util.Locale;
 public class SettingsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private LinearLayout settings_notification, settings_language, settings_rate, settings_help, settings_source_code, settings_about_us, settings_privacy_policy, settings_share_app;
+    private LinearLayout settings_notification, settings_language, settings_rate, settings_help, settings_source_code,
+            settings_about_us, settings_privacy_policy, settings_share_app, settings_more_app;
     private TextView settings_theme_txt;
     private SwitchCompat switchCompat;
 
@@ -133,6 +134,14 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        settings_more_app = findViewById(R.id.settings_more_app);
+        settings_more_app.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Belmokhtar+Idir")));
+            }
+        });
+
         settings_privacy_policy = findViewById(R.id.settings_privacy_policy);
         settings_privacy_policy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,19 +209,19 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("language", MODE_PRIVATE);
         String lang = pref.getString("lang", "");
 
-        if (!lang.equals("")){
-            if (lang.equals("en")){
+        if (!lang.equals("")) {
+            if (lang.equals("en")) {
                 language.setText(getResources().getString(R.string.lang_english));
-            }else if (lang.equals("fr")){
+            } else if (lang.equals("fr")) {
                 language.setText(getResources().getString(R.string.lang_french));
-            }else if (lang.equals("ar")){
+            } else if (lang.equals("ar")) {
                 language.setText(getResources().getString(R.string.lang_arabic));
             }
-        }else {
+        } else {
             String lang_ = Locale.getDefault().getLanguage();
-            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+            if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                 language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable));
-            }else {
+            } else {
                 language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName());
             }
         }
@@ -224,9 +233,9 @@ public class SettingsActivity extends AppCompatActivity {
                 BottomDialogLanguages bottomDialogLanguages = new BottomDialogLanguages((Activity) SettingsActivity.this);
 
                 String lang_ = Locale.getDefault().getLanguage();
-                if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                     bottomDialogLanguages.getDialog_lang_default_system_().setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable));
-                }else {
+                } else {
                     bottomDialogLanguages.getDialog_lang_default_system_().setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName());
                 }
 
@@ -234,9 +243,9 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         String lang_ = Locale.getDefault().getLanguage();
-                        if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")){
+                        if (!lang_.equals("en") && !lang_.equals("fr") && !lang_.equals("ar")) {
                             language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName() + " " + getResources().getString(R.string.currently_unavailable));
-                        }else {
+                        } else {
                             language.setText(getResources().getString(R.string.system_default) + " : " + Locale.getDefault().getDisplayName());
                         }
 

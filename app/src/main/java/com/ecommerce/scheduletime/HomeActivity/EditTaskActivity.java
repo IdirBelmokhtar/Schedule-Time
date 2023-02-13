@@ -460,7 +460,7 @@ public class EditTaskActivity extends AppCompatActivity {
         }
             //category_ids = Arrays.asList(removeLastString(task_category.substring(1)).split(", "));
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 108);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 72);
             params.setMarginEnd(8);
 
             category_btn = new Button[category_ids_new.size()];//category_ids.size

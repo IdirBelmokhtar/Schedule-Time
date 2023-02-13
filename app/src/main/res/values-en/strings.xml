@@ -208,5 +208,9 @@
     <string name="swipe_right">Tasks done, swipe right to make the task unfinished</string>
     <string name="github">GitHub</string>
     <string name="source_code">Source code</string>
+    <string name="more_apps">More Apps</string>
+    <string name="play_store">Play Store</string>
+    <string name="welcome_to_schedule_time">Welcome to Schedule Time!</string>
+    <string name="we_re_here_to_help_you_take_control_of_your_time_and_increase_productivity">We\'re here to help you take control of your time and increase productivity.</string>
 
 </resources>

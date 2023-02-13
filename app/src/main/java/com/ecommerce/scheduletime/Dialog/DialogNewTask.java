@@ -1222,7 +1222,7 @@ public class DialogNewTask extends Dialog {
         category_btn = new Button[cursor.getCount()];
         categorys_layout.removeAllViews();
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 108);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 72);
         params.setMarginEnd(8);
 
         for (int i = 0; i < category_btn.length; i++) {
@@ -1243,14 +1243,14 @@ public class DialogNewTask extends Dialog {
                 category_btn[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (category_btn[finalI].getText().equals(category_name.get(finalI).toString() + "\t\t" + Html.fromHtml("&#10003;"))) {
+                        if (category_btn[finalI].getText().equals(category_name.get(finalI).toString() + "\t " + Html.fromHtml("&#10003;"))) {
                             category_btn[finalI].setText(category_name.get(finalI).toString());
                             //remove from category list
                             category.remove(category_id.get(finalI).toString());
                         } else {
                             if (category.size() < 5) {
                                 //add to category list
-                                category_btn[finalI].setText(category_name.get(finalI).toString() + "\t\t" + Html.fromHtml("&#10003;"));
+                                category_btn[finalI].setText(category_name.get(finalI).toString() + "\t " + Html.fromHtml("&#10003;"));
                                 category.add(category_id.get(finalI).toString());
                             } else {
                                 Toast.makeText(getContext(), getContext().getResources().getString(R.string.select_at_most_five_categories), Toast.LENGTH_SHORT).show();

@@ -19,9 +19,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Handler;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +55,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewTasksAdapter.RecyclerViewTasksHolder> {
 
     int color_task_title;
@@ -64,7 +66,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
 
     MyDatabaseHelper_category myDB_category;
     String category_id, category_name, category_color, category_deleted;
-    TextView[] mDots_category;
+    CircleImageView[] mDots_category;
     Button[] category_btn;
 
     List<String> category_ids = new ArrayList<>();
@@ -246,7 +248,8 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
             e.printStackTrace();
         }
 
-
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMarginEnd(8);
         myDB_category = new MyDatabaseHelper_category(context);
 
 
@@ -254,7 +257,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
             holder.task_category_layout.setVisibility(View.VISIBLE);
             category_ids = Arrays.asList(removeLastString(task.getTask_category().substring(1)).split(", "));
 
-            mDots_category = new TextView[category_ids.size()];
+            mDots_category = new CircleImageView[category_ids.size()];
             holder.task_category_layout.removeAllViews();
 
             for (int i = 0; i < mDots_category.length; i++) {
@@ -268,10 +271,15 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                     category_deleted = (cursor.getString(3));
                 }
                 int color_ = Integer.parseInt(category_color);
-                mDots_category[i] = new TextView(context);
-                mDots_category[i].setText(Html.fromHtml("&#8226;"));
-                mDots_category[i].setTextSize(56);
-                mDots_category[i].setTextColor(context.getResources().getColor(color_));
+                mDots_category[i] = new CircleImageView(context);
+                //mDots_category[i].setTextColor(context.getResources().getColor(color_));
+                Drawable colored = new ColorDrawable(context.getResources().getColor(color_));
+                Drawable image = context.getResources().getDrawable(R.drawable.ic_size_12); // We can add image from Drawable
+
+                LayerDrawable ld = new LayerDrawable(new Drawable[]{colored, image});
+                mDots_category[i].setImageDrawable(ld);
+
+                mDots_category[i].setLayoutParams(params);
 
                 holder.task_category_layout.addView(mDots_category[i]);
 
@@ -546,7 +554,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
         if (!task_category.equals("[]")) {
             category_ids = Arrays.asList(removeLastString(task_category.substring(1)).split(", "));
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 108);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 72);
             params.setMarginEnd(8);
 
             category_btn = new Button[category_ids.size()];//category_ids.size

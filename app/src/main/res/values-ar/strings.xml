@@ -208,4 +208,8 @@
     <string name="swipe_right">المهام المكتملة، مرر سريعًا لليمين لجعل المهمة غير منتهية</string>
     <string name="github">غيت هاب</string>
     <string name="source_code">سورس كود</string>
+    <string name="more_apps">المزيد من التطبيقات</string>
+    <string name="play_store">متجر جوجل بلاى</string>
+    <string name="welcome_to_schedule_time">مرحبا بك!</string>
+    <string name="we_re_here_to_help_you_take_control_of_your_time_and_increase_productivity">نحن هنا لمساعدتك على تنظيم وقتك وزيادة الإنتاجية.</string>
 </resources>

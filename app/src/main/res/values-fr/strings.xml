@@ -208,4 +208,8 @@
     <string name="swipe_right">Les tâches terminées, balayez vers la droite pour rendre la tâche inachevée</string>
     <string name="github">GitHub</string>
     <string name="source_code">Code source</string>
+    <string name="more_apps">Plus d\'apps</string>
+    <string name="play_store">Play Store</string>
+    <string name="welcome_to_schedule_time">Bienvenue à Schedule Time!</string>
+    <string name="we_re_here_to_help_you_take_control_of_your_time_and_increase_productivity">Nous sommes là pour vous aider à organiser votre temps et à augmenter votre productivité.</string>
 </resources>

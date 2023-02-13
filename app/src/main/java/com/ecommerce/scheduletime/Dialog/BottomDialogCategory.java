@@ -223,7 +223,7 @@ public class BottomDialogCategory extends Dialog {
         category_btn = new Button[cursor.getCount()];
         categorys_layout.removeAllViews();
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 108);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 72);
         params.setMarginEnd(8);
 
         for (int i = 0; i < category_btn.length; i++) {
