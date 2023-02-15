@@ -1,7 +1,10 @@
 package com.ecommerce.scheduletime.SQLite;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -47,12 +50,12 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getPrimaryKey() {
+    public String getPrimaryKey() { // ------------------------------try when category is empty after getting data from firebase
         String lastPrimaryKey = null;
         MyDatabaseHelper_category myDB_category = new MyDatabaseHelper_category(context);
         Cursor categoryCursor = myDB_category.readAllData();
         if (categoryCursor.getCount() == 0) {
-            // Empty.
+            lastPrimaryKey = "0";
         } else {
             while (categoryCursor.moveToNext()) {
                 lastPrimaryKey = categoryCursor.getString(0);
@@ -72,23 +75,31 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         return lastPrimaryKey;
     }
 
-
     public void addCategory1(String category_name, int category_color, String category_deleted) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         // We add column for id we put the original id (the first id when we create a category)
         // We add this because Tasks take ids of categories in "task_category" column (Foreign Key for example)
-        cv.put(COLUMN_ID_, String.valueOf(Integer.parseInt(getPrimaryKey()) + 1));
+        cv.put(COLUMN_ID_, String.valueOf(Integer.parseInt(getPrimaryKey()) + 1)); // + 1 to get the new id
         cv.put(COLUMN_CATEGORY_NAME, category_name);
         cv.put(COLUMN_CATEGORY_COLOR, String.valueOf(category_color));
-        cv.put(COLUMN_CATEGORY_DELETED, String.valueOf(category_deleted));
+        cv.put(COLUMN_CATEGORY_DELETED, category_deleted);
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
-            Toast.makeText(context, context.getResources().getString(R.string.failed_add_category) , Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add_category), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+
+            /** @param Add_insert to {@link NewCategory} */
+
+            SharedPreferences prefs = context.getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE);
+            boolean change = prefs.getBoolean("change", false);
+            if (change) {
+                NewCategory newCategory = new NewCategory(context);
+                newCategory.addChange(String.valueOf(Integer.parseInt(getPrimaryKey())), category_name, category_color, category_deleted, "insert");
+            }
         }
 
     }
@@ -105,9 +116,10 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
-            Toast.makeText(context, context.getResources().getString(R.string.failed_add_category) , Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add_category), Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -123,7 +135,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor readData(String row_id){
+    public Cursor readData(String row_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         //get columns of signal data
         //String[] columns = {COLUMN_TITLE,COLUMN_AUTHOR,COLUMN_PAGES};
@@ -135,7 +147,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor readData_id_(String row_id_){
+    public Cursor readData_id_(String row_id_) {
         SQLiteDatabase db = this.getReadableDatabase();
         //get columns of signal data
         //String[] columns = {COLUMN_TITLE,COLUMN_AUTHOR,COLUMN_PAGES};
@@ -147,7 +159,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String row_id,String _id_, String name, int color, String category_deleted) {
+    public void updateData(String row_id, String _id_, String name, int color, String category_deleted) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -161,6 +173,11 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed delete", Toast.LENGTH_SHORT).show();
         } else {
             //Toast.makeText(context, "Update Successfully", Toast.LENGTH_SHORT).show();
+
+            /** @param add_update to {@link NewCategory} */
+
+            NewCategory newCategory = new NewCategory(context);
+            newCategory.addChange(_id_, name, color, category_deleted, "update");
         }
     }
 
@@ -174,7 +191,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteAllData(){
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }

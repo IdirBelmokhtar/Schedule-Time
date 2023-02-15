@@ -17,6 +17,9 @@ import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_category;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_notes;
+import com.ecommerce.scheduletime.SQLite.NewCategory;
+import com.ecommerce.scheduletime.SQLite.NewNotes;
+import com.ecommerce.scheduletime.SQLite.NewTasks;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -41,6 +44,8 @@ public class SyncDatabase {
     DatabaseReference referenceTasks;
     DatabaseReference referenceCategories;
     DatabaseReference referenceNotes;
+
+    public static boolean getTasks = false, getCategories = false, getNotes = false;
 
     public SyncDatabase(@Nullable Context context, String fUserID) {
         this.context = context;
@@ -86,6 +91,7 @@ public class SyncDatabase {
 
         // Get Tasks Realtime Database into SQLite.
         ArrayList<String> task_id = new ArrayList<>();
+        ArrayList<String> task_id_ = new ArrayList<>();
         ArrayList<String> task_date = new ArrayList<>();
         ArrayList<String> task_title = new ArrayList<>();
         ArrayList<String> task_description = new ArrayList<>();
@@ -101,6 +107,7 @@ public class SyncDatabase {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     RealtimeTasks task = dataSnapshot.getValue(RealtimeTasks.class);
                     task_id.add(task.get_id());
+                    task_id_.add(task.get_id_());
                     task_date.add(task.getTask_date());
                     task_title.add(task.getTask_title());
                     task_description.add(task.getTask_description());
@@ -113,15 +120,14 @@ public class SyncDatabase {
                 Toast.makeText(context, "task : " + String.valueOf(task_id.size()), Toast.LENGTH_SHORT).show();
                 // Store data in local database
                 MyDatabaseHelper myDB = new MyDatabaseHelper(context);
+                NewTasks newTasks = new NewTasks(context);
                 myDB.deleteAllData();
+                newTasks.deleteAllData();
                 for (int i = 0; i < task_id.size(); i++) {
-                    myDB.addSchedule(task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i),
+                    myDB.addSchedule2(task_id_.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i),
                             task_category.get(i), task_time.get(i), task_done.get(i), Integer.parseInt(task_reminder.get(i)));
                 }
-                // Modifie les ids pour que les donne de Database SQL sois la meme que Firebase
-                for (int i = 0; i < task_id.size(); i++) {
-                    //myDB.updateData(task_id.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), Integer.parseInt(task_reminder.get(i)));
-                }
+                getTasks = true;
             }
 
             @Override
@@ -151,15 +157,13 @@ public class SyncDatabase {
                 // Store data in local database
                 Toast.makeText(context, "category : " + String.valueOf(category_id.size()), Toast.LENGTH_SHORT).show();
                 MyDatabaseHelper_category myDB_category = new MyDatabaseHelper_category(context);
+                NewCategory newCategory = new NewCategory(context);
                 myDB_category.deleteAllData();
+                newCategory.deleteAllData();
                 for (int i = 0; i < category_id.size(); i++) {
                     myDB_category.addCategory2(category_id_.get(i), category_name.get(i), Integer.parseInt(category_color_Ref.get(i)), category_deleted.get(i));
                 }
-
-                // Modifie les ids pour que les donne de Database SQL sois la meme que Firebase
-                for (int i = 0; i < category_id.size(); i++) {
-                    //myDB_category.updateData(category_id.get(i), category_name.get(i), Integer.parseInt(category_color_Ref.get(i)), category_deleted.get(i));
-                }
+                getCategories = true;
             }
 
             @Override
@@ -170,6 +174,7 @@ public class SyncDatabase {
 
         // Get Notes SQLite into Realtime Database.
         ArrayList<String> note_id = new ArrayList<>();
+        ArrayList<String> note_id_ = new ArrayList<>();
         ArrayList<String> note_title = new ArrayList<>();
         ArrayList<String> note_description = new ArrayList<>();
         ArrayList<String> note_time = new ArrayList<>();
@@ -180,6 +185,7 @@ public class SyncDatabase {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     RealtimeNotes note = dataSnapshot.getValue(RealtimeNotes.class);
                     note_id.add(note.get_id());
+                    note_id_.add(note.get_id_());
                     note_title.add(note.getNote_title());
                     note_description.add(note.getNote_description());
                     note_time.add(note.getNote_time());
@@ -187,16 +193,15 @@ public class SyncDatabase {
                 Toast.makeText(context, "notes : " + String.valueOf(note_id.size()), Toast.LENGTH_SHORT).show();
                 // Store data in local database
                 MyDatabaseHelper_notes myDB_notes = new MyDatabaseHelper_notes(context);
+                NewNotes newNotes = new NewNotes(context);
                 myDB_notes.deleteAllData();
+                newNotes.deleteAllData();
                 for (int i = 0; i < note_id.size(); i++) {
-                    myDB_notes.addBook(note_title.get(i), note_description.get(i), note_time.get(i));
+                    myDB_notes.addBook2(note_id_.get(i), note_title.get(i), note_description.get(i), note_time.get(i));
                 }
-                // Modifie les ids pour que les donne de Database SQL sois la meme que Firebase
-                for (int i = 0; i < note_id.size(); i++) {
-                    //myDB_notes.updateData(note_id.get(i), note_title.get(i), note_description.get(i), note_time.get(i));
-                }
+                getNotes = true;
+
                 progressDialog.dismiss();
-                Toast.makeText(context, String.valueOf(task_id.size())+  " + " + String.valueOf(category_id.size()) + " + " + String.valueOf(note_id.size()), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -210,6 +215,7 @@ public class SyncDatabase {
 
         // Set Tasks SQLite into Realtime Database.
         ArrayList<String> task_id = new ArrayList<>();
+        ArrayList<String> task_id_ = new ArrayList<>();
         ArrayList<String> task_date = new ArrayList<>();
         ArrayList<String> task_title = new ArrayList<>();
         ArrayList<String> task_description = new ArrayList<>();
@@ -226,20 +232,22 @@ public class SyncDatabase {
         } else {
             while (taskCursor.moveToNext()) {
                 task_id.add(taskCursor.getString(0));
-                task_date.add(taskCursor.getString(1));
-                task_title.add(taskCursor.getString(2));
-                task_description.add(taskCursor.getString(3));
-                task_priority.add(taskCursor.getString(4));
-                task_category.add(taskCursor.getString(5));
-                task_time.add(taskCursor.getString(6));
-                task_done.add(taskCursor.getString(7));
-                task_reminder.add(taskCursor.getString(8));
+                task_id_.add(taskCursor.getString(1));
+                task_date.add(taskCursor.getString(2));
+                task_title.add(taskCursor.getString(3));
+                task_description.add(taskCursor.getString(4));
+                task_priority.add(taskCursor.getString(5));
+                task_category.add(taskCursor.getString(6));
+                task_time.add(taskCursor.getString(7));
+                task_done.add(taskCursor.getString(8));
+                task_reminder.add(taskCursor.getString(9));
             }
         }
 
         for (int i = 0; i < task_id.size(); i++) {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("_id", task_id.get(i));
+            hashMap.put("_id_", task_id_.get(i));
             hashMap.put("task_date", task_date.get(i));
             hashMap.put("task_title", task_title.get(i));
             hashMap.put("task_description", task_description.get(i));
@@ -306,6 +314,7 @@ public class SyncDatabase {
 
         // Set Notes SQLite into Realtime Database.
         ArrayList<String> note_id = new ArrayList<>();
+        ArrayList<String> note_id_ = new ArrayList<>();
         ArrayList<String> note_title = new ArrayList<>();
         ArrayList<String> note_description = new ArrayList<>();
         ArrayList<String> note_time = new ArrayList<>();
@@ -317,15 +326,17 @@ public class SyncDatabase {
         } else {
             while (noteCursor.moveToNext()) {
                 note_id.add(noteCursor.getString(0));
-                note_title.add(noteCursor.getString(1));
-                note_description.add(noteCursor.getString(2));
-                note_time.add(noteCursor.getString(3));
+                note_id_.add(noteCursor.getString(1));
+                note_title.add(noteCursor.getString(2));
+                note_description.add(noteCursor.getString(3));
+                note_time.add(noteCursor.getString(4));
             }
         }
 
         for (int i = 0; i < note_id.size(); i++) {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("_id", note_id.get(i));
+            hashMap.put("_id_", note_id_.get(i));
             hashMap.put("note_title", note_title.get(i));
             hashMap.put("note_description", note_description.get(i));
             hashMap.put("note_time", note_time.get(i));

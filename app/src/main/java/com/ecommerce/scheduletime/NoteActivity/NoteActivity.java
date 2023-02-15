@@ -33,12 +33,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ecommerce.scheduletime.Adapter.RecyclerViewNotesAdapter;
 import com.ecommerce.scheduletime.Model.Notes;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_notes;
+import com.ecommerce.scheduletime.SQLite.NewNotes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +52,7 @@ public class NoteActivity extends AppCompatActivity {
     List<Notes> notes = new ArrayList<>();
 
     MyDatabaseHelper_notes myDB;
-    ArrayList<String> note_id, note_title, note_description, note_time;
+    ArrayList<String> note_id, note_id_, note_title, note_description, note_time;
     RecyclerViewNotesAdapter recyclerViewNotesAdapter;
     public static boolean filter = true;
 
@@ -167,6 +167,7 @@ public class NoteActivity extends AppCompatActivity {
 
         myDB = new MyDatabaseHelper_notes(NoteActivity.this);
         note_id = new ArrayList<>();
+        note_id_ = new ArrayList<>();
         note_title = new ArrayList<>();
         note_description = new ArrayList<>();
         note_time = new ArrayList<>();
@@ -174,7 +175,7 @@ public class NoteActivity extends AppCompatActivity {
         storeDataInArrays();
 
         for (int i = 0; i < note_id.size(); i++) {
-            notes.add(new Notes(note_id.get(i), note_title.get(i), note_description.get(i), note_time.get(i)));
+            notes.add(new Notes(note_id.get(i), note_id_.get(i), note_title.get(i), note_description.get(i), note_time.get(i)));
         }
         recyclerViewNotesAdapter = new RecyclerViewNotesAdapter(NoteActivity.this, NoteActivity.this, notes);
         recyclerViewNotes.setAdapter(recyclerViewNotesAdapter);
@@ -249,6 +250,7 @@ public class NoteActivity extends AppCompatActivity {
         Intent intent = new Intent(NoteActivity.this, EditNoteActivity.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("id", "");
+        intent.putExtra("id_", "");
         intent.putExtra("title", "");
         intent.putExtra("description", "");
         intent.putExtra("time", "");
@@ -270,6 +272,7 @@ public class NoteActivity extends AppCompatActivity {
 
     void storeDataInArrays() {
         note_id.clear();
+        note_id_.clear();
         note_title.clear();
         note_description.clear();
         note_time.clear();
@@ -288,9 +291,10 @@ public class NoteActivity extends AppCompatActivity {
 
             while (cursor.moveToNext()) {
                 note_id.add(cursor.getString(0));
-                note_title.add(cursor.getString(1));
-                note_description.add(cursor.getString(2));
-                note_time.add(cursor.getString(3));
+                note_id_.add(cursor.getString(1));
+                note_title.add(cursor.getString(2));
+                note_description.add(cursor.getString(3));
+                note_time.add(cursor.getString(4));
             }
         }
 
@@ -322,16 +326,19 @@ public class NoteActivity extends AppCompatActivity {
             tasksTime.set(i, min);
 
             String id = note_id.get(index);
+            String id_ = note_id_.get(index);
             String date = note_title.get(index);
             String title = note_description.get(index);
             String description = note_time.get(index);
 
             note_id.set(index, note_id.get(i));
+            note_id_.set(index, note_id_.get(i));
             note_title.set(index, note_title.get(i));
             note_description.set(index, note_description.get(i));
             note_time.set(index, note_time.get(i));
 
             note_id.set(i, id);
+            note_id_.set(i, id_);
             note_title.set(i, date);
             note_description.set(i, title);
             note_time.set(i, description);

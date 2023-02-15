@@ -72,7 +72,7 @@ public class EditTaskActivity extends AppCompatActivity {
     public static List<String> category_ids_new = new ArrayList<>();
 
     private String id;
-    String date, title, description, priority, category, time, done, reminder;
+    String _id_, date, title, description, priority, category, time, done, reminder;
     TextView textView_month, textView_day, textView_year, textView_hour, textView_minute, textView_time_mode;
     Spinner spinner_reminder_time;
 
@@ -128,14 +128,15 @@ public class EditTaskActivity extends AppCompatActivity {
         Cursor cursor = myDB.readData(id);
         while (cursor.moveToNext()) {
             id = (cursor.getString(0));
-            date = (cursor.getString(1));
-            title = (cursor.getString(2));
-            description = (cursor.getString(3));
-            priority = (cursor.getString(4));
-            category = (cursor.getString(5));
-            time = (cursor.getString(6));
-            done = (cursor.getString(7));
-            reminder = (cursor.getString(8));
+            _id_ = (cursor.getString(1));
+            date = (cursor.getString(2));
+            title = (cursor.getString(3));
+            description = (cursor.getString(4));
+            priority = (cursor.getString(5));
+            category = (cursor.getString(6));
+            time = (cursor.getString(7));
+            done = (cursor.getString(8));
+            reminder = (cursor.getString(9));
         }
 
         reminder_ = Integer.parseInt(reminder);
@@ -666,6 +667,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
     public void edit_task_change(View view) {
         String id_ = id;
+        String _id__ = _id_;
         String date_ = String.valueOf(year_) + "-" + String.valueOf(month_) + "-" + String.valueOf(dayOfMonth_); /** Month_ start with 0 */
         String title_ = edit_title.getText().toString().trim();
         String description_ = edit_description.getText().toString().trim();
@@ -676,7 +678,7 @@ public class EditTaskActivity extends AppCompatActivity {
         int reminder__ = reminder_;
 
         MyDatabaseHelper myDB = new MyDatabaseHelper(EditTaskActivity.this);
-        myDB.updateData(id_, date_, title_, description_, priority_, category_, time_, done_, reminder__);
+        myDB.updateData(id_, _id__, date_, title_, description_, priority_, category_, time_, done_, reminder__);
 
         TASK_NEW_ID = Integer.parseInt(id_);
         if (fOpen == 1) {

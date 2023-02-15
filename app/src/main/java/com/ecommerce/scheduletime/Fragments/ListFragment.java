@@ -2,6 +2,7 @@ package com.ecommerce.scheduletime.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
+import static com.ecommerce.scheduletime.Adapter.RecyclerViewSearchAdapter.searchingTasks;
 import static com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter.idNewTaskPosition;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.bottomAppBar;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.currentTime;
@@ -68,11 +69,9 @@ import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.R;
 import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -92,7 +91,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 public class ListFragment extends Fragment {
 
     MyDatabaseHelper myDB;
-    ArrayList<String> task_id, task_date, task_title, task_description, task_priority, task_category, task_time, task_done, task_reminder;
+    ArrayList<String> task_id, task_id_, task_date, task_title, task_description, task_priority, task_category, task_time, task_done, task_reminder;
     Cursor cursor, cursor_;
 
     List<String> desiredTaskIds = new ArrayList<>();
@@ -195,6 +194,7 @@ public class ListFragment extends Fragment {
 
                             @Override
                             public boolean onQueryTextChange(String s) {
+                                searchingTasks = s;
                                 searchList.clear();
 
 
@@ -224,9 +224,16 @@ public class ListFragment extends Fragment {
 
                         //RecyclerViewSearchDialog
                         recyclerViewSearchList.clear();
+                        dialogSearch.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                searchingTasks = "";
+                            }
+                        });
                         dialogSearch.getRecyclerViewSearch().setLayoutManager(new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false));
 
                         ArrayList<String> task_id = new ArrayList<>();
+                        ArrayList<String> task_id_ = new ArrayList<>();
                         ArrayList<String> task_date = new ArrayList<>();
                         ArrayList<String> task_title = new ArrayList<>();
                         ArrayList<String> task_description = new ArrayList<>();
@@ -246,14 +253,15 @@ public class ListFragment extends Fragment {
 
                             while (cursor.moveToNext()) {
                                 task_id.add(cursor.getString(0));
-                                task_date.add(cursor.getString(1));
-                                task_title.add(cursor.getString(2));
-                                task_description.add(cursor.getString(3));
-                                task_priority.add(cursor.getString(4));
-                                task_category.add(cursor.getString(5));
-                                task_time.add(cursor.getString(6));
-                                task_done.add(cursor.getString(7));
-                                task_reminder.add(cursor.getString(8));
+                                task_id_.add(cursor.getString(1));
+                                task_date.add(cursor.getString(2));
+                                task_title.add(cursor.getString(3));
+                                task_description.add(cursor.getString(4));
+                                task_priority.add(cursor.getString(5));
+                                task_category.add(cursor.getString(6));
+                                task_time.add(cursor.getString(7));
+                                task_done.add(cursor.getString(8));
+                                task_reminder.add(cursor.getString(9));
                             }
                         }
                         for (int i = 0; i < task_id.size(); i++) {
@@ -579,6 +587,7 @@ public class ListFragment extends Fragment {
 
         myDB = new MyDatabaseHelper(getContext());
         task_id = new ArrayList<>();
+        task_id_ = new ArrayList<>();
         task_date = new ArrayList<>();
         task_title = new ArrayList<>();
         task_description = new ArrayList<>();
@@ -631,7 +640,7 @@ public class ListFragment extends Fragment {
             public void onClick(View view) {
 
                 MyDatabaseHelper myDB = new MyDatabaseHelper(context);
-                myDB.addSchedule(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                myDB.addSchedule1(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                         dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                         dialogNewTask.getReminder());
 
@@ -676,6 +685,7 @@ public class ListFragment extends Fragment {
         String desired_d = String.valueOf(dateFormat_d.format(tomorrow.getTime()));
 
         ArrayList<String> task_id = new ArrayList<>();
+        ArrayList<String> task_id_ = new ArrayList<>();
         ArrayList<String> task_date = new ArrayList<>();
         ArrayList<String> task_title = new ArrayList<>();
         ArrayList<String> task_description = new ArrayList<>();
@@ -696,14 +706,15 @@ public class ListFragment extends Fragment {
 
             while (cursor.moveToNext()) {
                 task_id.add(cursor.getString(0));
-                task_date.add(cursor.getString(1));
-                task_title.add(cursor.getString(2));
-                task_description.add(cursor.getString(3));
-                task_priority.add(cursor.getString(4));
-                task_category.add(cursor.getString(5));
-                task_time.add(cursor.getString(6));
-                task_done.add(cursor.getString(7));
-                task_reminder.add(cursor.getString(8));
+                task_id_.add(cursor.getString(1));
+                task_date.add(cursor.getString(2));
+                task_title.add(cursor.getString(3));
+                task_description.add(cursor.getString(4));
+                task_priority.add(cursor.getString(5));
+                task_category.add(cursor.getString(6));
+                task_time.add(cursor.getString(7));
+                task_done.add(cursor.getString(8));
+                task_reminder.add(cursor.getString(9));
             }
         }
 
@@ -724,6 +735,7 @@ public class ListFragment extends Fragment {
         }
 
         task_id.clear();
+        task_id_.clear();
         task_date.clear();
         task_title.clear();
         task_description.clear();
@@ -737,14 +749,15 @@ public class ListFragment extends Fragment {
             Cursor cursor_ = myDatabaseHelper.readData(desiredTaskIds.get(i));
             while (cursor_.moveToNext()) {
                 task_id.add(cursor_.getString(0));
-                task_date.add(cursor_.getString(1));
-                task_title.add(cursor_.getString(2));
-                task_description.add(cursor_.getString(3));
-                task_priority.add(cursor_.getString(4));
-                task_category.add(cursor_.getString(5));
-                task_time.add(cursor_.getString(6));
-                task_done.add(cursor_.getString(7));
-                task_reminder.add(cursor_.getString(8));
+                task_id_.add(cursor_.getString(1));
+                task_date.add(cursor_.getString(2));
+                task_title.add(cursor_.getString(3));
+                task_description.add(cursor_.getString(4));
+                task_priority.add(cursor_.getString(5));
+                task_category.add(cursor_.getString(6));
+                task_time.add(cursor_.getString(7));
+                task_done.add(cursor_.getString(8));
+                task_reminder.add(cursor_.getString(9));
             }
         }
 
@@ -768,6 +781,7 @@ public class ListFragment extends Fragment {
             tasksTime.set(i, min);
 
             String id = task_id.get(index);
+            String id_ = task_id_.get(index);
             String date = task_date.get(index);
             String title = task_title.get(index);
             String description = task_description.get(index);
@@ -778,6 +792,7 @@ public class ListFragment extends Fragment {
             String reminder = task_reminder.get(index);
 
             task_id.set(index, task_id.get(i));
+            task_id_.set(index, task_id_.get(i));
             task_date.set(index, task_date.get(i));
             task_title.set(index, task_title.get(i));
             task_description.set(index, task_description.get(i));
@@ -788,6 +803,7 @@ public class ListFragment extends Fragment {
             task_reminder.set(index, task_reminder.get(i));
 
             task_id.set(i, id);
+            task_id_.set(i, id_);
             task_date.set(i, date);
             task_title.set(i, title);
             task_description.set(i, description);
@@ -804,7 +820,7 @@ public class ListFragment extends Fragment {
         List<Tasks> desiredTasks_ = new ArrayList<>();
 
         for (int i = 0; i < desiredTaskIds.size(); i++) {
-            desiredTasks_.add(new Tasks(task_id.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), task_reminder.get(i)));
+            desiredTasks_.add(new Tasks(task_id.get(i), task_id_.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), task_reminder.get(i)));
         }
         recyclerViewTasksListAdapter_2 = new RecyclerViewTasksAdapter(desiredTasks_, getContext());
         recyclerViewTask_2.setAdapter(recyclerViewTasksListAdapter_2);
@@ -1048,6 +1064,7 @@ public class ListFragment extends Fragment {
         String desired_d = String.valueOf(dateFormat_d.format(desired_date.getTime()));
 
         task_id.clear();
+        task_id_.clear();
         task_date.clear();
         task_title.clear();
         task_description.clear();
@@ -1065,14 +1082,15 @@ public class ListFragment extends Fragment {
 
             while (cursor.moveToNext()) {
                 task_id.add(cursor.getString(0));
-                task_date.add(cursor.getString(1));
-                task_title.add(cursor.getString(2));
-                task_description.add(cursor.getString(3));
-                task_priority.add(cursor.getString(4));
-                task_category.add(cursor.getString(5));
-                task_time.add(cursor.getString(6));
-                task_done.add(cursor.getString(7));
-                task_reminder.add(cursor.getString(8));
+                task_id_.add(cursor.getString(1));
+                task_date.add(cursor.getString(2));
+                task_title.add(cursor.getString(3));
+                task_description.add(cursor.getString(4));
+                task_priority.add(cursor.getString(5));
+                task_category.add(cursor.getString(6));
+                task_time.add(cursor.getString(7));
+                task_done.add(cursor.getString(8));
+                task_reminder.add(cursor.getString(9));
             }
         }
         // tasks of the day
@@ -1092,6 +1110,7 @@ public class ListFragment extends Fragment {
         }
 
         task_id.clear();
+        task_id_.clear();
         task_date.clear();
         task_title.clear();
         task_description.clear();
@@ -1105,14 +1124,15 @@ public class ListFragment extends Fragment {
             cursor_ = myDB.readData(desiredTaskIds.get(i));
             while (cursor_.moveToNext()) {
                 task_id.add(cursor_.getString(0));
-                task_date.add(cursor_.getString(1));
-                task_title.add(cursor_.getString(2));
-                task_description.add(cursor_.getString(3));
-                task_priority.add(cursor_.getString(4));
-                task_category.add(cursor_.getString(5));
-                task_time.add(cursor_.getString(6));
-                task_done.add(cursor_.getString(7));
-                task_reminder.add(cursor_.getString(8));
+                task_id_.add(cursor_.getString(1));
+                task_date.add(cursor_.getString(2));
+                task_title.add(cursor_.getString(3));
+                task_description.add(cursor_.getString(4));
+                task_priority.add(cursor_.getString(5));
+                task_category.add(cursor_.getString(6));
+                task_time.add(cursor_.getString(7));
+                task_done.add(cursor_.getString(8));
+                task_reminder.add(cursor_.getString(9));
             }
         }
 
@@ -1155,6 +1175,7 @@ public class ListFragment extends Fragment {
         }
 
         List<String> id = new ArrayList<>();
+        List<String> id_ = new ArrayList<>();
         List<String> date = new ArrayList<>();
         List<String> title = new ArrayList<>();
         List<String> description = new ArrayList<>();
@@ -1170,6 +1191,7 @@ public class ListFragment extends Fragment {
             if (task_done.get(i).equals("yes")) {
                 desiredTaskIds.add(task_id.get(i));
                 id.add(task_id.get(i));
+                id_.add(task_id_.get(i));
                 date.add(task_date.get(i));
                 title.add(task_title.get(i));
                 description.add(task_description.get(i));
@@ -1183,6 +1205,7 @@ public class ListFragment extends Fragment {
 
         // Update list of Task here
         task_id.clear();
+        task_id_.clear();
         task_date.clear();
         task_title.clear();
         task_description.clear();
@@ -1194,6 +1217,7 @@ public class ListFragment extends Fragment {
 
         for (int i = 0; i < desiredTaskIds.size(); i++) {
             task_id.add(id.get(i));
+            task_id_.add(id_.get(i));
             task_date.add(date.get(i));
             task_title.add(title.get(i));
             task_description.add(description.get(i));
@@ -1227,6 +1251,7 @@ public class ListFragment extends Fragment {
             tasksCategorySize.set(i, max);
 
             String id = task_id.get(index);
+            String id_ = task_id_.get(index);
             String date = task_date.get(index);
             String title = task_title.get(index);
             String description = task_description.get(index);
@@ -1237,6 +1262,7 @@ public class ListFragment extends Fragment {
             String reminder = task_reminder.get(index);
 
             task_id.set(index, task_id.get(i));
+            task_id_.set(index, task_id_.get(i));
             task_date.set(index, task_date.get(i));
             task_title.set(index, task_title.get(i));
             task_description.set(index, task_description.get(i));
@@ -1247,6 +1273,7 @@ public class ListFragment extends Fragment {
             task_reminder.set(index, task_reminder.get(i));
 
             task_id.set(i, id);
+            task_id_.set(i, id_);
             task_date.set(i, date);
             task_title.set(i, title);
             task_description.set(i, description);
@@ -1267,6 +1294,7 @@ public class ListFragment extends Fragment {
         }
 
         ArrayList<String> id = new ArrayList<>();
+        ArrayList<String> id_ = new ArrayList<>();
         ArrayList<String> date = new ArrayList<>();
         ArrayList<String> title = new ArrayList<>();
         ArrayList<String> description = new ArrayList<>();
@@ -1279,6 +1307,7 @@ public class ListFragment extends Fragment {
         for (int i = 0; i < desiredTaskIds.size(); i++) {
             if (task_priority.get(i).equals("high")) {
                 id.add(task_id.get(i));
+                id_.add(task_id_.get(i));
                 date.add(task_date.get(i));
                 title.add(task_title.get(i));
                 description.add(task_description.get(i));
@@ -1292,6 +1321,7 @@ public class ListFragment extends Fragment {
         for (int i = 0; i < desiredTaskIds.size(); i++) {
             if (task_priority.get(i).equals("medium")) {
                 id.add(task_id.get(i));
+                id_.add(task_id_.get(i));
                 date.add(task_date.get(i));
                 title.add(task_title.get(i));
                 description.add(task_description.get(i));
@@ -1305,6 +1335,7 @@ public class ListFragment extends Fragment {
         for (int i = 0; i < desiredTaskIds.size(); i++) {
             if (task_priority.get(i).equals("low")) {
                 id.add(task_id.get(i));
+                id_.add(task_id_.get(i));
                 date.add(task_date.get(i));
                 title.add(task_title.get(i));
                 description.add(task_description.get(i));
@@ -1318,6 +1349,7 @@ public class ListFragment extends Fragment {
         for (int i = 0; i < desiredTaskIds.size(); i++) {
             if (task_priority.get(i).equals("default")) {
                 id.add(task_id.get(i));
+                id_.add(task_id_.get(i));
                 date.add(task_date.get(i));
                 title.add(task_title.get(i));
                 description.add(task_description.get(i));
@@ -1332,6 +1364,7 @@ public class ListFragment extends Fragment {
         // Update list of Task here
         for (int i = 0; i < desiredTaskIds.size(); i++) {
             task_id.set(i, id.get(i));
+            task_id_.set(i, id_.get(i));
             task_date.set(i, date.get(i));
             task_title.set(i, title.get(i));
             task_description.set(i, description.get(i));
@@ -1401,7 +1434,7 @@ public class ListFragment extends Fragment {
         //RecyclerView
         desiredTasks_.clear();
         for (int i = 0; i < desiredTaskIds.size(); i++) {
-            desiredTasks_.add(new Tasks(task_id.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), task_reminder.get(i)));
+            desiredTasks_.add(new Tasks(task_id.get(i), task_id_.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), task_reminder.get(i)));
         }
         recyclerViewTasksListAdapter_1 = new RecyclerViewTasksAdapter(desiredTasks_, getContext());
         recyclerViewTask_1.setAdapter(recyclerViewTasksListAdapter_1);
@@ -1520,10 +1553,10 @@ public class ListFragment extends Fragment {
                         tasks.remove(position);
                         recyclerViewTasksListAdapter_1.notifyItemRemoved(position);
                         if (tasks_.getTask_done().equals("no")) {
-                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "yes", Integer.parseInt(tasks_.getTask_reminder()));
+                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_id_(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "yes", Integer.parseInt(tasks_.getTask_reminder()));
                             Toast.makeText(getContext(), "Task : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.added_to_tasks_done_with_successfully), Toast.LENGTH_LONG).show();
                         } else if (tasks_.getTask_done().equals("yes")) {
-                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
+                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_id_(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
                             Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.remove_from_tasks_done), Toast.LENGTH_LONG).show();
                         }
 

@@ -535,7 +535,9 @@ public class DialogNewTask extends Dialog {
         });
 
         calendar_end.setTime(date_selected);
-        calendar_end.set(Calendar.MONTH, date_selected.getMonth() + 1);
+        System.out.println("1/from : " + String.valueOf(calendar_start.getTime()) + " to : " + String.valueOf(calendar_end.getTime()));
+        calendar_end.add(Calendar.MONTH, 1);
+        System.out.println("2/from : " + String.valueOf(calendar_start.getTime()) + " to : " + String.valueOf(calendar_end.getTime()));
         year_end = calendar_end.get(Calendar.YEAR);
         month_end = calendar_end.get(Calendar.MONTH);
         dayOfMonth_end = calendar_end.get(Calendar.DAY_OF_MONTH);

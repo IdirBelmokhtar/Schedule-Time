@@ -2,6 +2,7 @@ package com.ecommerce.scheduletime.Fragments;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
+import static com.ecommerce.scheduletime.Adapter.RecyclerViewSearchAdapter.searchingTasks;
 import static com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter.idNewTaskPosition;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.bottomAppBar;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.currentTime;
@@ -62,7 +63,6 @@ import com.ecommerce.scheduletime.Adapter.RecyclerViewSearchAdapter;
 import com.ecommerce.scheduletime.Adapter.RecyclerViewTasksAdapter;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Dialog.DialogSearch;
-import com.ecommerce.scheduletime.HomeActivity.EditTaskActivity;
 import com.ecommerce.scheduletime.Model.RecyclerViewSearch;
 import com.ecommerce.scheduletime.Model.Tasks;
 import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
@@ -83,7 +83,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -91,7 +90,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 public class CalendarFragment extends Fragment {
 
     MyDatabaseHelper myDB;
-    ArrayList<String> task_id, task_date, task_title, task_description, task_priority, task_category, task_time, task_done, task_reminder;
+    ArrayList<String> task_id, task_id_, task_date, task_title, task_description, task_priority, task_category, task_time, task_done, task_reminder;
     Cursor cursor, cursor_;
 
     List<String> desiredTaskIds = new ArrayList<>();
@@ -118,7 +117,7 @@ public class CalendarFragment extends Fragment {
     private boolean scroll = false;
     Tasks tasks_ = null;
 
-    public static RecyclerViewTasksAdapter recyclerViewTasksCalendarAdapter;
+    public RecyclerViewTasksAdapter recyclerViewTasksCalendarAdapter;
 
     //private List<Tasks> tasks;
     private RecyclerView recyclerViewTask;
@@ -196,6 +195,7 @@ public class CalendarFragment extends Fragment {
 
                             @Override
                             public boolean onQueryTextChange(String s) {
+                                searchingTasks = s;
                                 searchList.clear();
 
 
@@ -225,10 +225,17 @@ public class CalendarFragment extends Fragment {
 
                         //RecyclerViewSearchDialog
                         recyclerViewSearchList.clear();
+                        dialogSearch.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                searchingTasks = "";
+                            }
+                        });
                         dialogSearch.getRecyclerViewSearch().setLayoutManager(new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false));
                         Uri path2 = Uri.parse("android.resource://com.ecommerce.eshop/" + R.drawable.schedule_time_icon);
 
                         ArrayList<String> task_id = new ArrayList<>();
+                        ArrayList<String> task_id_ = new ArrayList<>();
                         ArrayList<String> task_date = new ArrayList<>();
                         ArrayList<String> task_title = new ArrayList<>();
                         ArrayList<String> task_description = new ArrayList<>();
@@ -248,14 +255,15 @@ public class CalendarFragment extends Fragment {
 
                             while (cursor.moveToNext()) {
                                 task_id.add(cursor.getString(0));
-                                task_date.add(cursor.getString(1));
-                                task_title.add(cursor.getString(2));
-                                task_description.add(cursor.getString(3));
-                                task_priority.add(cursor.getString(4));
-                                task_category.add(cursor.getString(5));
-                                task_time.add(cursor.getString(6));
-                                task_done.add(cursor.getString(7));
-                                task_reminder.add(cursor.getString(8));
+                                task_id_.add(cursor.getString(1));
+                                task_date.add(cursor.getString(2));
+                                task_title.add(cursor.getString(3));
+                                task_description.add(cursor.getString(4));
+                                task_priority.add(cursor.getString(5));
+                                task_category.add(cursor.getString(6));
+                                task_time.add(cursor.getString(7));
+                                task_done.add(cursor.getString(8));
+                                task_reminder.add(cursor.getString(9));
                             }
                         }
                         for (int i = 0; i < task_id.size(); i++) {
@@ -469,6 +477,7 @@ public class CalendarFragment extends Fragment {
 
         myDB = new MyDatabaseHelper(getContext());
         task_id = new ArrayList<>();
+        task_id_ = new ArrayList<>();
         task_date = new ArrayList<>();
         task_title = new ArrayList<>();
         task_description = new ArrayList<>();
@@ -547,6 +556,7 @@ public class CalendarFragment extends Fragment {
         compactCalendarView.removeAllEvents();
 
         ArrayList<String> task_id = new ArrayList<>();
+        ArrayList<String> task_id_ = new ArrayList<>();
         ArrayList<String> task_date = new ArrayList<>();
         ArrayList<String> task_title = new ArrayList<>();
         ArrayList<String> task_description = new ArrayList<>();
@@ -561,12 +571,13 @@ public class CalendarFragment extends Fragment {
         } else {
             while (taskCursor.moveToNext()) {
                 task_id.add(taskCursor.getString(0));
-                task_date.add(taskCursor.getString(1));
-                task_title.add(taskCursor.getString(2));
-                task_description.add(taskCursor.getString(3));
-                task_priority.add(taskCursor.getString(4));
-                task_category.add(taskCursor.getString(5));
-                task_time.add(taskCursor.getString(6));
+                task_id_.add(taskCursor.getString(1));
+                task_date.add(taskCursor.getString(2));
+                task_title.add(taskCursor.getString(3));
+                task_description.add(taskCursor.getString(4));
+                task_priority.add(taskCursor.getString(5));
+                task_category.add(taskCursor.getString(6));
+                task_time.add(taskCursor.getString(7));
             }
         }
 
@@ -655,7 +666,7 @@ public class CalendarFragment extends Fragment {
             public void onClick(View view) {
 
                 MyDatabaseHelper myDB = new MyDatabaseHelper(context);
-                myDB.addSchedule(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                myDB.addSchedule1(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                         dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                         dialogNewTask.getReminder());
 
@@ -907,6 +918,7 @@ public class CalendarFragment extends Fragment {
         String desired_d = String.valueOf(dateFormat_d.format(desired_date.getTime()));
 
         task_id.clear();
+        task_id_.clear();
         task_date.clear();
         task_title.clear();
         task_description.clear();
@@ -926,14 +938,15 @@ public class CalendarFragment extends Fragment {
 
             while (cursor.moveToNext()) {
                 task_id.add(cursor.getString(0));
-                task_date.add(cursor.getString(1));
-                task_title.add(cursor.getString(2));
-                task_description.add(cursor.getString(3));
-                task_priority.add(cursor.getString(4));
-                task_category.add(cursor.getString(5));
-                task_time.add(cursor.getString(6));
-                task_done.add(cursor.getString(7));
-                task_reminder.add(cursor.getString(8));
+                task_id_.add(cursor.getString(1));
+                task_date.add(cursor.getString(2));
+                task_title.add(cursor.getString(3));
+                task_description.add(cursor.getString(4));
+                task_priority.add(cursor.getString(5));
+                task_category.add(cursor.getString(6));
+                task_time.add(cursor.getString(7));
+                task_done.add(cursor.getString(8));
+                task_reminder.add(cursor.getString(9));
             }
         }
 
@@ -944,6 +957,7 @@ public class CalendarFragment extends Fragment {
             }
         }
         task_id.clear();
+        task_id_.clear();
         task_date.clear();
         task_title.clear();
         task_description.clear();
@@ -957,14 +971,15 @@ public class CalendarFragment extends Fragment {
             cursor_ = myDB.readData(desiredTaskIds.get(i));
             while (cursor_.moveToNext()) {
                 task_id.add(cursor_.getString(0));
-                task_date.add(cursor_.getString(1));
-                task_title.add(cursor_.getString(2));
-                task_description.add(cursor_.getString(3));
-                task_priority.add(cursor_.getString(4));
-                task_category.add(cursor_.getString(5));
-                task_time.add(cursor_.getString(6));
-                task_done.add(cursor_.getString(7));
-                task_reminder.add(cursor_.getString(8));
+                task_id_.add(cursor_.getString(1));
+                task_date.add(cursor_.getString(2));
+                task_title.add(cursor_.getString(3));
+                task_description.add(cursor_.getString(4));
+                task_priority.add(cursor_.getString(5));
+                task_category.add(cursor_.getString(6));
+                task_time.add(cursor_.getString(7));
+                task_done.add(cursor_.getString(8));
+                task_reminder.add(cursor_.getString(9));
             }
         }
 
@@ -1001,6 +1016,7 @@ public class CalendarFragment extends Fragment {
             tasksTime.set(i, min);
 
             String id = task_id.get(index);
+            String id_ = task_id_.get(index);
             String date = task_date.get(index);
             String title = task_title.get(index);
             String description = task_description.get(index);
@@ -1011,6 +1027,7 @@ public class CalendarFragment extends Fragment {
             String reminder = task_reminder.get(index);
 
             task_id.set(index, task_id.get(i));
+            task_id_.set(index, task_id_.get(i));
             task_date.set(index, task_date.get(i));
             task_title.set(index, task_title.get(i));
             task_description.set(index, task_description.get(i));
@@ -1021,6 +1038,7 @@ public class CalendarFragment extends Fragment {
             task_reminder.set(index, task_reminder.get(i));
 
             task_id.set(i, id);
+            task_id_.set(i, id_);
             task_date.set(i, date);
             task_title.set(i, title);
             task_description.set(i, description);
@@ -1039,7 +1057,7 @@ public class CalendarFragment extends Fragment {
         recyclerViewTask.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         desiredTasks_.clear();
         for (int i = 0; i < desiredTaskIds.size(); i++) {
-            desiredTasks_.add(new Tasks(task_id.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), task_reminder.get(i)));
+            desiredTasks_.add(new Tasks(task_id.get(i), task_id_.get(i), task_date.get(i), task_title.get(i), task_description.get(i), task_priority.get(i), task_category.get(i), task_time.get(i), task_done.get(i), task_reminder.get(i)));
         }
         recyclerViewTasksCalendarAdapter = new RecyclerViewTasksAdapter(desiredTasks_, getContext());
         recyclerViewTask.setAdapter(recyclerViewTasksCalendarAdapter);
@@ -1156,10 +1174,10 @@ public class CalendarFragment extends Fragment {
                         tasks_ = tasks.get(position);
                         recyclerViewTasksCalendarAdapter.notifyDataSetChanged();
                         if (tasks_.getTask_done().equals("no")) {
-                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "yes", Integer.parseInt(tasks_.getTask_reminder()));
+                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_id_(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "yes", Integer.parseInt(tasks_.getTask_reminder()));
                             Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.added_to_tasks_done_with_successfully), Toast.LENGTH_LONG).show();
                         } else if (tasks_.getTask_done().equals("yes")) {
-                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
+                            myDB.updateData(tasks_.getTask_id(), tasks_.getTask_id_(), tasks_.getTask_date(), tasks_.getTask_title(), tasks_.getTask_description(), tasks_.getTask_priority(), tasks_.getTask_category(), tasks_.getTask_time(), "no", Integer.parseInt(tasks_.getTask_reminder()));
                             Toast.makeText(getContext(), getResources().getString(R.string.task) + " : ( " + tasks_.getTask_title() + " ) " + getResources().getString(R.string.remove_from_tasks_done), Toast.LENGTH_LONG).show();
                         }
                         break;
@@ -1208,6 +1226,94 @@ public class CalendarFragment extends Fragment {
 
         }).attachToRecyclerView(recyclerViewTask);
 
+    }
+
+    private void delayText(int i, List<String> color, TextView textView, String colorCode) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (i < color.size()) {
+                    textView.setTextColor(Color.parseColor("#" + color.get(i) + colorCode));
+                    delayText(i + 1, color, textView, colorCode);
+                }
+            }
+        }, 8);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 7 && resultCode == RESULT_OK) {
+            String value = data.getStringExtra("key");
+            // Update the UI based on the value
+            if (value.equals("8")) {
+                //restart calendarFragment and scroll to new task
+                ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, new CalendarFragment())
+                        .commit();
+                scrollToNewTask = true;
+            }
+        }
+    }
+
+    private void refreshFragment() {
+        if (refresh) {
+            refresh = false;
+            try {
+                Fragment fragment = new CalendarFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainerView, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+                scrollToNewTask = true;
+            } catch (Exception e) {
+                try {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.save_change), Toast.LENGTH_SHORT).show();
+                }catch (Exception ignored) {
+                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshFragment();
+                }
+            }, 1000);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (getView() == null) {
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    // handle back button's click listener
+                    if (expanded) {
+                        nestedScroll_calendar.smoothScrollTo(0, compactCalendarView.getTop());
+                        appBarLayout.setExpanded(true);
+                    } else {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentContainerView, new ListFragment())
+                                .addToBackStack(null)
+                                .commit();
+                        fOpen = 1;
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     /*
@@ -1322,92 +1428,4 @@ public class CalendarFragment extends Fragment {
                 : (s.substring(0, s.length() - 1));
     }
 */
-    private void delayText(int i, List<String> color, TextView textView, String colorCode) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (i < color.size()) {
-                    textView.setTextColor(Color.parseColor("#" + color.get(i) + colorCode));
-                    delayText(i + 1, color, textView, colorCode);
-                }
-            }
-        }, 8);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 7 && resultCode == RESULT_OK) {
-            String value = data.getStringExtra("key");
-            // Update the UI based on the value
-            if (value.equals("8")) {
-                //restart calendarFragment and scroll to new task
-                ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new CalendarFragment())
-                        .commit();
-                scrollToNewTask = true;
-            }
-        }
-    }
-
-    private void refreshFragment() {
-        if (refresh) {
-            refresh = false;
-            try {
-                Fragment fragment = new CalendarFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainerView, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-                scrollToNewTask = true;
-            } catch (Exception e) {
-                try {
-                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.save_change), Toast.LENGTH_SHORT).show();
-                }catch (Exception ignored) {
-                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-                }
-            }
-        } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    refreshFragment();
-                }
-            }, 1000);
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (getView() == null) {
-            return;
-        }
-
-        getView().setFocusableInTouchMode(true);
-        getView().requestFocus();
-        getView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                if (keyEvent.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    // handle back button's click listener
-                    if (expanded) {
-                        nestedScroll_calendar.smoothScrollTo(0, compactCalendarView.getTop());
-                        appBarLayout.setExpanded(true);
-                    } else {
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragmentContainerView, new ListFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        fOpen = 1;
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
-    }
-
 }

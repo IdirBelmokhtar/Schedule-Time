@@ -311,8 +311,13 @@ public class MainActivity extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
+        createTriggers();
         //startActivity(new Intent(this, MainActivity2.class));
         //new SyncDatabase(MainActivity.this);
+    }
+
+    private void createTriggers() {
+
     }
 
     //Add new Task
@@ -331,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
                 if (dialogNewTask.getRepeat() == 0) {
                     // Repeat One time.
                     MyDatabaseHelper myDB = new MyDatabaseHelper(MainActivity.this);
-                    myDB.addSchedule(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                    myDB.addSchedule1(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                             dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                             dialogNewTask.getReminder());
 
@@ -372,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         while (calendar_start.getTimeInMillis() <= calendar_end.getTimeInMillis()) {
                             String date = String.valueOf(calendar_end.get(Calendar.YEAR)) + "-" + String.valueOf(calendar_end.get(Calendar.MONTH) + "-" + String.valueOf(calendar_end.get(Calendar.DAY_OF_MONTH)));
-                            myDB.addSchedule(date, dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                            myDB.addSchedule1(date, dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                                     dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                                     dialogNewTask.getReminder());
 
@@ -424,7 +429,7 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < days.size(); i++) {
                                 if (calendar_end.get(Calendar.DAY_OF_WEEK) == days.get(i)) {
                                     String date = String.valueOf(calendar_end.get(Calendar.YEAR)) + "-" + String.valueOf(calendar_end.get(Calendar.MONTH) + "-" + String.valueOf(calendar_end.get(Calendar.DAY_OF_MONTH)));
-                                    myDB.addSchedule(date, dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                                    myDB.addSchedule1(date, dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                                             dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                                             dialogNewTask.getReminder());
                                 }

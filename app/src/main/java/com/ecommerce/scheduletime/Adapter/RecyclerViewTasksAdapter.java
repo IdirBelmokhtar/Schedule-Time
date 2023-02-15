@@ -265,7 +265,6 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
 
                 //Cursor cursor = myDB_category.readData_id_(category_ids.get(i));
                 Cursor cursor = myDB_category.readData_id_(category_ids.get(i));
-                System.out.println(cursor.getCount());
                 while (cursor.moveToNext()) {
                         category_id = (cursor.getString(0));
                         category_id_ = (cursor.getString(1));
@@ -277,7 +276,6 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                 int color_ = category_color;
                 mDots_category[i] = new CircleImageView(context);
                 //mDots_category[i].setTextColor(context.getResources().getColor(color_));
-                System.out.println("category_color" + String.valueOf(category_color));
                 Drawable colored = new ColorDrawable(context.getResources().getColor(color_));
                 Drawable image = context.getResources().getDrawable(R.drawable.ic_size_12); // We can add image from Drawable
 
@@ -437,7 +435,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                             public void onClick(View view) {
 
                                 MyDatabaseHelper myDB = new MyDatabaseHelper(context);
-                                myDB.addSchedule(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                                myDB.addSchedule1(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                                         dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                                         dialogNewTask.getReminder());
 

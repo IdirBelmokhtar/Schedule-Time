@@ -1,6 +1,9 @@
 package com.ecommerce.scheduletime.CreateAccount.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.ecommerce.scheduletime.Sync.SyncDatabase.getCategories;
+import static com.ecommerce.scheduletime.Sync.SyncDatabase.getNotes;
+import static com.ecommerce.scheduletime.Sync.SyncDatabase.getTasks;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.app.ProgressDialog;
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -319,10 +323,27 @@ public class LoginFragment extends Fragment {
         Toast.makeText(getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
         //Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
-        // Start MainActivity.
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        startScheduleTime();
+    }
+
+    private void startScheduleTime() {
+        if (getTasks && getCategories && getNotes){
+            // Start MainActivity.
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startScheduleTime();
+
+                    SharedPreferences.Editor editor = getContext().getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
+                    editor.putBoolean("change", true);
+                    editor.apply();
+                }
+            }, 1000);
+        }
     }
 
     private void SignInWithGoogle() {

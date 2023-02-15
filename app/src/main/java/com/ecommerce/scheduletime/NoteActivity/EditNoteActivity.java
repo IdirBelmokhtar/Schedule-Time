@@ -6,12 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -127,11 +125,16 @@ public class EditNoteActivity extends AppCompatActivity {
                                 "-" + String.valueOf(calendar.getTime().getHours()) +
                                 "-" + String.valueOf(calendar.getTime().getMinutes());
                         if (id.equals("")) {
-                            myDB.addBook(title.getText().toString().trim(),
+                            myDB.addBook1(title.getText().toString().trim(),
                                     description.getText().toString().trim(),
                                     time_);
                         } else {
-                            myDB.updateData(id,
+                            String _id_ = "_id_ = vide";
+                            Cursor cursor = myDB.readData(id);
+                            while (cursor.moveToNext()) {
+                                _id_ = cursor.getString(1);
+                            }
+                            myDB.updateData(id, _id_,
                                     title.getText().toString().trim(),
                                     description.getText().toString().trim(),
                                     time_);

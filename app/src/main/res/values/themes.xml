@@ -209,7 +209,7 @@
         <item name="compactCalendarTextColor">@color/blue</item>
         <item name="compactCalendarCurrentSelectedDayBackgroundColor">@color/blue_3</item>
         <item name="compactCalendarCurrentDayBackgroundColor">@color/blue__</item>
-        <item name="compactCalendarMultiEventIndicatorColor">@color/white</item>
+        <item name="compactCalendarMultiEventIndicatorColor">@color/blue</item>
         <item name="compactCalendarCurrentSelectedDayTextColor">@color/white_</item>
     </style>
 

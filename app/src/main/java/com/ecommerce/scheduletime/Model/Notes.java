@@ -2,14 +2,15 @@ package com.ecommerce.scheduletime.Model;
 
 
 public class Notes {
-    private String id, title, description, time;
+    private String id, _id_,  title, description, time;
 
     public Notes(){
 
     }
 
-    public Notes(String id, String title, String date, String time) {
+    public Notes(String id, String _id_, String title, String date, String time) {
         this.id = id;
+        this._id_ = _id_;
         this.title = title;
         this.description = date;
         this.time = time;
@@ -17,6 +18,10 @@ public class Notes {
 
     public String getId() {
         return id;
+    }
+
+    public String get_id_() {
+        return _id_;
     }
 
     public void setId(String id) {

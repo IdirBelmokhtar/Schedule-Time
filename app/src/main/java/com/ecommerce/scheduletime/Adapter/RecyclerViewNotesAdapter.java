@@ -242,7 +242,7 @@ public class RecyclerViewNotesAdapter extends RecyclerView.Adapter<RecyclerViewN
                                 public void onClick(View view) {
 
                                     MyDatabaseHelper myDB = new MyDatabaseHelper(context);
-                                    myDB.addSchedule(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
+                                    myDB.addSchedule1(dialogNewTask.getDate(), dialogNewTask.getTitle(), dialogNewTask.getDescription(),
                                             dialogNewTask.getPriority(), dialogNewTask.getCategory(), dialogNewTask.getTime(), "no",
                                             dialogNewTask.getReminder());
 

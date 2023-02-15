@@ -3,7 +3,11 @@ package com.ecommerce.scheduletime.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.format.DateFormat;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,7 @@ import java.util.List;
 
 public class RecyclerViewSearchAdapter extends RecyclerView.Adapter<RecyclerViewSearchAdapter.RecyclerViewSearchHolder> {
 
+    public static String searchingTasks = "";
     private List<RecyclerViewSearch> recyclerViewSearch;
     private Context context;
 
@@ -48,7 +53,22 @@ public class RecyclerViewSearchAdapter extends RecyclerView.Adapter<RecyclerView
         RecyclerViewSearch search = recyclerViewSearch.get(position);
 
         String id = search.getId();
-        holder.search_title.setText(search.getTitle());
+
+        // Surbrillance les caractéres de recherche.
+        String noteTitle = search.getTitle();
+        String highlight = searchingTasks;
+
+        if (noteTitle.contains(highlight)) {
+            int start = noteTitle.indexOf(highlight);
+            int end = start + highlight.length();
+
+            SpannableString spannable = new SpannableString(noteTitle);
+            spannable.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            holder.search_title.setText(spannable);
+        } else {
+            holder.search_title.setText(noteTitle);
+        }
 
         List<String> string_date = Arrays.asList(search.getDate().split("-"));
         Calendar calendar = Calendar.getInstance();
@@ -59,6 +79,8 @@ public class RecyclerViewSearchAdapter extends RecyclerView.Adapter<RecyclerView
         holder.search_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //((Activity) context).onBackPressed();// to dismiss the dialogSearch.
+                searchingTasks = "";
                 // Edit Your Task in EditTaskActivity.class
                 Intent intent = new Intent(context, EditTaskActivity.class);
                 intent.putExtra("id", id);
