@@ -67,6 +67,11 @@ public class ForgetPasswordFragment extends Fragment {
             return;
         }
         //progress Dialog
+        progress(string_email);
+    }
+
+    private void progress(String string_email) {
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);

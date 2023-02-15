@@ -1,8 +1,5 @@
 package com.ecommerce.scheduletime.HomeActivity;
 
-import static com.ecommerce.scheduletime.Fragments.CalendarFragment.compactCalendarView;
-import static com.ecommerce.scheduletime.Fragments.CalendarFragment.createEvents;
-import static com.ecommerce.scheduletime.Fragments.CalendarFragment.recyclerViewTasksCalendarAdapter;
 import static com.ecommerce.scheduletime.Fragments.CalendarFragment.refresh;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.calendarViewHorizontal_layout;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.endDate;
@@ -22,7 +19,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -50,7 +46,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.ecommerce.scheduletime.Dialog.BottomDialogCategory;
-import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_category;
@@ -69,7 +64,7 @@ public class EditTaskActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     MyDatabaseHelper_category myDB_category;
-    String category_id, category_name, category_color, category_deleted;
+    String category_id, category_id_, category_name, category_color, category_deleted;
     Button[] category_btn;
     LinearLayout categorys_layout_;
     CircleImageView plus_category_add;
@@ -468,12 +463,13 @@ public class EditTaskActivity extends AppCompatActivity {
 
             for (int i = 0; i < category_btn.length; i++) {
 
-                Cursor cursor = myDB_category.readData(category_ids_new.get(i));
+                Cursor cursor = myDB_category.readData_id_(category_ids_new.get(i));
                 while (cursor.moveToNext()) {
                     category_id = (cursor.getString(0));
-                    category_name = (cursor.getString(1));
-                    category_color = (cursor.getString(2));
-                    category_deleted = (cursor.getString(3));
+                    category_id_ = (cursor.getString(1));
+                    category_name = (cursor.getString(2));
+                    category_color = (cursor.getString(3));
+                    category_deleted = (cursor.getString(4));
                 }
 
                 category_btn[i] = new Button(EditTaskActivity.this);

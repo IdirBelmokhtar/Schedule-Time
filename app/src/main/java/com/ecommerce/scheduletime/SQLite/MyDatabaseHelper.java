@@ -145,7 +145,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                         intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
 
-                alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
+                //alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -234,7 +234,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
                 Calendar nowTime = Calendar.getInstance();
                 if (nowTime.getTimeInMillis() < startTime.getTimeInMillis()) {
-                    alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
+                    //alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
                 }
             } catch (NumberFormatException e) {
                 e.printStackTrace();
@@ -265,7 +265,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllData() {
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }

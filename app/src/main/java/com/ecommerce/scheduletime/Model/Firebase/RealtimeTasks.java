@@ -1,14 +1,14 @@
-package com.ecommerce.scheduletime.Model;
+package com.ecommerce.scheduletime.Model.Firebase;
 
-public class Tasks {
-    String task_id, task_date, task_title, task_description, task_priority, task_category, task_time, task_done, task_reminder;
+public class RealtimeTasks {
+    String _id, task_date, task_title, task_description, task_priority, task_category, task_time, task_done, task_reminder;
 
-    public Tasks(){
+    public RealtimeTasks(){
 
     }
 
-    public Tasks(String task_id, String task_date, String task_title, String task_description, String task_priority, String task_category, String task_time, String task_done, String task_reminder) {
-        this.task_id = task_id;
+    public RealtimeTasks(String _id, String task_date, String task_title, String task_description, String task_priority, String task_category, String task_time, String task_done, String task_reminder) {
+        this._id = _id;
         this.task_date = task_date;
         this.task_title = task_title;
         this.task_description = task_description;
@@ -19,8 +19,8 @@ public class Tasks {
         this.task_reminder = task_reminder;
     }
 
-    public String getTask_id() {
-        return task_id;
+    public String get_id() {
+        return _id;
     }
 
     public String getTask_date() {

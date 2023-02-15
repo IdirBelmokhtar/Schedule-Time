@@ -4,6 +4,10 @@ package com.ecommerce.scheduletime.Model;
 public class Notes {
     private String id, title, description, time;
 
+    public Notes(){
+
+    }
+
     public Notes(String id, String title, String date, String time) {
         this.id = id;
         this.title = title;

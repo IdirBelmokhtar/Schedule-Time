@@ -42,7 +42,7 @@ public class BottomDialogCategory extends Dialog {
     private LinearLayout categorys_layout, add_category_layout;
 
     MyDatabaseHelper_category myDB_category;
-    ArrayList<String> category_id, category_name, category_color, category_deleted;
+    ArrayList<String> category_id, category_id_, category_name, category_color, category_deleted;
     Button[] category_btn;
 
     List<String> category = new ArrayList<>();
@@ -74,6 +74,7 @@ public class BottomDialogCategory extends Dialog {
 
         myDB_category = new MyDatabaseHelper_category(getContext());
         category_id = new ArrayList<>();
+        category_id_ = new ArrayList<>();
         category_name = new ArrayList<>();
         category_color = new ArrayList<>();
         category_deleted = new ArrayList<>();
@@ -152,7 +153,7 @@ public class BottomDialogCategory extends Dialog {
                 } else if (editText_category_icon_.getVisibility() == View.VISIBLE) {
                     //Save
                     MyDatabaseHelper_category myDB = new MyDatabaseHelper_category(getContext());
-                    myDB.addCategory(editText_category.getText().toString().trim(), color_, "no");
+                    myDB.addCategory1(editText_category.getText().toString().trim(), color_, "no");
 
                     category.clear();
                     storeDataCategoryInArraysAndLayout();
@@ -208,6 +209,7 @@ public class BottomDialogCategory extends Dialog {
 
     private void storeDataCategoryInArraysAndLayout() {
         category_id.clear();
+        category_id_.clear();
         category_name.clear();
         category_color.clear();
         category_deleted.clear();
@@ -215,9 +217,10 @@ public class BottomDialogCategory extends Dialog {
         Cursor cursor = myDB_category.readAllData();
         while (cursor.moveToNext()) {
             category_id.add(cursor.getString(0));
-            category_name.add(cursor.getString(1));
-            category_color.add(cursor.getString(2));
-            category_deleted.add(cursor.getString(3));
+            category_id_.add(cursor.getString(1));
+            category_name.add(cursor.getString(2));
+            category_color.add(cursor.getString(3));
+            category_deleted.add(cursor.getString(4));
         }
 
         category_btn = new Button[cursor.getCount()];
@@ -245,12 +248,12 @@ public class BottomDialogCategory extends Dialog {
                     @Override
                     public void onClick(View view) {
                         for (int j = 0; j < category_ids_new.size(); j++) {
-                            if (category_ids_new.get(j).equals(category_id.get(finalI))){
+                            if (category_ids_new.get(j).equals(category_id_.get(finalI))){
                                 Toast.makeText(getContext(), getContext().getResources().getString(R.string.this_category_exist), Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         }
-                        category_ids_new.add(category_id.get(finalI).toString());
+                        category_ids_new.add(category_id_.get(finalI).toString());
                         dismiss();
                     }
                 });
@@ -277,7 +280,7 @@ public class BottomDialogCategory extends Dialog {
                             @Override
                             public void onClick(View view) {
 
-                                myDB_category.updateData(category_id.get(finalI), category_name.get(finalI), Integer.parseInt(category_color.get(finalI)), "yes");
+                                myDB_category.updateData(category_id.get(finalI), category_id_.get(finalI), category_name.get(finalI), Integer.parseInt(category_color.get(finalI)), "yes");
                                 storeDataCategoryInArraysAndLayout();
 
                                 dialog.dismiss();

@@ -65,7 +65,8 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
     private Context context;
 
     MyDatabaseHelper_category myDB_category;
-    String category_id, category_name, category_color, category_deleted;
+    String category_id, category_id_, category_name, category_deleted;
+    int category_color;
     CircleImageView[] mDots_category;
     Button[] category_btn;
 
@@ -261,18 +262,22 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
             holder.task_category_layout.removeAllViews();
 
             for (int i = 0; i < mDots_category.length; i++) {
-                //The Unicode and HTML Entities of Bullet Point is (&#8226;) you find it here https://unicode-table.com/fr/html-entities/
 
-                Cursor cursor = myDB_category.readData(category_ids.get(i));
+                //Cursor cursor = myDB_category.readData_id_(category_ids.get(i));
+                Cursor cursor = myDB_category.readData_id_(category_ids.get(i));
+                System.out.println(cursor.getCount());
                 while (cursor.moveToNext()) {
-                    category_id = (cursor.getString(0));
-                    category_name = (cursor.getString(1));
-                    category_color = (cursor.getString(2));
-                    category_deleted = (cursor.getString(3));
+                        category_id = (cursor.getString(0));
+                        category_id_ = (cursor.getString(1));
+                        category_name = (cursor.getString(2));
+                        category_color = Integer.parseInt((cursor.getString(3)));
+                        category_deleted = (cursor.getString(4));
                 }
-                int color_ = Integer.parseInt(category_color);
+                //Toast.makeText(context, category_color, Toast.LENGTH_SHORT).show();
+                int color_ = category_color;
                 mDots_category[i] = new CircleImageView(context);
                 //mDots_category[i].setTextColor(context.getResources().getColor(color_));
+                System.out.println("category_color" + String.valueOf(category_color));
                 Drawable colored = new ColorDrawable(context.getResources().getColor(color_));
                 Drawable image = context.getResources().getDrawable(R.drawable.ic_size_12); // We can add image from Drawable
 
@@ -521,6 +526,16 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
 
     }
 
+    private int convertStringToInt(String category_color) {
+        int num = 0;
+        int multiplier = 1;
+        for (int i = category_color.length() - 1; i >= 0; i--) {
+            num += (category_color.charAt(i) - '0') * multiplier;
+            multiplier *= 10;
+        }
+        return num;
+    }
+
     private String removeLastString(String s) {
         return (s == null || s.length() == 0)
                 ? null
@@ -562,12 +577,13 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
 
             for (int i = 0; i < category_btn.length; i++) {
 
-                Cursor cursor = myDB_category.readData(category_ids.get(i));
+                Cursor cursor = myDB_category.readData_id_(category_ids.get(i));
                 while (cursor.moveToNext()) {
                     category_id = (cursor.getString(0));
-                    category_name = (cursor.getString(1));
-                    category_color = (cursor.getString(2));
-                    category_deleted = (cursor.getString(3));
+                    category_id_ = (cursor.getString(1));
+                    category_name = (cursor.getString(2));
+                    category_color = Integer.parseInt((cursor.getString(3)));
+                    category_deleted = (cursor.getString(4));
                 }
 
                 category_btn[i] = new Button(context);
@@ -576,7 +592,7 @@ public class RecyclerViewTasksAdapter extends RecyclerView.Adapter<RecyclerViewT
                 category_btn[i].setAllCaps(false);
                 category_btn[i].setTextColor(ContextCompat.getColor(context, R.color.blue));
                 category_btn[i].setBackgroundResource(R.drawable.custom_button_priority);
-                changeColorBtn(category_btn[i], Integer.parseInt(category_color));
+                changeColorBtn(category_btn[i], category_color);
                 category_btn[i].setLayoutParams(params);
 
                 category_layout_.addView(category_btn[i]);

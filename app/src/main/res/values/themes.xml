@@ -213,13 +213,9 @@
         <item name="compactCalendarCurrentSelectedDayTextColor">@color/white_</item>
     </style>
 
-    app:compactCalendarOtherMonthDaysTextColor="@color/white_"
-    app:compactCalendarBackgroundColor="@color/blue_"
-    app:compactCalendarTextColor="@color/blue"
-    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue_3"
-    app:compactCalendarCurrentDayBackgroundColor="@color/blue__"
-    app:compactCalendarMultiEventIndicatorColor="@color/white"
-    app:compactCalendarCurrentSelectedDayTextColor="@color/white_"
+    <style name="Theme.AppCompat.Progress" parent="">
+        <item name="lottie_rawRes">@raw/progress_blue</item>
+    </style>
 
     <style name="Theme.AppCompat.Textview" parent="">
         <item name="android:textColor">@color/blue</item>

@@ -44,6 +44,7 @@ import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.Fragments.ListFragment;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
+import com.ecommerce.scheduletime.Sync.SyncDatabase;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -316,6 +317,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Add new Task
     public void fab(View view) {
+
+        //new SyncDatabase(MainActivity.this, FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         currentTime = Calendar.getInstance().getTime();
 

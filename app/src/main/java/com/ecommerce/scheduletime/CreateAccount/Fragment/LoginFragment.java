@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.ecommerce.scheduletime.CreateAccount.FacebookAuthActivity;
 import com.ecommerce.scheduletime.HomeActivity.MainActivity;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDatabase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -262,6 +263,10 @@ public class LoginFragment extends Fragment {
             return;
         }
         //progress Dialog
+        progress(email_, password_);
+    }
+
+    private void progress(String email_, String password_) {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
@@ -272,10 +277,10 @@ public class LoginFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
+                    progressSync();
 
+                    //Remember user and password (Optional)
                     if (checkBox.isChecked()) {
-                        //Remember user and password
                         SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("USER_INFO", MODE_PRIVATE).edit();
                         editor.putString("email", email_);
                         editor.putString("password", password_);
@@ -294,17 +299,30 @@ public class LoginFragment extends Fragment {
                     editor.putString("user_photo_uri", mAuth.getCurrentUser().getPhotoUrl().toString());
                     editor.putString("user_auth_with", "Firebase");
                     editor.apply();
-
-                    // Start MainActivity.
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
                 } else {
                     progressDialog.dismiss();
                     Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void progressSync() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_sync_dialog);
+        progressDialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        progressDialog.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        new SyncDatabase(getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        Toast.makeText(getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
+
+        // Start MainActivity.
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void SignInWithGoogle() {

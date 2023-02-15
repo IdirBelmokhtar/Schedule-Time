@@ -271,5 +271,6 @@
     <string name="play_store">Play Store</string>
     <string name="welcome_to_schedule_time">Welcome to Schedule Time!</string>
     <string name="we_re_here_to_help_you_take_control_of_your_time_and_increase_productivity">We\'re here to help you take control of your time and increase productivity.</string>
+    <string name="retrieve_data">Retrieve Data…</string>
 
 </resources>

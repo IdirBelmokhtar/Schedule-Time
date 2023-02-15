@@ -83,6 +83,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -415,7 +416,7 @@ public class CalendarFragment extends Fragment {
                 int year_month = firstDayOfNewMonth.getYear() + firstDayOfNewMonth.getMonth();
                 int year_month_ = date_selected.getYear() + date_selected.getMonth();
 
-                if (year_month != year_month_){
+                if (year_month != year_month_) {
                     returnToCalendar.setVisibility(View.VISIBLE);
                 }
             }
@@ -591,13 +592,13 @@ public class CalendarFragment extends Fragment {
 
             int color = ContextCompat.getColor(context, R.color.default_);
 
-            if (color_.equals("default_") || color_.equals("default")){
+            if (color_.equals("default_") || color_.equals("default")) {
                 color = ContextCompat.getColor(context, R.color.default_);
-            }else if (color_.equals("high")){
+            } else if (color_.equals("high")) {
                 color = ContextCompat.getColor(context, R.color.high);
-            }else if (color_.equals("medium")){
+            } else if (color_.equals("medium")) {
                 color = ContextCompat.getColor(context, R.color.medium);
-            }else if (color_.equals("low")){
+            } else if (color_.equals("low")) {
                 color = ContextCompat.getColor(context, R.color.low);
             }
 
@@ -1349,8 +1350,8 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    private void refreshFragment(){
-        if (refresh){
+    private void refreshFragment() {
+        if (refresh) {
             refresh = false;
             try {
                 Fragment fragment = new CalendarFragment();
@@ -1361,9 +1362,13 @@ public class CalendarFragment extends Fragment {
 
                 scrollToNewTask = true;
             } catch (Exception e) {
-                Toast.makeText(getContext(), getContext().getResources().getString(R.string.save_change), Toast.LENGTH_SHORT).show();
+                try {
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.save_change), Toast.LENGTH_SHORT).show();
+                }catch (Exception ignored) {
+                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                }
             }
-        }else {
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

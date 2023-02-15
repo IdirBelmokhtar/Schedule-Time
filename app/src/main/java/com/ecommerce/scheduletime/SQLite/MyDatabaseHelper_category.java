@@ -19,6 +19,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "my_Tasks_Category";
     private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_ID_ = "_id_";
     private static final String COLUMN_CATEGORY_NAME = "category_name";
     private static final String COLUMN_CATEGORY_COLOR = "category_color_Ref";
     private static final String COLUMN_CATEGORY_DELETED = "category_deleted";
@@ -32,6 +33,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ID_ + " TEXT, " +
                 COLUMN_CATEGORY_NAME + " TEXT, " +
                 COLUMN_CATEGORY_COLOR + " INTEGER, " +
                 COLUMN_CATEGORY_DELETED + " TEXT);";
@@ -45,10 +47,58 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addCategory(String category_name, int category_color, String category_deleted) {
+    public String getPrimaryKey() {
+        String lastPrimaryKey = null;
+        MyDatabaseHelper_category myDB_category = new MyDatabaseHelper_category(context);
+        Cursor categoryCursor = myDB_category.readAllData();
+        if (categoryCursor.getCount() == 0) {
+            // Empty.
+        } else {
+            while (categoryCursor.moveToNext()) {
+                lastPrimaryKey = categoryCursor.getString(0);
+            }
+        }
+        return lastPrimaryKey;
+    }
+
+    // Other method to get the last primary key (Chat gpt*)
+    public int getLastPrimaryKey(SQLiteDatabase db, String tableName, String primaryKeyColumn) {
+        int lastPrimaryKey = 0;
+        Cursor cursor = db.rawQuery("SELECT max(" + primaryKeyColumn + ") FROM " + tableName + ";", null);
+        if (cursor.moveToFirst()) {
+            lastPrimaryKey = cursor.getInt(0);
+        }
+        cursor.close();
+        return lastPrimaryKey;
+    }
+
+
+    public void addCategory1(String category_name, int category_color, String category_deleted) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        // We add column for id we put the original id (the first id when we create a category)
+        // We add this because Tasks take ids of categories in "task_category" column (Foreign Key for example)
+        cv.put(COLUMN_ID_, String.valueOf(Integer.parseInt(getPrimaryKey()) + 1));
+        cv.put(COLUMN_CATEGORY_NAME, category_name);
+        cv.put(COLUMN_CATEGORY_COLOR, String.valueOf(category_color));
+        cv.put(COLUMN_CATEGORY_DELETED, String.valueOf(category_deleted));
+
+        long result = db.insert(TABLE_NAME, null, cv);
+        if (result == -1) {
+            Toast.makeText(context, context.getResources().getString(R.string.failed_add_category) , Toast.LENGTH_SHORT).show();
+        } else {
+            //Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    // We use this method when retrieve data from firebase with the original id and store them on our database
+    public void addCategory2(String _id_, String category_name, int category_color, String category_deleted) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID_, _id_);
         cv.put(COLUMN_CATEGORY_NAME, category_name);
         cv.put(COLUMN_CATEGORY_COLOR, String.valueOf(category_color));
         cv.put(COLUMN_CATEGORY_DELETED, String.valueOf(category_deleted));
@@ -85,10 +135,23 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String row_id, String name, int color, String category_deleted) {
+    public Cursor readData_id_(String row_id_){
+        SQLiteDatabase db = this.getReadableDatabase();
+        //get columns of signal data
+        //String[] columns = {COLUMN_TITLE,COLUMN_AUTHOR,COLUMN_PAGES};
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.query(TABLE_NAME, null, COLUMN_ID_ + "=?", new String[]{row_id_}, null, null, null, null);
+        }
+        return cursor;
+    }
+
+    public void updateData(String row_id,String _id_, String name, int color, String category_deleted) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        cv.put(COLUMN_ID_, _id_);
         cv.put(COLUMN_CATEGORY_NAME, name);
         cv.put(COLUMN_CATEGORY_COLOR, color);
         cv.put(COLUMN_CATEGORY_DELETED, category_deleted);
@@ -101,7 +164,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         }
     }
 
-    void deleteOneRow(String row_id) {
+    public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if (result == -1) {
@@ -111,7 +174,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllData(){
+    public void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }

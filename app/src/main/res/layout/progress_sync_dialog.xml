@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="24sp"
-            android:text="@string/please_wait"
+            android:text="@string/retrieve_data"
             style="@style/Theme.AppCompat.Textview"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -212,6 +212,10 @@
         <item name="compactCalendarMultiEventIndicatorColor">@color/white</item>
     </style>
 
+    <style name="Theme.AppCompat.Progress" parent="">
+        <item name="lottie_rawRes">@raw/progress_white_</item>
+    </style>
+
     <style name="Theme.AppCompat.Textview" parent="">
         <item name="android:textColor">@color/white_</item>
     </style>

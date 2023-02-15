@@ -239,11 +239,14 @@ public class SignUpFragment extends Fragment {
             return;
         }
         //progress Dialog
+        progress(string_name, string_email, string_password);
+    }
+
+    private void progress(String string_name, String string_email, String string_password) {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.show();
         progressDialog.setContentView(R.layout.progress_dialog);
         progressDialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
-
 
         //register the user in Firebase
         mAuth.createUserWithEmailAndPassword(string_email, string_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
