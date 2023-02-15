@@ -9,15 +9,25 @@ Schedule Time est une application qui vous aide à organiser votre temps en pren
 </a>
 
 # Screenshots
-<img src="https://user-images.githubusercontent.com/88589019/205512350-d97856b9-d977-4b56-92e4-357bec341c14.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512350-d97856b9-d977-4b56-92e4-357bec341c14.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512353-bfcfe896-a6a9-4efb-828a-fb01b2d5043d.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512354-510b0316-bf77-4cc1-9fb6-5d19db018dfe.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512355-26954b09-c59d-4d01-b685-e22439944c5d.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512356-69a3d7ea-9f5f-48fa-9c1d-a29aa55caacc.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512358-46611ef1-19da-4d8c-a36e-298aa5e694aa.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512359-137f83f2-1d43-42de-89a9-088e963d737b.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512362-05fdb5ed-c15a-4a91-99c2-fefb15b8cb14.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512364-e9718196-8f6d-4b8a-802c-3c6b953200a1.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512366-646a6d25-0d9c-4695-82e2-a31e44a11dea.png" width="256">
-<img src="https://user-images.githubusercontent.com/88589019/205512367-0ef4eb5e-02f0-4720-841a-4da0d3ba7ef9.png" width="256">
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/88589019/218423457-46baab80-c1e5-4afa-be46-f5205f0fb122.jpg" width="256">
+<img src="https://user-images.githubusercontent.com/88589019/218423498-77d0d560-2817-4d8b-bb95-f8f37fcb3025.jpg" width="256">
+<img src="https://user-images.githubusercontent.com/88589019/218423554-154db2ff-488c-4ef3-bc37-00cef19714de.jpg" width="256">
+</p>
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/88589019/218423644-0b628d8b-7cf9-4b7b-b222-08e2b34d9773.jpg" width="256">
+<img src="https://user-images.githubusercontent.com/88589019/218423660-58bf2933-7687-4baf-98c4-4d8c76dded35.jpg" width="256">
+<img src="https://user-images.githubusercontent.com/88589019/218423672-d9b5737a-41e2-4486-84b8-78b673e177c9.jpg" width="256">
+</p>
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/88589019/218423686-ce04a408-e280-474f-b8cc-e4f7473f5f13.jpg" width="256">
+<img src="https://user-images.githubusercontent.com/88589019/218423713-993bc45c-c0cc-4d48-b1e0-e8b356a8fddc.jpg" width="256">
+<img src="https://user-images.githubusercontent.com/88589019/218423723-8887056a-1579-433c-a8dc-3756e1c12e02.jpg" width="256">
+</p>
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/88589019/218423737-54a5e08f-832d-44da-a3df-b9b0929763cf.jpg" width="256">
+</p>
