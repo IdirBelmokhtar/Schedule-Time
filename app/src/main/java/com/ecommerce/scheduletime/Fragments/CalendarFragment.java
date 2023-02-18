@@ -68,6 +68,7 @@ import com.ecommerce.scheduletime.Model.Tasks;
 import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseServiceUpdate;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.material.appbar.AppBarLayout;
@@ -521,11 +522,15 @@ public class CalendarFragment extends Fragment {
             @Override
             public void run() {
                 if (scrollToNewTask) {
-                    float y = recyclerViewTask.getY() + recyclerViewTask.getChildAt(idNewTaskPosition).getY();
-                    nestedScroll_calendar.smoothScrollTo(0, (int) y);
-                    scrollToNewTask = false;
-                    hideBottomAppBar();
-                    appBarLayout.setExpanded(false);
+                    try {
+                        float y = recyclerViewTask.getY() + recyclerViewTask.getChildAt(idNewTaskPosition).getY();
+                        nestedScroll_calendar.smoothScrollTo(0, (int) y);
+                        scrollToNewTask = false;
+                        hideBottomAppBar();
+                        appBarLayout.setExpanded(false);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
         }, 200);
@@ -543,6 +548,11 @@ public class CalendarFragment extends Fragment {
                 refreshFragment();
             }
         }, 5000);
+
+
+        /** -- Start calling {@link SyncDataBaseServiceUpdate} after CalendarFragment is started or refreshed -- */
+        Intent intent = new Intent(getContext(), SyncDataBaseServiceUpdate.class);
+        getContext().startService(intent);
 
         //Other things...
         //test(view);
@@ -1270,8 +1280,9 @@ public class CalendarFragment extends Fragment {
             } catch (Exception e) {
                 try {
                     Toast.makeText(getContext(), getContext().getResources().getString(R.string.save_change), Toast.LENGTH_SHORT).show();
-                }catch (Exception ignored) {
-                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                } catch (Exception ignored) {
+                    /** @param [Error] sometimes return null object reference */
+                    // Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
                 }
             }
         } else {

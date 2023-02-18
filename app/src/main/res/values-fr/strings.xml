@@ -213,4 +213,6 @@
     <string name="welcome_to_schedule_time">Bienvenue à Schedule Time!</string>
     <string name="we_re_here_to_help_you_take_control_of_your_time_and_increase_productivity">Nous sommes là pour vous aider à organiser votre temps et à augmenter votre productivité.</string>
     <string name="retrieve_data">Récupérer des données…</string>
+    <string name="description_of_our_message_to_users">Nous travaillons dur pour rendre cette application la meilleure possible, et nous aimerions connaître votre opinion. Veuillez prendre un moment pour nous évaluer sur Google Play Store et faites-nous savoir comment nous allons.</string>
+    <string name="hello">Hello !</string>
 </resources>

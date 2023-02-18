@@ -213,4 +213,6 @@
     <string name="welcome_to_schedule_time">مرحبا بك!</string>
     <string name="we_re_here_to_help_you_take_control_of_your_time_and_increase_productivity">نحن هنا لمساعدتك على تنظيم وقتك وزيادة الإنتاجية.</string>
     <string name="retrieve_data">استرداد البيانات…</string>
+    <string name="description_of_our_message_to_users">نحن نعمل بجد لجعل هذا التطبيق أفضل ما يمكن ، ويسعدنا سماع أفكارك. يرجى قضاء بعض الوقت لتقييمنا على متجر جوجل بلاي وإعلامنا بمستوى أدائنا.</string>
+    <string name="hello">مرحبًا !</string>
 </resources>

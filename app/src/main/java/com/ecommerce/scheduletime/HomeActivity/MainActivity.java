@@ -1,5 +1,8 @@
 package com.ecommerce.scheduletime.HomeActivity;
 
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getTasks;
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getCategories;
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getNotes;
 import static com.ecommerce.scheduletime.Fragments.ListFragment.tapTargetSequenceList;
 
 import androidx.annotation.ColorInt;
@@ -44,7 +47,6 @@ import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.Fragments.ListFragment;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
-import com.ecommerce.scheduletime.Sync.SyncDatabase;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -201,6 +203,11 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, AuthenticationActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
+
+                                SharedPreferences.Editor editor = getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
+                                editor.putBoolean("change", false);
+                                editor.apply();
+                                getTasks = getCategories = getNotes = false;
                             }
 
                             //Google Logout
@@ -211,6 +218,11 @@ public class MainActivity extends AppCompatActivity {
                                         Intent intent = new Intent(MainActivity.this, AuthenticationActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
+
+                                        SharedPreferences.Editor editor = getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
+                                        editor.putBoolean("change", false);
+                                        editor.apply();
+                                        getTasks = getCategories = getNotes = false;
                                     }
                                 });
                             }
@@ -310,14 +322,6 @@ public class MainActivity extends AppCompatActivity {
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
-
-        createTriggers();
-        //startActivity(new Intent(this, MainActivity2.class));
-        //new SyncDatabase(MainActivity.this);
-    }
-
-    private void createTriggers() {
-
     }
 
     //Add new Task

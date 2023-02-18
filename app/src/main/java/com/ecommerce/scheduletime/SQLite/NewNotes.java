@@ -90,6 +90,17 @@ public class NewNotes extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor readAllData() {
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
     public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 

@@ -1,16 +1,24 @@
 package com.ecommerce.scheduletime.CreateAccount;
 
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getCategories;
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getNotes;
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getTasks;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.ecommerce.scheduletime.HomeActivity.MainActivity;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseService;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -135,9 +143,36 @@ public class FacebookAuthActivity extends Activity {
             editor.putString("user_auth_with", "Facebook");
             editor.apply();
 
-            Intent intent = new Intent(FacebookAuthActivity.this, MainActivity.class);
+            progressSync();
+        }
+    }
+
+    private void progressSync() {
+        Toast.makeText(this, getResources().getString(R.string.retrieve_data), Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(getApplicationContext(), SyncDataBaseService.class);
+        startService(intent);
+
+        startScheduleTime();
+    }
+
+    private void startScheduleTime() {
+        if (getTasks && getCategories && getNotes){
+            // Start MainActivity.
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
+            SharedPreferences.Editor editor = getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
+            editor.putBoolean("change", true);
+            editor.apply();
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startScheduleTime();
+                }
+            }, 1000);
         }
     }
 }

@@ -3,6 +3,8 @@ package com.ecommerce.scheduletime.Dialog;
 import static android.content.Context.MODE_PRIVATE;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.currentTime;
 import static com.ecommerce.scheduletime.HomeActivity.MainActivity.date_selected;
+import static com.ecommerce.scheduletime.HomeActivity.MainActivity.getData;
+import static com.ecommerce.scheduletime.SQLite.MyDatabaseHelper.TASK_NEW_ID;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -40,6 +42,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_category;
 import com.ecommerce.scheduletime.R;
 
@@ -535,9 +538,7 @@ public class DialogNewTask extends Dialog {
         });
 
         calendar_end.setTime(date_selected);
-        System.out.println("1/from : " + String.valueOf(calendar_start.getTime()) + " to : " + String.valueOf(calendar_end.getTime()));
         calendar_end.add(Calendar.MONTH, 1);
-        System.out.println("2/from : " + String.valueOf(calendar_start.getTime()) + " to : " + String.valueOf(calendar_end.getTime()));
         year_end = calendar_end.get(Calendar.YEAR);
         month_end = calendar_end.get(Calendar.MONTH);
         dayOfMonth_end = calendar_end.get(Calendar.DAY_OF_MONTH);
@@ -1430,6 +1431,16 @@ public class DialogNewTask extends Dialog {
 
     public String getDate() {
         /** Month_ start with 0 */
+        MyDatabaseHelper myDB = new MyDatabaseHelper(getContext());
+        String id_ = myDB.getPrimaryKey();
+        TASK_NEW_ID = Integer.parseInt(id_) + 1; // + 1 to get the new id.
+
+        java.util.Calendar dateTime = java.util.Calendar.getInstance();
+        dateTime.set(java.util.Calendar.YEAR, year_);
+        dateTime.set(java.util.Calendar.MONTH, month_);
+        dateTime.set(java.util.Calendar.DAY_OF_MONTH, dayOfMonth_);
+        getData = dateTime;
+
         return String.valueOf(year_) + "-" + String.valueOf(month_) + "-" + String.valueOf(dayOfMonth_);
     }
 

@@ -39,6 +39,7 @@ import com.ecommerce.scheduletime.Model.Notes;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_notes;
 import com.ecommerce.scheduletime.SQLite.NewNotes;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseServiceUpdate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -202,6 +203,10 @@ public class NoteActivity extends AppCompatActivity {
                 }
             }
         });
+
+        /** -- Start calling {@link SyncDataBaseServiceUpdate} after ListFragment is started or refreshed -- */
+        Intent intent = new Intent(NoteActivity.this, SyncDataBaseServiceUpdate.class);
+        startService(intent);
     }
 
     private void deleteNotes() {

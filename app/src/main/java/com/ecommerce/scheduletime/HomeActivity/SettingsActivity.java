@@ -295,58 +295,12 @@ public class SettingsActivity extends AppCompatActivity {
                 bottomDialogLanguages.getWindow().setWindowAnimations(R.style.SheetDialogAnimation);
                 bottomDialogLanguages.getWindow().setGravity(Gravity.BOTTOM);
 
-
-                /*
-                final String[] listItems = {"English", "French", "عربي"};
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                builder.setTitle("Choose Language ...");
-                builder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0) {
-                            setLocale("En");
-                            recreate();
-                        } else if (i == 1) {
-                            setLocale("Fr");
-                            recreate();
-                        } else if (i == 2) {
-                            setLocale("Ar");
-                            recreate();
-                        }
-                        dialogInterface.dismiss();
-                    }
-                });
-                AlertDialog langDialog = builder.create();
-                langDialog.show();
-*/
-/*
-                DialogLanguage dialogLanguage = new DialogLanguage(SettingsActivity.this);
-                dialogLanguage.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialogLanguage.getSave().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (dialogLanguage.getDialog_language_RB1().isChecked()) {
-                            setLocale("en");
-                            recreate();
-                        } else if (dialogLanguage.getDialog_language_RB2().isChecked()) {
-                            setLocale("fr");
-                            recreate();
-                        } else if (dialogLanguage.getDialog_language_RB3().isChecked()) {
-                            setLocale("ar");
-                            recreate();
-                        }
-
-                        Toast.makeText(SettingsActivity.this, "save", Toast.LENGTH_SHORT).show();
-                        dialogLanguage.dismiss();
-                    }
-                });
-                dialogLanguage.build();
-                Window window = dialogLanguage.getWindow();
-                window.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            */
             }
         });
 
+
+        //Intent intent = new Intent(SettingsActivity.this, SyncDataBaseServiceUpdate.class);
+        //startService(intent);
     }
 
     private void refresh() {

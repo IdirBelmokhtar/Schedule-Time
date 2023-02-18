@@ -1,9 +1,6 @@
 package com.ecommerce.scheduletime.CreateAccount.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.ecommerce.scheduletime.Sync.SyncDatabase.getCategories;
-import static com.ecommerce.scheduletime.Sync.SyncDatabase.getNotes;
-import static com.ecommerce.scheduletime.Sync.SyncDatabase.getTasks;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.app.ProgressDialog;
@@ -30,6 +27,7 @@ import android.widget.Toast;
 import com.ecommerce.scheduletime.CreateAccount.FacebookAuthActivity;
 import com.ecommerce.scheduletime.HomeActivity.MainActivity;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseService;
 import com.ecommerce.scheduletime.Sync.SyncDatabase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -63,6 +61,8 @@ public class LoginFragment extends Fragment {
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+
+    public static boolean getTasks = false, getCategories = false, getNotes = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -190,9 +190,7 @@ public class LoginFragment extends Fragment {
                                     editor.putString("user_auth_with", "Twitter");
                                     editor.apply();
 
-                                    Intent intent = new Intent(getContext(), MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
+                                    progressSync();
 
                                     // User is signed in.
                                     // IdP data available in
@@ -230,9 +228,7 @@ public class LoginFragment extends Fragment {
                                     editor.putString("user_auth_with", "Twitter");
                                     editor.apply();
 
-                                    Intent intent = new Intent(getContext(), MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
+                                    progressSync();
 
                                     // User is signed in.
                                     // IdP data available in
@@ -318,29 +314,31 @@ public class LoginFragment extends Fragment {
         progressDialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
         progressDialog.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-        new SyncDatabase(getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //SyncDatabase syncDatabase = new SyncDatabase(getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //syncDatabase.getAllDataSQLiteDatabase(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Intent intent = new Intent(getContext(), SyncDataBaseService.class);
+        getContext().startService(intent);
 
-        Toast.makeText(getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getContext(), getResources().getString(R.string.success_), Toast.LENGTH_SHORT).show();
 
         startScheduleTime();
     }
 
     private void startScheduleTime() {
         if (getTasks && getCategories && getNotes){
+            progressDialog.dismiss();
             // Start MainActivity.
             Intent intent = new Intent(getContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
+            SharedPreferences.Editor editor = getContext().getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
+            editor.putBoolean("change", true);
+            editor.apply();
         }else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     startScheduleTime();
-
-                    SharedPreferences.Editor editor = getContext().getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
-                    editor.putBoolean("change", true);
-                    editor.apply();
                 }
             }, 1000);
         }
@@ -385,9 +383,7 @@ public class LoginFragment extends Fragment {
                             editor.apply();
 
                             //finish top activities
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                            progressSync();
                         } else {
                             Toast.makeText(getContext(), getResources().getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         }

@@ -68,6 +68,7 @@ import com.ecommerce.scheduletime.Model.Tasks;
 import com.ecommerce.scheduletime.NoteActivity.NoteActivity;
 import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseServiceUpdate;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.appbar.AppBarLayout;
@@ -624,6 +625,10 @@ public class ListFragment extends Fragment {
                 createNewTask(getContext());
             }
         });
+
+        /** -- Start calling {@link SyncDataBaseServiceUpdate} after ListFragment is started or refreshed -- */
+        Intent intent = new Intent(getContext(), SyncDataBaseServiceUpdate.class);
+        getContext().startService(intent);
 
         return view;
     }

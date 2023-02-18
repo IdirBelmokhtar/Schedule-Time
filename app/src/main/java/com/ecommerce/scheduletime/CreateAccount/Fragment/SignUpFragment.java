@@ -2,6 +2,10 @@ package com.ecommerce.scheduletime.CreateAccount.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getCategories;
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getNotes;
+import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getTasks;
+
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -13,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,6 +30,7 @@ import android.widget.Toast;
 import com.ecommerce.scheduletime.CreateAccount.FacebookAuthActivity;
 import com.ecommerce.scheduletime.HomeActivity.MainActivity;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -150,9 +156,7 @@ public class SignUpFragment extends Fragment {
                                     editor.putString("user_auth_with", "Twitter");
                                     editor.apply();
 
-                                    Intent intent = new Intent(getContext(), MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
+                                    progressSync();
 
                                     // User is signed in.
                                     // IdP data available in
@@ -190,9 +194,7 @@ public class SignUpFragment extends Fragment {
                                     editor.putString("user_auth_with", "Twitter");
                                     editor.apply();
 
-                                    Intent intent = new Intent(getContext(), MainActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
+                                    progressSync();
 
                                     // User is signed in.
                                     // IdP data available in
@@ -273,10 +275,8 @@ public class SignUpFragment extends Fragment {
                     editor.apply();
 
                     // Start MainActivity.
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
                     progressDialog.dismiss();
+                    progressSync();
 
                 } else {
                     Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -284,6 +284,40 @@ public class SignUpFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void progressSync() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_sync_dialog);
+        progressDialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        progressDialog.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        Intent intent = new Intent(getContext(), SyncDataBaseService.class);
+        getContext().startService(intent);
+
+        startScheduleTime();
+    }
+
+    private void startScheduleTime() {
+        if (getTasks && getCategories && getNotes){
+            progressDialog.dismiss();
+            // Start MainActivity.
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+            SharedPreferences.Editor editor = getContext().getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
+            editor.putBoolean("change", true);
+            editor.apply();
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startScheduleTime();
+                }
+            }, 1000);
+        }
     }
 
     private void SignInWithGoogle() {
@@ -327,9 +361,7 @@ public class SignUpFragment extends Fragment {
                             editor.apply();
 
                             //finish top activities
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                            progressSync();
                         } else {
                             Toast.makeText(getContext(), getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         }
