@@ -198,6 +198,8 @@ public class CreateAlarmNotification extends IntentService {
             List<String> afterNowDescription = new ArrayList<>();
             List<String> beforeNowPriority = new ArrayList<>();
             List<String> afterNowPriority = new ArrayList<>();
+            List<String> beforeNowRemember = new ArrayList<>();
+            List<String> afterNowRemember = new ArrayList<>();
 
             // Leave only the dates that come after the present time.
             // For example : now it's 8h00, get only dates that superior or equal at 8h00 and remove dates that inferior at 8h00.
@@ -211,6 +213,7 @@ public class CreateAlarmNotification extends IntentService {
                     beforeNowTitle.add(todayListTitle.get(i));
                     beforeNowDescription.add(todayListDescription.get(i));
                     beforeNowPriority.add(todayListPriority.get(i));
+                    beforeNowRemember.add(todayListReminder.get(i));
 
                 } else if (cal.compareTo(todayListCalendar.get(i)) < 0) {
                     // cal is before today
@@ -220,9 +223,38 @@ public class CreateAlarmNotification extends IntentService {
                     afterNowTitle.add(todayListTitle.get(i));
                     afterNowDescription.add(todayListDescription.get(i));
                     afterNowPriority.add(todayListPriority.get(i));
+                    afterNowRemember.add(todayListReminder.get(i));
 
                 } else {
                     // cal and today are equal
+                }
+            }
+
+            // convert ids to integer
+            List<Integer> todayListId_Integer = new ArrayList<>();
+            for (int i = 0; i < afterNowId_.size(); i++) {
+                todayListId_Integer.add(Integer.parseInt(afterNowId_.get(i)));
+            }
+
+            // Duplicate task when reminder is not 0 with a random id different from other id_List_Integer and add to title of task the time reminded.
+            for (int i = 0; i < todayListId_Integer.size(); i++) {
+
+                if (!afterNowRemember.get(i).equals("0")) {
+                    // create new id random different from id_List_Integer
+                    Random rand = new Random();
+
+                    int newId;
+                    do {
+                        newId = rand.nextInt(100);
+                    } while (todayListId_Integer.contains(newId));
+
+                    afterNowCalendar.add(startTimeReminder(afterNowId_.get(i), afterNowRemember.get(i)));
+                    afterNowId_.add(String.valueOf(newId));
+                    afterNow_Id_.add(afterNow_Id_.get(i));
+                    afterNowTitle.add(afterNowTitle.get(i) + "( " + afterNowRemember.get(i) + context.getResources().getString(R.string.min_left) + " )");
+                    afterNowDescription.add(afterNowDescription.get(i));
+                    afterNowPriority.add(afterNowPriority.get(i));
+                    afterNowRemember.add(afterNowRemember.get(i));
                 }
             }
 
@@ -260,40 +292,9 @@ public class CreateAlarmNotification extends IntentService {
                 //alarm.cancel(alarmIntent);
 
             }
-            //addTasksRemember();
 
-        }else {}
-
-    }
-
-    private void addTasksRemember() {
-        // convert ids to integer
-        List<Integer> todayListId_Integer = new ArrayList<>();
-        for (int i = 0; i < todayListId_.size(); i++) {
-            todayListId_Integer.add(Integer.parseInt(todayListId_.get(i)));
         }
 
-        // Duplicate task when reminder is not 0 with a random id different from other id_List_Integer and add to title of task the time reminded.
-        for (int i = 0; i < todayListId_.size(); i++) {
-
-            if (!todayListReminder.get(i).equals("0")) {
-                // create new id random different from id_List_Integer
-                Random rand = new Random();
-
-                int newId;
-                do {
-                    newId = rand.nextInt(100);
-                } while (todayListId_Integer.contains(newId));
-
-                todayListCalendar.add(startTimeReminder(todayListId_.get(i), todayListReminder.get(i)));
-                todayListId_.add(String.valueOf(newId));
-                todayList_Id_.add(todayList_Id_.get(i));
-                todayListTitle.add(todayListTitle.get(i) + "( " + todayListReminder.get(i) + context.getResources().getString(R.string.min_left) + " )");
-                todayListDescription.add(todayListDescription.get(i));
-                todayListPriority.add(todayListPriority.get(i));
-                todayListReminder.add(todayListReminder.get(i));
-            }
-        }
     }
 
     private Calendar startTimeReminder(String id, String reminder) {
