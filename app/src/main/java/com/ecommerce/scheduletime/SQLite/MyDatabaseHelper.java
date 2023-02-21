@@ -2,6 +2,8 @@ package com.ecommerce.scheduletime.SQLite;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static com.ecommerce.scheduletime.HomeActivity.MainActivity.getData;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
@@ -15,8 +17,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.ecommerce.scheduletime.CreateAlarmNotification;
 import com.ecommerce.scheduletime.Notification.MyBroadcastReceiver;
 import com.ecommerce.scheduletime.R;
+import com.ecommerce.scheduletime.Sync.SyncDataBaseServiceUpdate;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -117,8 +121,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 NewTasks newTasks = new NewTasks(context);
                 newTasks.addChange(String.valueOf(Integer.parseInt(getPrimaryKey())), date, title, description, priority, category, time, done, String.valueOf(reminder), "insert");
             }
-            /** @param Add Alarm Notification */
-            /*
+
             MyDatabaseHelper myDB = new MyDatabaseHelper(context);
             Cursor cursor = myDB.readAllData();
             int id_ = 0;
@@ -128,20 +131,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 }
             }
             TASK_NEW_ID = id_;
-            Intent intent = new Intent(context, MyBroadcastReceiver.class);
-            intent.putExtra("id_", String.valueOf(id_));
-            intent.putExtra("title_", title);
-            intent.putExtra("color_", priority);
-            intent.putExtra("description", description);
-
-            /**
-            For Alarm notifications,
-            Samsung devices have a limit of 500 scheduled alarms
-            (no matter if I cancel the alarms or set the flag FLAG_CANCEL_CURRENT).
-            */
-            /*
-
-            AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
             // Create time.
             List<String> date_ = Arrays.asList(date.split("-"));
@@ -152,34 +141,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             final int hour = Integer.parseInt(time_.get(0));
             final int minute = Integer.parseInt(time_.get(1));
 
-
-            Calendar startTime = Calendar.getInstance();
-            startTime.set(Calendar.YEAR, year);
-            startTime.set(Calendar.MONTH, month);
-            startTime.set(Calendar.DAY_OF_MONTH, day);
-            startTime.set(Calendar.HOUR_OF_DAY, hour);
-            startTime.set(Calendar.MINUTE, minute);
-            startTime.set(Calendar.SECOND, 0);
-
-            // Set alarm.
-            // set(type, milliseconds, intent)
-            try {
-                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, id_,
-                        intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-
-                //alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            //alarm.setRepeating(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), 10000 , alarmIntent);
-
-            // Cancel alarm
-            //alarm.cancel(alarmIntent);
-
             getData.set(year, month, day, hour, minute, 0); // Month start with 0
 
-            */
         }
 
     }
@@ -255,45 +218,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 NewTasks newTasks = new NewTasks(context);
                 newTasks.addChange(_id_, date, title, description, priority, category, time, done, String.valueOf(reminder), "update");
 
-            /** @param Update Alarm Notification */
-            Intent intent = new Intent(context, MyBroadcastReceiver.class);
-            intent.putExtra("id_", row_id);
-            intent.putExtra("title_", title);
-            intent.putExtra("color_", priority);
-            intent.putExtra("description", description);
+            /** @param call {@link SyncDataBaseServiceUpdate} when task has updated -- */
+            Intent intent1 = new Intent(context, SyncDataBaseServiceUpdate.class);
+            context.startService(intent1);
 
-            // Create time.
-            List<String> date__ = Arrays.asList(date.split("-"));
-            List<String> time__ = Arrays.asList(time.split(":"));
-            final int year = Integer.parseInt(date__.get(0));
-            final int month = Integer.parseInt(date__.get(1));
-            final int day = Integer.parseInt(date__.get(2));
-            final int hour = Integer.parseInt(time__.get(0));
-            final int minute = Integer.parseInt(time__.get(1));
-
-            Calendar startTime = Calendar.getInstance();
-            startTime.set(Calendar.YEAR, year);
-            startTime.set(Calendar.MONTH, month);
-            startTime.set(Calendar.DAY_OF_MONTH, day);
-            startTime.set(Calendar.HOUR_OF_DAY, hour);
-            startTime.set(Calendar.MINUTE, minute);
-            startTime.set(Calendar.SECOND, 0);
-
-            try {
-                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
-                        intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-                AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                alarm.cancel(alarmIntent);
-
-
-                Calendar nowTime = Calendar.getInstance();
-                if (nowTime.getTimeInMillis() < startTime.getTimeInMillis()) {
-                    //alarm.set(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), alarmIntent);
-                }
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+            /** @param call {@link CreateAlarmNotification} when task has updated -- */
+            Intent intent2 = new Intent(context, CreateAlarmNotification.class);
+            context.startService(intent2);
         }
     }
 
@@ -326,12 +257,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             NewTasks newTasks = new NewTasks(context);
             newTasks.addChange(_id__, date_, title_, description_,priority_, category_, time_, done_, reminder_, "delete");
 
+            /** @param call {@link SyncDataBaseServiceUpdate} when task has deleted -- */
+            Intent intent1 = new Intent(context, SyncDataBaseServiceUpdate.class);
+            context.startService(intent1);
+
             /** @param Delete Alarm Notification */
             Intent intent = new Intent(context, MyBroadcastReceiver.class);
             intent.putExtra("id_", row_id);
 
             try {
-                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(row_id),
+                assert _id__ != null;
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(context, Integer.parseInt(_id__),
                         intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
                 AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

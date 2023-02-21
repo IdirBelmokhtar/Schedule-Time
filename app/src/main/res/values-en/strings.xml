@@ -215,5 +215,6 @@
     <string name="retrieve_data">Retrieve Data…</string>
     <string name="description_of_our_message_to_users">We work hard to make this App the best it can be, and we\'d love to hear your thoughts. Please take a moment to rate us  on Google Play Store and let us know how we\'re doing.</string>
     <string name="hello">Hello !</string>
+    <string name="min_left">minutes left</string>
 
 </resources>

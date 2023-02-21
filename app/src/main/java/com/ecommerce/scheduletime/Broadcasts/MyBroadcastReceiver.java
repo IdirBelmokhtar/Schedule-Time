@@ -17,12 +17,13 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             Log.d("MyBroadcastReceiver", "Task running...");
             // schedule the task again in an hour
             handler.postDelayed(this, 60 * 60 * 1000); // Repeat Every Hour.
+            //handler.postDelayed(this, 60 * 1000); // Repeat Every minute.
         }
     };
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        /** -- Start calling {@link SyncDataBaseServiceUpdate} after CalendarFragment is started or refreshed -- */
+        /** -- Start calling {@link SyncDataBaseServiceUpdate} when BOOT_COMPLETED or MY_PACKAGE_REPLACED -- */
         Intent intent1 = new Intent(context, SyncDataBaseServiceUpdate.class);
         context.startService(intent1);
 

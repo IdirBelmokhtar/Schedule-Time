@@ -42,6 +42,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.ecommerce.scheduletime.CreateAccount.AuthenticationActivity;
+import com.ecommerce.scheduletime.CreateAlarmNotification;
 import com.ecommerce.scheduletime.Dialog.DialogNewTask;
 import com.ecommerce.scheduletime.Fragments.CalendarFragment;
 import com.ecommerce.scheduletime.Fragments.ListFragment;
@@ -322,6 +323,9 @@ public class MainActivity extends AppCompatActivity {
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
+
+        /** @param call {@link CreateAlarmNotification} every days at 00:00 -- */
+
     }
 
     //Add new Task
@@ -337,6 +341,7 @@ public class MainActivity extends AppCompatActivity {
         dialogNewTask.getNew_saveBtn().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (dialogNewTask.getRepeat() == 0) {
                     // Repeat One time.
                     MyDatabaseHelper myDB = new MyDatabaseHelper(MainActivity.this);
@@ -359,6 +364,10 @@ public class MainActivity extends AppCompatActivity {
                                 .commit();
                         scrollToNewTask = true;
                     }
+
+                    /** @param call {@link CreateAlarmNotification} when task has insert -- */
+                    Intent intent2 = new Intent(MainActivity.this, CreateAlarmNotification.class);
+                    startService(intent2);
 
                 } else if (dialogNewTask.getRepeat() == 1) {
                     // Repeat Everyday.
@@ -403,6 +412,10 @@ public class MainActivity extends AppCompatActivity {
                                     .commit();
                             scrollToNewTask = true;
                         }
+
+                        /** @param call {@link CreateAlarmNotification} when task has insert -- */
+                        Intent intent2 = new Intent(MainActivity.this, CreateAlarmNotification.class);
+                        startService(intent2);
                     }
 
                 } else if (dialogNewTask.getRepeat() == 2) {
@@ -457,6 +470,10 @@ public class MainActivity extends AppCompatActivity {
                                     .commit();
                             scrollToNewTask = true;
                         }
+
+                        /** @param call {@link CreateAlarmNotification} when task has insert -- */
+                        Intent intent2 = new Intent(MainActivity.this, CreateAlarmNotification.class);
+                        startService(intent2);
                     }
                 }
 

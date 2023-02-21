@@ -16,7 +16,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
             if (isOnline(context)) {
                 Toast.makeText(context, "is Online", Toast.LENGTH_SHORT).show();
 
-                /** -- Start calling {@link SyncDataBaseServiceUpdate} after CalendarFragment is started or refreshed -- */
+                /** -- Start calling {@link SyncDataBaseServiceUpdate} when network detected-- */
                 Intent intent1 = new Intent(context, SyncDataBaseServiceUpdate.class);
                 context.startService(intent1);
             } else {

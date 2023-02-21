@@ -161,6 +161,9 @@
         <service
             android:name=".Sync.SyncDataBaseServiceUpdate"
             android:exported="false" />
+        <service
+            android:name=".CreateAlarmNotification"
+            android:exported="false" />
     </application>
 
 </manifest>

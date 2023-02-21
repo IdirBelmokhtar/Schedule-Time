@@ -1,26 +1,14 @@
 package com.ecommerce.scheduletime.Sync;
 
-import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getCategories;
-import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getNotes;
-import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getTasks;
-
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.os.Handler;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.ecommerce.scheduletime.Model.Firebase.RealtimeCategory;
-import com.ecommerce.scheduletime.Model.Firebase.RealtimeNotes;
-import com.ecommerce.scheduletime.Model.Firebase.RealtimeTasks;
-import com.ecommerce.scheduletime.R;
-import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper;
-import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_category;
-import com.ecommerce.scheduletime.SQLite.MyDatabaseHelper_notes;
+import com.ecommerce.scheduletime.CreateAlarmNotification;
 import com.ecommerce.scheduletime.SQLite.NewCategory;
 import com.ecommerce.scheduletime.SQLite.NewNotes;
 import com.ecommerce.scheduletime.SQLite.NewTasks;
@@ -28,17 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 public class SyncDataBaseServiceUpdate extends IntentService {
 
@@ -113,7 +95,7 @@ public class SyncDataBaseServiceUpdate extends IntentService {
                 task_condition.add(cursorTasks.getString(10));
             }
 
-            tasksThatWillSend();
+            tasksThatIWillSend();
 
             // Get Updates of category
             newCategory = new NewCategory(context);
@@ -127,7 +109,7 @@ public class SyncDataBaseServiceUpdate extends IntentService {
                 category_condition.add(cursorCategory.getString(5));
             }
 
-            categoryThatWillSend();
+            categoryThatIWillSend();
 
             // Get Updates of notes
             newNotes = new NewNotes(context);
@@ -141,7 +123,7 @@ public class SyncDataBaseServiceUpdate extends IntentService {
                 note_condition.add(cursorNotes.getString(5));
             }
 
-            notesThatWillSend();
+            notesThatIWillSend();
 
 
             /** Start sending data to Firebase Realtime Database and delete it from [ {@link NewTasks}, {@link NewCategory}, {@link NewNotes} ]*/
@@ -149,7 +131,7 @@ public class SyncDataBaseServiceUpdate extends IntentService {
         }
     }
 
-    private void tasksThatWillSend() {
+    private void tasksThatIWillSend() {
         /** Delete rows that no need from DB ({@link NewTasks}) by checking for duplicate ID_, and keep the last ID_ row.*/
         for (int i = task_id_.size() - 1; i >= 0; i--) {
             for (int j = i - 1; j >= 0; j--) {
@@ -188,7 +170,7 @@ public class SyncDataBaseServiceUpdate extends IntentService {
         }
     }
 
-    private void categoryThatWillSend() {
+    private void categoryThatIWillSend() {
         /** Delete rows that no need from DB ({@link NewCategory}) by checking for duplicate ID_, and keep the last ID_ row.*/
         for (int i = category_id_.size() - 1; i >= 0; i--) {
             for (int j = i - 1; j >= 0; j--) {
@@ -217,7 +199,7 @@ public class SyncDataBaseServiceUpdate extends IntentService {
         }
     }
 
-    private void notesThatWillSend() {
+    private void notesThatIWillSend() {
         /** Delete rows that no need from DB ({@link NewNotes}) by checking for duplicate ID_, and keep the last ID_ row.*/
         for (int i = note_id_.size() - 1; i >= 0; i--) {
             for (int j = i - 1; j >= 0; j--) {

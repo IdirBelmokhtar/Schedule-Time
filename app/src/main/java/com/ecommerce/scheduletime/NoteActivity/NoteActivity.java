@@ -204,7 +204,7 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
-        /** -- Start calling {@link SyncDataBaseServiceUpdate} after ListFragment is started or refreshed -- */
+        /** -- Start calling {@link SyncDataBaseServiceUpdate} after NoteActivity is started -- */
         Intent intent = new Intent(NoteActivity.this, SyncDataBaseServiceUpdate.class);
         startService(intent);
     }

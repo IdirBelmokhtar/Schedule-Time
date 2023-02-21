@@ -215,4 +215,5 @@
     <string name="retrieve_data">استرداد البيانات…</string>
     <string name="description_of_our_message_to_users">نحن نعمل بجد لجعل هذا التطبيق أفضل ما يمكن ، ويسعدنا سماع أفكارك. يرجى قضاء بعض الوقت لتقييمنا على متجر جوجل بلاي وإعلامنا بمستوى أدائنا.</string>
     <string name="hello">مرحبًا !</string>
+    <string name="min_left">دقيقة متبقية</string>
 </resources>

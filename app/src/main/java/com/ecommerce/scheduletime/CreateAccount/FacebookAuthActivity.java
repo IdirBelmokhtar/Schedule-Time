@@ -5,7 +5,10 @@ import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.ge
 import static com.ecommerce.scheduletime.CreateAccount.Fragment.LoginFragment.getTasks;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.ecommerce.scheduletime.CreateAlarmNotification;
 import com.ecommerce.scheduletime.HomeActivity.MainActivity;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.Sync.SyncDataBaseService;
@@ -35,6 +39,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class FacebookAuthActivity extends Activity {
 
@@ -166,6 +171,22 @@ public class FacebookAuthActivity extends Activity {
             SharedPreferences.Editor editor = getSharedPreferences("Data has been extracted from firebase", MODE_PRIVATE).edit();
             editor.putBoolean("change", true);
             editor.apply();
+
+            /** @param call {@link CreateAlarmNotification} when user login -- */
+            Intent intent2 = new Intent(FacebookAuthActivity.this, CreateAlarmNotification.class);
+            startService(intent2);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+
+            Intent intent3 = new Intent(FacebookAuthActivity.this, CreateAlarmNotification.class);
+            PendingIntent pendingIntent = PendingIntent.getService(FacebookAuthActivity.this, 0, intent3, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pendingIntent);
+
         }else {
             new Handler().postDelayed(new Runnable() {
                 @Override

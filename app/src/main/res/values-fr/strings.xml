@@ -215,4 +215,5 @@
     <string name="retrieve_data">Récupérer des données…</string>
     <string name="description_of_our_message_to_users">Nous travaillons dur pour rendre cette application la meilleure possible, et nous aimerions connaître votre opinion. Veuillez prendre un moment pour nous évaluer sur Google Play Store et faites-nous savoir comment nous allons.</string>
     <string name="hello">Hello !</string>
+    <string name="min_left">minutes restantes</string>
 </resources>
