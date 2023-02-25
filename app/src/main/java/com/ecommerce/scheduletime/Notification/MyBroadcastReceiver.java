@@ -41,10 +41,10 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         String color_ = intent.getStringExtra("color_");
         String description = intent.getStringExtra("description");
 
-        Toast.makeText(context, "id_ : " + id_ + "\n" +
+        /*Toast.makeText(context, "id_ : " + id_ + "\n" +
                 "title_ : " + title_ + "\n" +
                 "color_ : " + color_ + "\n" +
-                "description : " + description, Toast.LENGTH_LONG).show();
+                "description : " + description, Toast.LENGTH_LONG).show();*/
 
         int color = ContextCompat.getColor(context, R.color.default_);
 

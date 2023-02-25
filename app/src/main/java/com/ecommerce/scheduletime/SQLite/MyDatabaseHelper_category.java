@@ -14,6 +14,10 @@ import androidx.annotation.Nullable;
 
 import com.ecommerce.scheduletime.R;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class MyDatabaseHelper_category extends SQLiteOpenHelper {
 
     private Context context;
@@ -50,18 +54,38 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getPrimaryKey() { // ------------------------------try when category is empty after getting data from firebase
-        String lastPrimaryKey = null;
-        MyDatabaseHelper_category myDB_category = new MyDatabaseHelper_category(context);
-        Cursor categoryCursor = myDB_category.readAllData();
+    private String generateNewId() {
+
+        List<String> primaryKeys = new ArrayList<>();
+        MyDatabaseHelper_notes myDB_note = new MyDatabaseHelper_notes(context);
+        Cursor categoryCursor = myDB_note.readAllData();
         if (categoryCursor.getCount() == 0) {
-            lastPrimaryKey = "0";
+            primaryKeys.add("0");
         } else {
             while (categoryCursor.moveToNext()) {
-                lastPrimaryKey = categoryCursor.getString(0);
+                primaryKeys.add(categoryCursor.getString(1));
             }
         }
-        return lastPrimaryKey;
+
+        String newId;
+        boolean idExists;
+
+        do {
+            // Generate a random ID
+            newId = UUID.randomUUID().toString();
+
+            // Check if the ID already exists in the list
+            idExists = false;
+            for (String id : primaryKeys) {
+                if (id.equals(newId)) {
+                    idExists = true;
+                    break;
+                }
+            }
+        } while (idExists);
+
+
+        return newId;
     }
 
     // Other method to get the last primary key (Chat gpt*)
@@ -81,7 +105,8 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
 
         // We add column for id we put the original id (the first id when we create a category)
         // We add this because Tasks take ids of categories in "task_category" column (Foreign Key for example)
-        cv.put(COLUMN_ID_, String.valueOf(Integer.parseInt(getPrimaryKey()) + 1)); // + 1 to get the new id
+        String new_id = generateNewId();
+        cv.put(COLUMN_ID_, new_id);
         cv.put(COLUMN_CATEGORY_NAME, category_name);
         cv.put(COLUMN_CATEGORY_COLOR, String.valueOf(category_color));
         cv.put(COLUMN_CATEGORY_DELETED, category_deleted);
@@ -98,7 +123,7 @@ public class MyDatabaseHelper_category extends SQLiteOpenHelper {
             boolean change = prefs.getBoolean("change", false);
             if (change) {
                 NewCategory newCategory = new NewCategory(context);
-                newCategory.addChange(String.valueOf(Integer.parseInt(getPrimaryKey())), category_name, category_color, category_deleted, "insert");
+                newCategory.addChange(new_id, category_name, category_color, category_deleted, "insert");
             }
         }
 

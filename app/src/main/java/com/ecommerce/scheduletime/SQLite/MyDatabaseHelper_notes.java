@@ -14,6 +14,11 @@ import androidx.annotation.Nullable;
 
 import com.ecommerce.scheduletime.R;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+
 public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
 
     private Context context;
@@ -50,25 +55,46 @@ public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getPrimaryKey() {
-        String lastPrimaryKey = null;
+    private String generateNewId() {
+
+        List<String> primaryKeys = new ArrayList<>();
         MyDatabaseHelper_notes myDB_note = new MyDatabaseHelper_notes(context);
         Cursor categoryCursor = myDB_note.readAllData();
         if (categoryCursor.getCount() == 0) {
-            lastPrimaryKey = "0";
+            primaryKeys.add("0");
         } else {
             while (categoryCursor.moveToNext()) {
-                lastPrimaryKey = categoryCursor.getString(0);
+                primaryKeys.add(categoryCursor.getString(1));
             }
         }
-        return lastPrimaryKey;
+
+        String newId;
+        boolean idExists;
+
+        do {
+            // Generate a random ID
+            newId = UUID.randomUUID().toString();
+
+            // Check if the ID already exists in the list
+            idExists = false;
+            for (String id : primaryKeys) {
+                if (id.equals(newId)) {
+                    idExists = true;
+                    break;
+                }
+            }
+        } while (idExists);
+
+
+        return newId;
     }
 
     public void addBook1(String title, String description, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_, String.valueOf(Integer.parseInt(getPrimaryKey()) + 1)); // + 1 to get the new id
+        String new_id = generateNewId();
+        cv.put(COLUMN_ID_, new_id);
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_TIME, time);
@@ -85,7 +111,7 @@ public class MyDatabaseHelper_notes extends SQLiteOpenHelper {
             boolean change = prefs.getBoolean("change", false);
             if (change) {
                 NewNotes newNotes = new NewNotes(context);
-                newNotes.addChange(String.valueOf(Integer.parseInt(getPrimaryKey())), title, description, time, "insert");
+                newNotes.addChange(new_id, title, description, time, "insert");
             }
         }
 

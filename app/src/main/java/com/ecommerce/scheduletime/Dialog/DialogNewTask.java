@@ -25,6 +25,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -163,6 +165,10 @@ public class DialogNewTask extends Dialog {
                     changeColorBtn(new_deadline, R.color.blue);
                 } else {
                     new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
+                    Animation animation;
+                    animation = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.animat_title_empty);
+                    new_task_Title.setAnimation(animation);
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -199,6 +205,10 @@ public class DialogNewTask extends Dialog {
                     changeColorBtn(new_deadline, R.color.blue_2);
                 } else {
                     new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
+                    Animation animation;
+                    animation = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.animat_title_empty);
+                    new_task_Title.setAnimation(animation);
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -246,6 +256,10 @@ public class DialogNewTask extends Dialog {
                     changeColorBtn(new_deadline, R.color.blue);
                 } else {
                     new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
+                    Animation animation;
+                    animation = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.animat_title_empty);
+                    new_task_Title.setAnimation(animation);
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -282,6 +296,10 @@ public class DialogNewTask extends Dialog {
                     changeColorBtn(new_deadline, R.color.blue_2);
                 } else {
                     new_task_Title.setError(getContext().getResources().getString(R.string.title_is_empty));
+                    Animation animation;
+                    animation = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.animat_title_empty);
+                    new_task_Title.setAnimation(animation);
                 }
                 if (descriptionIsNotEmpty()) {
                     dialog_details.setVisibility(View.GONE);
@@ -1431,9 +1449,6 @@ public class DialogNewTask extends Dialog {
 
     public String getDate() {
         /** Month_ start with 0 */
-        MyDatabaseHelper myDB = new MyDatabaseHelper(getContext());
-        String id_ = myDB.getPrimaryKey();
-        TASK_NEW_ID = Integer.parseInt(id_) + 1; // + 1 to get the new id.
 
         java.util.Calendar dateTime = java.util.Calendar.getInstance();
         dateTime.set(java.util.Calendar.YEAR, year_);

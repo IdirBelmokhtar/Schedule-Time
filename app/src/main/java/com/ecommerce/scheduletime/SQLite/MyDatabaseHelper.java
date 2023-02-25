@@ -22,9 +22,11 @@ import com.ecommerce.scheduletime.Notification.MyBroadcastReceiver;
 import com.ecommerce.scheduletime.R;
 import com.ecommerce.scheduletime.Sync.SyncDataBaseServiceUpdate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
@@ -74,25 +76,46 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getPrimaryKey() { // ------------------------------try when category is empty after getting data from firebase
-        String lastPrimaryKey = null;
-        MyDatabaseHelper myDB = new MyDatabaseHelper(context);
-        Cursor categoryCursor = myDB.readAllData();
+    private String generateNewId() {
+
+        List<String> primaryKeys = new ArrayList<>();
+        MyDatabaseHelper_notes myDB_note = new MyDatabaseHelper_notes(context);
+        Cursor categoryCursor = myDB_note.readAllData();
         if (categoryCursor.getCount() == 0) {
-            lastPrimaryKey = "0";
+            primaryKeys.add("0");
         } else {
             while (categoryCursor.moveToNext()) {
-                lastPrimaryKey = categoryCursor.getString(0);
+                primaryKeys.add(categoryCursor.getString(1));
             }
         }
-        return lastPrimaryKey;
+
+        String newId;
+        boolean idExists;
+
+        do {
+            // Generate a random ID
+            newId = UUID.randomUUID().toString();
+
+            // Check if the ID already exists in the list
+            idExists = false;
+            for (String id : primaryKeys) {
+                if (id.equals(newId)) {
+                    idExists = true;
+                    break;
+                }
+            }
+        } while (idExists);
+
+
+        return newId;
     }
 
     public void addSchedule1(String date, String title, String description, String priority, String category, String time, String done, int reminder) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_, String.valueOf(Integer.parseInt(getPrimaryKey()) + 1)); // + 1 to get the new id
+        String new_id = generateNewId();
+        cv.put(COLUMN_ID_, new_id);
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_DESCRIPTION, description);
@@ -119,18 +142,18 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             boolean change = prefs_.getBoolean("change", false);
             if (change) {
                 NewTasks newTasks = new NewTasks(context);
-                newTasks.addChange(String.valueOf(Integer.parseInt(getPrimaryKey())), date, title, description, priority, category, time, done, String.valueOf(reminder), "insert");
+                newTasks.addChange(new_id, date, title, description, priority, category, time, done, String.valueOf(reminder), "insert");
             }
 
             MyDatabaseHelper myDB = new MyDatabaseHelper(context);
             Cursor cursor = myDB.readAllData();
-            int id_ = 0;
             if (cursor.getCount() != 0) {
                 while (cursor.moveToNext()) {
-                    id_ = Integer.parseInt(cursor.getString(0));
+                    if (new_id.equals(cursor.getString(1))){
+                        TASK_NEW_ID = Integer.parseInt(cursor.getString(0));
+                    }
                 }
             }
-            TASK_NEW_ID = id_;
 
             // Create time.
             List<String> date_ = Arrays.asList(date.split("-"));
